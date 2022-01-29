@@ -1,33 +1,15 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    10:46:19 11/04/2020
-// Design Name: 
-// Module Name:    test_VGA
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+
 module test_VGA(
-    input wire clk,           // board clock: 32 MHz quacho 100 MHz nexys4 
-    input wire rst,         	// reset button
+    input wire clk,  // Entrada reloj 
+    input wire rst,  // Entrada reset
 
 	// VGA input/output  
-    output wire VGA_Hsync_n,  // horizontal sync output
-    output wire VGA_Vsync_n,  // vertical sync output
-    output wire [3:0] VGA_R,	// 4-bit VGA red output
-    output wire [3:0] VGA_G,  // 4-bit VGA green output
-    output wire [3:0] VGA_B,  // 4-bit VGA blue output
+    output wire VGA_Hsync_n,  // Señal de sincronización en horizontal
+    output wire VGA_Vsync_n,  // Señal de sincronización en vertical
+    output wire [3:0] VGA_R,	// Salida VGA Rojo (4 bits)
+    output wire [3:0] VGA_G,  // Salida VGA Verde (4bits)
+    output wire [3:0] VGA_B,  // Salida VGA Azul (4 bits)
     output wire clkout,  
  	
 	// input/output

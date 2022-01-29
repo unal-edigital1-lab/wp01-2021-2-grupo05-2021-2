@@ -1,13 +1,20 @@
 
-# Proyecto E. Digital I
+# Prueba buffer de memoria y configuración test VGA
 
-* Nicolás Velásquez Ospina
-* Jhair Steven Gallego Mendez
-* Juan David Sarmiento Lastra
+- Nicolás Velásquez Ospina
+- Jhair Steven Gallego Mendez
+- Juan David Sarmiento Lastra
 
-## Preguntas
+## Desarrollo
 
-### Definir ¿Cuál es el tamaño máximo de buffer de memoria que puede crear, acorde a la FPGA?, contraste este resultado con la memoria necesaria par la la visualización en un pantalla VGA 640 x 480 de RGB444, y compruebe si es posible dejando el 50 % libre de la memoria.
+### Pregunta 1: 
+Definir, ¿Cuál es el tamaño máximo de buffer de memoria que puede crear, acorde a la FPGA?, contraste este resultado con la memoria necesaria para la visualización en un pantalla VGA 640 x 480 de RGB444, y compruebe si es posible dejando el 50 % libre de la memoria.
+
+Revisando el datasheet de la tarjeta usada, en este caso el modelo Cyclone IV FPGA EP4CE10E22C8N, nos encontramos que este proporciona una tabla donde se mencionan las distintas capacidades de memoria RAM de la tarjeta (en Kbits), para varios tipos de modelos similar al de la tarjeta usada. 
+
+![Screenshot](Imagenes/tabladata.png)
+
+
 
 Según el datasheet, unos 414kilobits en el modelo usado. Ahora, para usar una pantalla VGA serán necesarios 4 bits para cada color en cada píxel, por lo que serían 12 por cada uno, con una resolución de 640 x 480, por lo que se requieren unos 3686kilobits, donde la tarjeta se queda evidentemente corta. Entonces, será necesario hacer cambios en la visualización, limitando la cantidad de colores y el tamaño de los píxeles.
 

@@ -1,25 +1,9 @@
-//////////////////////////////////////////////////////////////////////////////////
-// 
-// Create Date:    13:34:31 10/22/2019 
-// Design Name: 	 Ferney alberto Beltran Molina
-// Module Name:    VGA_Driver 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+
 module VGA_Driver640x480 (
 	input rst,
 	input clk, 				// 25MHz  para 60 hz de 640x480
 	input  [11:0] pixelIn, 	// entrada del valor de color  pixel 
-	output  [11:0] pixelOut, // salida del valor pixel a la VGA 
+	output  [11:0] pixelOut, // salida pixel VGA (RGB)
 	output  Hsync_n,		// seÃ±al de sincronizaciÃ³n en horizontal negada
 	output  Vsync_n,		// seÃ±al de sincronizaciÃ³n en vertical negada 
 	output  [9:0] posX, 	// posicion en horizontal del pixel siguiente

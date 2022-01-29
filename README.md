@@ -20,5 +20,9 @@ Por la información de la tabla nos podemos dar cuenta que para la FPGA EP4CE10E
 ### Pregunta 2
 ### Revise el datasheet de la tarjeta de desarrollo que usted está usando y compruebe el pinout necesario para la implementación ¿Debe realizar algún cambio en el apartado anterior y que criterios debe tener en cuenta para ello?.
 
+Según lo encontrado en el datasheet de la tarjeta de desarrollado, sumado a lo explicado por el profesor en clase, nos damos cuenta que la tarjeta solo cuenta con un pin de salida para cada uno de los RGB respectivos, es decir, que no es posible que sea RGB 444, como se había planteado inicialmente. Es por esto que se debe conectar tres pines a tierra tanto para R, como para G y B, de tal manera que el bit más significativo sea el que esté conectado al conector de salida VGA de la tarjeta y la pantalla. Esto último se puede apreciar mejor en el siguiente esquema:
+
+![Screenshot](Imagenes/esquema.png)
+
 ### Pregunta 3
 ###¿Usted qué estrategia para modificar la RAM considera para la implementación de la FSM del juego?

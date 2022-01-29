@@ -14,10 +14,10 @@ Revisando el datasheet de la tarjeta usada, en este caso el modelo Cyclone IV FP
 
 ![Screenshot](Imagenes/tabladata.png)
 
+Por la información de la tabla nos podemos dar cuenta que para la FPGA EP4CE10E22C8N, la capacidad de memoria es de 414 Kbits. Ahora es necesario contrastar esto con lo que se necesitaría de capacidad de memoria para la visualización en una pantalla VGA 640 x 480 de RGB 444, por lo que según esto 640 x 480= 307200 pixeles y esto multiplicado por los bits necesarios en el RGB 444(4+4+4=12), por lo tanto, 307200x12 = 3'648.400/1024 = 3600 Kbytes. Comparando este último resultado con la capacidad de memoria con la que cuenta la tarjeta nos damos cuenta que queda evidentemente corta, y con esto no sería posible dejar el 50% del espacio de la memoria libre.
 
 
-Según el datasheet, unos 414kilobits en el modelo usado. Ahora, para usar una pantalla VGA serán necesarios 4 bits para cada color en cada píxel, por lo que serían 12 por cada uno, con una resolución de 640 x 480, por lo que se requieren unos 3686kilobits, donde la tarjeta se queda evidentemente corta. Entonces, será necesario hacer cambios en la visualización, limitando la cantidad de colores y el tamaño de los píxeles.
-
-### Revise el datasheet de la Tarjeta de desarrollo que usted esta usando y compruebe el pinout neceario para la implementación ¿Debe realizar algún cambio en el apartado anterior y que criterios debe tener en cuanta para ello?.
+### Pregunta 2
+Revise el datasheet de la tarjeta de desarrollo que usted está usando y compruebe el pinout necesario para la implementación ¿Debe realizar algún cambio en el apartado anterior y que criterios debe tener en cuenta para ello?.
 
 ### ¿Usted qué estrategia para modificar la RAM considera para la implementación de la FSM del juego?

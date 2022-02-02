@@ -33,9 +33,9 @@ module buffer_ram_dp#(
 	);
 
 // Calcular el nmero de posiciones totales de memoria 
-localparam NPOS = 2 ** AW; // Memoria
+localparam NPOS = 2 ** AW; // Memoria 32768
 
- reg [DW-1: 0] ram [0: NPOS-1]; 
+ reg [DW-1: 0] ram [0: NPOS-1];
 
 
 //	 escritura  de la memoria port 1 

@@ -54,8 +54,8 @@ assign Vsync_n = ~((countY>=SCREEN_Y+FRONT_PORCH_Y) && (countY<SCREEN_Y+FRONT_PO
 
 always @(posedge clk) begin
 	if (rst) begin
-		countX <= TOTAL_SCREEN_X- 10; /*para la simulación sea mas rapido*/
-		countY <= TOTAL_SCREEN_Y-4;/*para la simulación sea mas rapido*/
+		countX <= TOTAL_SCREEN_X- 10; /*para que la simulación sea mas rapido*/
+		countY <= TOTAL_SCREEN_Y-4;  /*para que la simulación sea mas rapido*/
 	end
 	else begin 
 		if (countX >= (TOTAL_SCREEN_X)) begin

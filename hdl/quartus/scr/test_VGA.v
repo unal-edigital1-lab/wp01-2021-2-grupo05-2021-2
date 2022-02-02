@@ -11,7 +11,6 @@ module test_VGA(
     output wire [3:0] VGA_G,  // Salida VGA Verde (4bits)
     output wire [3:0] VGA_B,  // Salida VGA Azul (4 bits)
     output wire clkout,  
- 	
 	// input/output
 	
 	
@@ -25,13 +24,22 @@ parameter CAM_SCREEN_X = 160;
 parameter CAM_SCREEN_Y = 120;
 
 localparam AW = 15; // LOG2(CAM_SCREEN_X*CAM_SCREEN_Y)
-localparam DW = 12;
+localparam DW = 3;
 
-// El color es RGB 444
-localparam RED_VGA =   12'b111100000000;
-localparam GREEN_VGA = 12'b000011110000;
-localparam BLUE_VGA =  12'b000000001111;
+// // El color es RGB 444
+//  localparam RED_VGA =   12'b111100000000;
+//  localparam GREEN_VGA = 12'b000011110000;
+//  localparam BLUE_VGA =  12'b000000001111;
 
+// // El color es RGB 332
+// localparam RED_VGA =   8'b11100000;
+// localparam GREEN_VGA = 8'b00011100;
+// localparam BLUE_VGA =  8'b00000011;
+
+// // El color es RGB 111
+// localparam RED_VGA =   3'b100;
+// localparam GREEN_VGA = 3'b010;
+// localparam BLUE_VGA =  3'b001;
 
 // Clk 
 wire clk12M;
@@ -56,13 +64,17 @@ wire [8:0]VGA_posY;		   // Determinar la pos de memoria que viene del VGA
 la pantalla VGA es RGB 444, pero el almacenamiento en memoria se hace 332
 por lo tanto, los bits menos significactivos deben ser cero
 **************************************************************************** */
-	assign VGA_R = data_RGB444[11:8];
-	assign VGA_G = data_RGB444[7:4];
-	assign VGA_B = data_RGB444[3:0];
+	// assign VGA_R = data_RGB444[11:10];
+	// assign VGA_G = data_RGB444[7:6];
+	// assign VGA_B = data_RGB444[3:2];
+	
+	// assign VGA_R = {data_RGB444[2], 3'b000};
+	// assign VGA_G = {data_RGB444[1], 3'b000};
+	// assign VGA_B = {data_RGB444[0], 3'b000};
 
-
-
-
+	assign VGA_R = data_RGB444[2];
+	assign VGA_G = data_RGB444[1];
+	assign VGA_B = data_RGB444[0];
 
 /* ****************************************************************************
   Este bloque se debe modificar según sea le caso. El ejemplo esta dado para
@@ -70,7 +82,7 @@ por lo tanto, los bits menos significactivos deben ser cero
   usar "tools -> IP Generator ..."  y general el ip con Clocking Wizard
   el bloque genera un reloj de 25Mhz usado para el VGA , a partir de una frecuencia de 12 Mhz
 **************************************************************************** */
-assign clk12M =clk;
+assign clk12M = clk;
 
 /*
 cl_25_24_quartus clk25(
@@ -90,7 +102,7 @@ buffer_ram_dp buffer memoria dual port y reloj de lectura y escritura separados
 Se debe configurar AW  según los calculos realizados en el Wp01
 se recomiendia dejar DW a 8, con el fin de optimizar recursos  y hacer RGB 332
 **************************************************************************** */
-buffer_ram_dp #( AW,DW,"C:/Users/UECCI/Desktop/proyecto_digital1 2020-2/quartus/scr/image.men")
+buffer_ram_dp #( AW, DW,"G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/image.txt")
 	DP_RAM(  
 	.clk_w(clk25M), 
 	.addr_in(DP_RAM_addr_in), 
@@ -126,10 +138,16 @@ LÓgica para actualizar el pixel acorde con la buffer de memoria y el pixel de
 VGA si la imagen de la camara es menor que el display  VGA, los pixeles 
 adicionales seran iguales al color del último pixel de memoria 
 **************************************************************************** */
+reg [2:0] cuadroColores[7:0];
+cuadroColores[0] = 000
+cuadroColores[1] = 001
+cuadroColores[2] = 000
+cuadroColores[3] = 000
 
 always @ (VGA_posX, VGA_posY) begin
 		if ((VGA_posX>CAM_SCREEN_X-1) || (VGA_posY>CAM_SCREEN_Y-1))
-			DP_RAM_addr_out=19212;
+			DP_RAM_addr_out=19212; //0F0 000 1111 000
+			data_men = cuadroColores[0]
 		else
 			DP_RAM_addr_out=VGA_posX+VGA_posY*CAM_SCREEN_Y;
 end

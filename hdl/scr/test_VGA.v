@@ -42,14 +42,17 @@ module test_VGA(
 parameter CAM_SCREEN_X = 160;
 parameter CAM_SCREEN_Y = 120;
 
-localparam AW = 15; // LOG2(CAM_SCREEN_X*CAM_SCREEN_Y)
-localparam DW = 12;
+localparam AW = 15; // LOG2(CAM_SCREEN_X*CAM_SCREEN_Y) // Cantidad de bits  de la direccin 
+localparam DW = 12; // cantidad de Bits de los datos 
 
 // El color es RGB 444
 localparam RED_VGA =   12'b111100000000;
 localparam GREEN_VGA = 12'b000011110000;
 localparam BLUE_VGA =  12'b000000001111;
 
+// localparam RED_VGA = 1'b100;
+// localparam GREEN_VGA = 1'b010;
+// localparam BLUE_VGA = 1'b001;
 
 // Clk 
 wire clk12M;
@@ -78,6 +81,10 @@ por lo tanto, los bits menos significactivos deben ser cero
 	assign VGA_G = data_RGB444[7:4];
 	assign VGA_B = data_RGB444[3:0];
 
+	// modificació para RGB 111
+	// assign VGA_R = data_RGB444[2];
+	// assign VGA_G = data_RGB444[1];
+	// assign VGA_B = data_RGB444[0];
 
 
 
@@ -108,8 +115,8 @@ buffer_ram_dp buffer memoria dual port y reloj de lectura y escritura separados
 Se debe configurar AW  según los calculos realizados en el Wp01
 se recomiendia dejar DW a 8, con el fin de optimizar recursos  y hacer RGB 332
 **************************************************************************** */
-buffer_ram_dp #( AW,DW,"C:/Users/UECCI/Desktop/proyecto_digital1 2020-2/quartus/scr/image.men")
-	DP_RAM(  
+buffer_ram_dp #( AW,DW,"G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/scr/image.men")
+	DP_RAM (  
 	.clk_w(clk25M), 
 	.addr_in(DP_RAM_addr_in), 
 	.data_in(DP_RAM_data_in),
@@ -140,7 +147,7 @@ VGA_Driver640x480 VGA640x480
 
  
 /* ****************************************************************************
-LÓgica para actualizar el pixel acorde con la buffer de memoria y el pixel de 
+Lógica para actualizar el pixel acorde con la buffer de memoria y el pixel de 
 VGA si la imagen de la camara es menor que el display  VGA, los pixeles 
 adicionales seran iguales al color del último pixel de memoria 
 **************************************************************************** */
@@ -149,7 +156,7 @@ always @ (VGA_posX, VGA_posY) begin
 		if ((VGA_posX>CAM_SCREEN_X-1) || (VGA_posY>CAM_SCREEN_Y-1))
 			DP_RAM_addr_out=19212;
 		else
-			DP_RAM_addr_out=VGA_posX+VGA_posY*CAM_SCREEN_Y;
+			DP_RAM_addr_out = VGA_posX+VGA_posY*CAM_SCREEN_Y;
 end
 
 

@@ -31,6 +31,7 @@ assign posX    = countX;
 assign posY    = countY;
 
 assign pixelOut = (countX<SCREEN_X) ? (pixelIn ) : (12'b000000000000) ; // Dejar en blanco la zona del porch
+// assign pixelOut = (countX<SCREEN_X) ? (pixelIn ) : (3'b000) ; // Dejar en blanco la zona del porch
 
 assign Hsync_n = ~((countX>=SCREEN_X+FRONT_PORCH_X) && (countX<SCREEN_X+SYNC_PULSE_X+FRONT_PORCH_X)); // Sincronización horizontal
 assign Vsync_n = ~((countY>=SCREEN_Y+FRONT_PORCH_Y) && (countY<SCREEN_Y+FRONT_PORCH_Y+SYNC_PULSE_Y)); // Sincronización vertical

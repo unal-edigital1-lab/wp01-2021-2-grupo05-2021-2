@@ -31,8 +31,14 @@ module test_VGA_TB;
 	wire [3:0] VGA_R;
 	wire [3:0] VGA_G;
 	wire [3:0] VGA_B;
-   wire bntr;
-	wire bntl;
+	reg sw0;
+	reg sw1;
+	reg sw2;
+	reg sw3;
+	reg sw4;
+	reg sw5;
+	reg sw6;
+	reg sw7;
 	wire clkout;
 
 	// Instantiate the Unit Under Test (UUT)
@@ -44,22 +50,47 @@ module test_VGA_TB;
 		.VGA_R(VGA_R), 
 		.VGA_G(VGA_G), 
 		.VGA_B(VGA_B),
-		.bntr(bntr),
-		.bntl(bntr),
+		.sw0(sw0),
+		.sw1(sw1),
+		.sw2(sw2),
+		.sw3(sw3),
+		.sw4(sw4),
+		.sw5(sw5),
+		.sw6(sw6),
+		.sw7(sw7),
 		.clkout(clkout)
-	
 	);
 	
 	initial begin
 		// Initialize Inputs
 		clk = 0;
-		rst = 1;
+		rst = 1; // si es 1, deja constante countx y county
 		#200;
 		rst = 0;
+
+		sw0 = 0;
+		sw1 = 0;
+		sw2 = 0;
+		sw3 = 0;
+		sw4 = 0;
+		sw5 = 0;
+		sw6 = 0;
+		sw7 = 0;
+
+		
 	end
 
 	always #2 clk  = ~clk;
-	
+	always #1000 begin
+		sw0 = ~sw0;
+		sw1 = ~sw1;
+		sw2 = ~sw2;
+		sw3 = ~sw3;
+		sw4 = ~sw4;
+		sw5 = ~sw5;
+		sw6 = ~sw6;
+		sw7 = ~sw7;
+	end
 	
 	reg [9:0]line_cnt=0;
 	reg [9:0]row_cnt=0;

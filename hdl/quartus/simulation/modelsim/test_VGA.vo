@@ -17,7 +17,7 @@
 // PROGRAM "Quartus Prime"
 // VERSION "Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition"
 
-// DATE "02/01/2022 09:22:00"
+// DATE "02/04/2022 00:59:27"
 
 // 
 // Device: Altera EP4CE10E22C8 Package TQFP144
@@ -38,8 +38,14 @@ module test_VGA (
 	VGA_G,
 	VGA_B,
 	clkout,
-	bntr,
-	bntl);
+	sw0,
+	sw1,
+	sw2,
+	sw3,
+	sw4,
+	sw5,
+	sw6,
+	sw7);
 input 	clk;
 input 	rst;
 output 	VGA_Hsync_n;
@@ -48,29 +54,41 @@ output 	[3:0] VGA_R;
 output 	[3:0] VGA_G;
 output 	[3:0] VGA_B;
 output 	clkout;
-input 	bntr;
-input 	bntl;
+input 	sw0;
+input 	sw1;
+input 	sw2;
+input 	sw3;
+input 	sw4;
+input 	sw5;
+input 	sw6;
+input 	sw7;
 
 // Design Ports Information
-// VGA_Hsync_n	=>  Location: PIN_98,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_Vsync_n	=>  Location: PIN_87,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_R[0]	=>  Location: PIN_100,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_R[1]	=>  Location: PIN_11,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_R[2]	=>  Location: PIN_53,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_R[3]	=>  Location: PIN_50,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_G[0]	=>  Location: PIN_103,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_G[1]	=>  Location: PIN_71,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_Hsync_n	=>  Location: PIN_125,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_Vsync_n	=>  Location: PIN_54,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_R[0]	=>  Location: PIN_58,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_R[1]	=>  Location: PIN_144,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_R[2]	=>  Location: PIN_138,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_R[3]	=>  Location: PIN_71,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_G[0]	=>  Location: PIN_59,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_G[1]	=>  Location: PIN_43,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // VGA_G[2]	=>  Location: PIN_113,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_G[3]	=>  Location: PIN_38,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_B[0]	=>  Location: PIN_104,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_B[1]	=>  Location: PIN_132,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_B[2]	=>  Location: PIN_54,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// VGA_B[3]	=>  Location: PIN_76,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_G[3]	=>  Location: PIN_115,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_B[0]	=>  Location: PIN_60,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_B[1]	=>  Location: PIN_114,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_B[2]	=>  Location: PIN_3,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// VGA_B[3]	=>  Location: PIN_66,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // clkout	=>  Location: PIN_28,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// bntr	=>  Location: PIN_24,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// bntl	=>  Location: PIN_25,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// sw0	=>  Location: PIN_124,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// sw1	=>  Location: PIN_129,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// sw2	=>  Location: PIN_128,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// sw3	=>  Location: PIN_7,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// sw4	=>  Location: PIN_86,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// sw5	=>  Location: PIN_120,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// sw6	=>  Location: PIN_119,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// sw7	=>  Location: PIN_127,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // clk	=>  Location: PIN_23,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// rst	=>  Location: PIN_99,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// rst	=>  Location: PIN_55,	 I/O Standard: 2.5 V,	 Current Strength: Default
 
 
 wire gnd;
@@ -84,8 +102,48 @@ assign unknown = 1'bx;
 tri1 devclrn;
 tri1 devpor;
 tri1 devoe;
-wire \bntr~input_o ;
-wire \bntl~input_o ;
+wire \Mult0|auto_generated|mac_out2~dataout ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT1 ;
+wire \Mult0|auto_generated|mac_out2~0 ;
+wire \Mult0|auto_generated|mac_out2~1 ;
+wire \Mult0|auto_generated|mac_out2~2 ;
+wire \Mult0|auto_generated|mac_out2~3 ;
+wire \Mult0|auto_generated|mac_out2~4 ;
+wire \Mult0|auto_generated|mac_out2~5 ;
+wire \Mult0|auto_generated|mac_out2~6 ;
+wire \Mult0|auto_generated|mac_out2~7 ;
+wire \Mult0|auto_generated|mac_out2~8 ;
+wire \Mult0|auto_generated|mac_out2~9 ;
+wire \Mult0|auto_generated|mac_out2~10 ;
+wire \Mult0|auto_generated|mac_out2~11 ;
+wire \Mult0|auto_generated|mac_out2~12 ;
+wire \Mult0|auto_generated|mac_out2~13 ;
+wire \Mult1|auto_generated|mac_out2~dataout ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT1 ;
+wire \Mult1|auto_generated|mac_out2~0 ;
+wire \Mult1|auto_generated|mac_out2~1 ;
+wire \Mult1|auto_generated|mac_out2~2 ;
+wire \Mult1|auto_generated|mac_out2~3 ;
+wire \Mult1|auto_generated|mac_out2~4 ;
+wire \Mult1|auto_generated|mac_out2~5 ;
+wire \Mult1|auto_generated|mac_out2~6 ;
+wire \Mult1|auto_generated|mac_out2~7 ;
+wire \Mult1|auto_generated|mac_out2~8 ;
+wire \Mult1|auto_generated|mac_out2~9 ;
+wire \Mult1|auto_generated|mac_out2~10 ;
+wire \Mult1|auto_generated|mac_out2~11 ;
+wire \Mult1|auto_generated|mac_out2~12 ;
+wire \Mult1|auto_generated|mac_out2~13 ;
+wire \Mult1|auto_generated|mac_out2~14 ;
+wire \Mult1|auto_generated|mac_out2~15 ;
+wire \sw0~input_o ;
+wire \sw1~input_o ;
+wire \sw2~input_o ;
+wire \sw3~input_o ;
+wire \sw4~input_o ;
+wire \sw5~input_o ;
+wire \sw6~input_o ;
+wire \sw7~input_o ;
 wire \VGA_Hsync_n~output_o ;
 wire \VGA_Vsync_n~output_o ;
 wire \VGA_R[0]~output_o ;
@@ -129,179 +187,348 @@ wire \VGA640x480|countX[4]~18_combout ;
 wire \VGA640x480|Hsync_n~0_combout ;
 wire \VGA640x480|Hsync_n~1_combout ;
 wire \VGA640x480|countY[0]~9_combout ;
-wire \VGA640x480|countY[0]~feeder_combout ;
 wire \VGA640x480|countY[0]~10 ;
 wire \VGA640x480|countY[1]~11_combout ;
 wire \VGA640x480|countY[1]~12 ;
 wire \VGA640x480|countY[2]~13_combout ;
-wire \VGA640x480|countY[2]~feeder_combout ;
 wire \VGA640x480|countY[2]~14 ;
 wire \VGA640x480|countY[3]~15_combout ;
-wire \VGA640x480|countY[3]~feeder_combout ;
 wire \VGA640x480|countY[3]~16 ;
 wire \VGA640x480|countY[4]~17_combout ;
+wire \VGA640x480|Vsync_n~0_combout ;
 wire \VGA640x480|countY[4]~18 ;
 wire \VGA640x480|countY[5]~19_combout ;
 wire \VGA640x480|countY[5]~20 ;
 wire \VGA640x480|countY[6]~21_combout ;
-wire \VGA640x480|countY[6]~feeder_combout ;
 wire \VGA640x480|countY[6]~22 ;
 wire \VGA640x480|countY[7]~23_combout ;
-wire \VGA640x480|countY[7]~feeder_combout ;
 wire \VGA640x480|countY[7]~24 ;
 wire \VGA640x480|countY[8]~25_combout ;
-wire \VGA640x480|Vsync_n~0_combout ;
 wire \LessThan1~0_combout ;
 wire \VGA640x480|Vsync_n~1_combout ;
-wire \always0~0_combout ;
-wire \always0~1_combout ;
-wire \always0~2_combout ;
-wire \Add0~1_cout ;
-wire \Add0~3 ;
-wire \Add0~5 ;
-wire \Add0~7 ;
-wire \Add0~9 ;
-wire \Add0~11 ;
-wire \Add0~13 ;
-wire \Add0~15 ;
-wire \Add0~17 ;
-wire \Add0~19 ;
-wire \Add0~20_combout ;
-wire \Add0~18_combout ;
-wire \Add0~16_combout ;
-wire \Add0~14_combout ;
-wire \Add0~12_combout ;
-wire \Add0~10_combout ;
-wire \Add0~8_combout ;
-wire \Add1~1 ;
-wire \Add1~3 ;
-wire \Add1~5 ;
-wire \Add1~7 ;
-wire \Add1~9 ;
-wire \Add1~11 ;
-wire \Add1~12_combout ;
-wire \Add1~10_combout ;
-wire \Add1~8_combout ;
-wire \Add1~6_combout ;
-wire \Add1~4_combout ;
-wire \Add1~2_combout ;
-wire \Add1~0_combout ;
-wire \Add0~6_combout ;
-wire \Add0~4_combout ;
+wire \Add0~0_combout ;
+wire \Add0~1_combout ;
 wire \Add0~2_combout ;
-wire \Add2~1 ;
-wire \Add2~3 ;
-wire \Add2~5 ;
-wire \Add2~7 ;
-wire \Add2~9 ;
-wire \Add2~11 ;
+wire \Add0~3_combout ;
+wire \Mult0|auto_generated|mac_mult1~dataout ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT1 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT2 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT3 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT4 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT5 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT6 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT7 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT8 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT9 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT10 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT11 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT12 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT13 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT14 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT15 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT16 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT17 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT18 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT19 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT20 ;
+wire \Mult0|auto_generated|mac_mult1~DATAOUT21 ;
+wire \Mult0|auto_generated|mac_mult1~0 ;
+wire \Mult0|auto_generated|mac_mult1~1 ;
+wire \Mult0|auto_generated|mac_mult1~2 ;
+wire \Mult0|auto_generated|mac_mult1~3 ;
+wire \Mult0|auto_generated|mac_mult1~4 ;
+wire \Mult0|auto_generated|mac_mult1~5 ;
+wire \Mult0|auto_generated|mac_mult1~6 ;
+wire \Mult0|auto_generated|mac_mult1~7 ;
+wire \Mult0|auto_generated|mac_mult1~8 ;
+wire \Mult0|auto_generated|mac_mult1~9 ;
+wire \Mult0|auto_generated|mac_mult1~10 ;
+wire \Mult0|auto_generated|mac_mult1~11 ;
+wire \Mult0|auto_generated|mac_mult1~12 ;
+wire \Mult0|auto_generated|mac_mult1~13 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT13 ;
+wire \Add1~0_combout ;
+wire \Add1~1_combout ;
+wire \Add1~2_combout ;
+wire \Add1~3_combout ;
+wire \Add1~4_combout ;
+wire \Add1~5_combout ;
+wire \Mult1|auto_generated|mac_mult1~dataout ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT1 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT2 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT3 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT4 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT5 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT6 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT7 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT8 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT9 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT10 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT11 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT12 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT13 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT14 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT15 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT16 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT17 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT18 ;
+wire \Mult1|auto_generated|mac_mult1~DATAOUT19 ;
+wire \Mult1|auto_generated|mac_mult1~0 ;
+wire \Mult1|auto_generated|mac_mult1~1 ;
+wire \Mult1|auto_generated|mac_mult1~2 ;
+wire \Mult1|auto_generated|mac_mult1~3 ;
+wire \Mult1|auto_generated|mac_mult1~4 ;
+wire \Mult1|auto_generated|mac_mult1~5 ;
+wire \Mult1|auto_generated|mac_mult1~6 ;
+wire \Mult1|auto_generated|mac_mult1~7 ;
+wire \Mult1|auto_generated|mac_mult1~8 ;
+wire \Mult1|auto_generated|mac_mult1~9 ;
+wire \Mult1|auto_generated|mac_mult1~10 ;
+wire \Mult1|auto_generated|mac_mult1~11 ;
+wire \Mult1|auto_generated|mac_mult1~12 ;
+wire \Mult1|auto_generated|mac_mult1~13 ;
+wire \Mult1|auto_generated|mac_mult1~14 ;
+wire \Mult1|auto_generated|mac_mult1~15 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT13 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT12 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT12 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT11 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT11 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT10 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT10 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT9 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT9 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT8 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT8 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT7 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT7 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT6 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT6 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT5 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT5 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT4 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT4 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT3 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT3 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT2 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT2 ;
+wire \Add2~1_cout ;
+wire \Add2~3_cout ;
+wire \Add2~5_cout ;
+wire \Add2~7_cout ;
+wire \Add2~9_cout ;
+wire \Add2~11_cout ;
 wire \Add2~13 ;
 wire \Add2~15 ;
 wire \Add2~17 ;
 wire \Add2~19 ;
-wire \Add2~20_combout ;
-wire \Add1~13 ;
-wire \Add1~14_combout ;
 wire \Add2~21 ;
 wire \Add2~22_combout ;
-wire \DP_RAM_addr_out[0]~0_combout ;
-wire \DP_RAM_addr_out[1]~1_combout ;
-wire \DP_RAM_addr_out[2]~2_combout ;
-wire \Add2~0_combout ;
-wire \Add2~24_combout ;
-wire \Add2~2_combout ;
-wire \Add2~25_combout ;
-wire \Add2~4_combout ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT15 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT15 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT14 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT14 ;
+wire \Add2~23 ;
+wire \Add2~25 ;
 wire \Add2~26_combout ;
-wire \Add2~6_combout ;
-wire \Add2~27_combout ;
-wire \Add2~8_combout ;
-wire \Add2~28_combout ;
-wire \Add2~10_combout ;
-wire \Add2~29_combout ;
-wire \Add2~12_combout ;
-wire \Add2~30_combout ;
-wire \Add2~14_combout ;
-wire \Add2~31_combout ;
-wire \Add2~16_combout ;
-wire \Add2~32_combout ;
+wire \Add2~20_combout ;
+wire \Add2~24_combout ;
 wire \Add2~18_combout ;
-wire \Add2~33_combout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5~portadataout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2~portadataout ;
+wire \Add2~16_combout ;
+wire \Add2~14_combout ;
+wire \Add2~12_combout ;
+wire \LessThan2~0_combout ;
+wire \VGA640x480|pixelOut[2]~3_combout ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT18 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT18 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT17 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT17 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT16 ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT16 ;
+wire \Add2~27 ;
+wire \Add2~29 ;
+wire \Add2~31 ;
+wire \Add2~32_combout ;
+wire \Mult1|auto_generated|mac_out2~DATAOUT19 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT20 ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT19 ;
+wire \Add2~33 ;
+wire \Add2~35 ;
+wire \Add2~36_combout ;
 wire \Add2~34_combout ;
-wire \Add2~35_combout ;
+wire \Add2~30_combout ;
 wire \VGA640x480|pixelOut[2]~0_combout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11~portadataout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode229w[2]~0_combout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8~portadataout ;
+wire \Mult0|auto_generated|mac_out2~DATAOUT21 ;
+wire \Add2~37 ;
+wire \Add2~38_combout ;
+wire \Add2~39 ;
+wire \Add2~40_combout ;
+wire \Add2~28_combout ;
 wire \VGA640x480|pixelOut[2]~1_combout ;
-wire \VGA640x480|LessThan0~0_combout ;
 wire \VGA640x480|pixelOut[2]~2_combout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7~portadataout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10~portadataout ;
-wire \VGA640x480|pixelOut[1]~4_combout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1~portadataout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4~portadataout ;
-wire \VGA640x480|pixelOut[1]~3_combout ;
-wire \VGA640x480|pixelOut[1]~5_combout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0~portadataout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3~portadataout ;
-wire \VGA640x480|pixelOut[0]~6_combout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6~portadataout ;
-wire \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9~portadataout ;
-wire \VGA640x480|pixelOut[0]~7_combout ;
-wire \VGA640x480|pixelOut[0]~8_combout ;
-wire [2:0] \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode238w ;
+wire \VGA640x480|pixelOut[2]~4_combout ;
 wire [9:0] \VGA640x480|countX ;
 wire [8:0] \VGA640x480|countY ;
-wire [2:0] \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode206w ;
-wire [1:0] \DP_RAM|ram_rtl_0|auto_generated|address_reg_a ;
-wire [2:0] \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode220w ;
 
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5_PORTADATAOUT_bus ;
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2_PORTADATAOUT_bus ;
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11_PORTADATAOUT_bus ;
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8_PORTADATAOUT_bus ;
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4_PORTADATAOUT_bus ;
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1_PORTADATAOUT_bus ;
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10_PORTADATAOUT_bus ;
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7_PORTADATAOUT_bus ;
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3_PORTADATAOUT_bus ;
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0_PORTADATAOUT_bus ;
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9_PORTADATAOUT_bus ;
-wire [0:0] \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6_PORTADATAOUT_bus ;
+wire [35:0] \Mult0|auto_generated|mac_out2_DATAOUT_bus ;
+wire [35:0] \Mult1|auto_generated|mac_out2_DATAOUT_bus ;
+wire [35:0] \Mult0|auto_generated|mac_mult1_DATAOUT_bus ;
+wire [35:0] \Mult1|auto_generated|mac_mult1_DATAOUT_bus ;
 
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5_PORTADATAOUT_bus [0];
+assign \Mult0|auto_generated|mac_out2~0  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [0];
+assign \Mult0|auto_generated|mac_out2~1  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [1];
+assign \Mult0|auto_generated|mac_out2~2  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [2];
+assign \Mult0|auto_generated|mac_out2~3  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [3];
+assign \Mult0|auto_generated|mac_out2~4  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [4];
+assign \Mult0|auto_generated|mac_out2~5  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [5];
+assign \Mult0|auto_generated|mac_out2~6  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [6];
+assign \Mult0|auto_generated|mac_out2~7  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [7];
+assign \Mult0|auto_generated|mac_out2~8  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [8];
+assign \Mult0|auto_generated|mac_out2~9  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [9];
+assign \Mult0|auto_generated|mac_out2~10  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [10];
+assign \Mult0|auto_generated|mac_out2~11  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [11];
+assign \Mult0|auto_generated|mac_out2~12  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [12];
+assign \Mult0|auto_generated|mac_out2~13  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [13];
+assign \Mult0|auto_generated|mac_out2~dataout  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [14];
+assign \Mult0|auto_generated|mac_out2~DATAOUT1  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [15];
+assign \Mult0|auto_generated|mac_out2~DATAOUT2  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [16];
+assign \Mult0|auto_generated|mac_out2~DATAOUT3  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [17];
+assign \Mult0|auto_generated|mac_out2~DATAOUT4  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [18];
+assign \Mult0|auto_generated|mac_out2~DATAOUT5  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [19];
+assign \Mult0|auto_generated|mac_out2~DATAOUT6  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [20];
+assign \Mult0|auto_generated|mac_out2~DATAOUT7  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [21];
+assign \Mult0|auto_generated|mac_out2~DATAOUT8  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [22];
+assign \Mult0|auto_generated|mac_out2~DATAOUT9  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [23];
+assign \Mult0|auto_generated|mac_out2~DATAOUT10  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [24];
+assign \Mult0|auto_generated|mac_out2~DATAOUT11  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [25];
+assign \Mult0|auto_generated|mac_out2~DATAOUT12  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [26];
+assign \Mult0|auto_generated|mac_out2~DATAOUT13  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [27];
+assign \Mult0|auto_generated|mac_out2~DATAOUT14  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [28];
+assign \Mult0|auto_generated|mac_out2~DATAOUT15  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [29];
+assign \Mult0|auto_generated|mac_out2~DATAOUT16  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [30];
+assign \Mult0|auto_generated|mac_out2~DATAOUT17  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [31];
+assign \Mult0|auto_generated|mac_out2~DATAOUT18  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [32];
+assign \Mult0|auto_generated|mac_out2~DATAOUT19  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [33];
+assign \Mult0|auto_generated|mac_out2~DATAOUT20  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [34];
+assign \Mult0|auto_generated|mac_out2~DATAOUT21  = \Mult0|auto_generated|mac_out2_DATAOUT_bus [35];
 
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2_PORTADATAOUT_bus [0];
+assign \Mult1|auto_generated|mac_out2~0  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [0];
+assign \Mult1|auto_generated|mac_out2~1  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [1];
+assign \Mult1|auto_generated|mac_out2~2  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [2];
+assign \Mult1|auto_generated|mac_out2~3  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [3];
+assign \Mult1|auto_generated|mac_out2~4  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [4];
+assign \Mult1|auto_generated|mac_out2~5  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [5];
+assign \Mult1|auto_generated|mac_out2~6  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [6];
+assign \Mult1|auto_generated|mac_out2~7  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [7];
+assign \Mult1|auto_generated|mac_out2~8  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [8];
+assign \Mult1|auto_generated|mac_out2~9  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [9];
+assign \Mult1|auto_generated|mac_out2~10  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [10];
+assign \Mult1|auto_generated|mac_out2~11  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [11];
+assign \Mult1|auto_generated|mac_out2~12  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [12];
+assign \Mult1|auto_generated|mac_out2~13  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [13];
+assign \Mult1|auto_generated|mac_out2~14  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [14];
+assign \Mult1|auto_generated|mac_out2~15  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [15];
+assign \Mult1|auto_generated|mac_out2~dataout  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [16];
+assign \Mult1|auto_generated|mac_out2~DATAOUT1  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [17];
+assign \Mult1|auto_generated|mac_out2~DATAOUT2  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [18];
+assign \Mult1|auto_generated|mac_out2~DATAOUT3  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [19];
+assign \Mult1|auto_generated|mac_out2~DATAOUT4  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [20];
+assign \Mult1|auto_generated|mac_out2~DATAOUT5  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [21];
+assign \Mult1|auto_generated|mac_out2~DATAOUT6  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [22];
+assign \Mult1|auto_generated|mac_out2~DATAOUT7  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [23];
+assign \Mult1|auto_generated|mac_out2~DATAOUT8  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [24];
+assign \Mult1|auto_generated|mac_out2~DATAOUT9  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [25];
+assign \Mult1|auto_generated|mac_out2~DATAOUT10  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [26];
+assign \Mult1|auto_generated|mac_out2~DATAOUT11  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [27];
+assign \Mult1|auto_generated|mac_out2~DATAOUT12  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [28];
+assign \Mult1|auto_generated|mac_out2~DATAOUT13  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [29];
+assign \Mult1|auto_generated|mac_out2~DATAOUT14  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [30];
+assign \Mult1|auto_generated|mac_out2~DATAOUT15  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [31];
+assign \Mult1|auto_generated|mac_out2~DATAOUT16  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [32];
+assign \Mult1|auto_generated|mac_out2~DATAOUT17  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [33];
+assign \Mult1|auto_generated|mac_out2~DATAOUT18  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [34];
+assign \Mult1|auto_generated|mac_out2~DATAOUT19  = \Mult1|auto_generated|mac_out2_DATAOUT_bus [35];
 
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11_PORTADATAOUT_bus [0];
+assign \Mult0|auto_generated|mac_mult1~0  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [0];
+assign \Mult0|auto_generated|mac_mult1~1  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [1];
+assign \Mult0|auto_generated|mac_mult1~2  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [2];
+assign \Mult0|auto_generated|mac_mult1~3  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [3];
+assign \Mult0|auto_generated|mac_mult1~4  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [4];
+assign \Mult0|auto_generated|mac_mult1~5  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [5];
+assign \Mult0|auto_generated|mac_mult1~6  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [6];
+assign \Mult0|auto_generated|mac_mult1~7  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [7];
+assign \Mult0|auto_generated|mac_mult1~8  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [8];
+assign \Mult0|auto_generated|mac_mult1~9  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [9];
+assign \Mult0|auto_generated|mac_mult1~10  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [10];
+assign \Mult0|auto_generated|mac_mult1~11  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [11];
+assign \Mult0|auto_generated|mac_mult1~12  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [12];
+assign \Mult0|auto_generated|mac_mult1~13  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [13];
+assign \Mult0|auto_generated|mac_mult1~dataout  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [14];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT1  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [15];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT2  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [16];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT3  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [17];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT4  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [18];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT5  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [19];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT6  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [20];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT7  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [21];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT8  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [22];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT9  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [23];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT10  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [24];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT11  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [25];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT12  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [26];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT13  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [27];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT14  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [28];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT15  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [29];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT16  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [30];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT17  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [31];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT18  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [32];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT19  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [33];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT20  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [34];
+assign \Mult0|auto_generated|mac_mult1~DATAOUT21  = \Mult0|auto_generated|mac_mult1_DATAOUT_bus [35];
 
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8_PORTADATAOUT_bus [0];
-
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4_PORTADATAOUT_bus [0];
-
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1_PORTADATAOUT_bus [0];
-
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10_PORTADATAOUT_bus [0];
-
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7_PORTADATAOUT_bus [0];
-
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3_PORTADATAOUT_bus [0];
-
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0_PORTADATAOUT_bus [0];
-
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9_PORTADATAOUT_bus [0];
-
-assign \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6~portadataout  = \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6_PORTADATAOUT_bus [0];
+assign \Mult1|auto_generated|mac_mult1~0  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [0];
+assign \Mult1|auto_generated|mac_mult1~1  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [1];
+assign \Mult1|auto_generated|mac_mult1~2  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [2];
+assign \Mult1|auto_generated|mac_mult1~3  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [3];
+assign \Mult1|auto_generated|mac_mult1~4  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [4];
+assign \Mult1|auto_generated|mac_mult1~5  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [5];
+assign \Mult1|auto_generated|mac_mult1~6  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [6];
+assign \Mult1|auto_generated|mac_mult1~7  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [7];
+assign \Mult1|auto_generated|mac_mult1~8  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [8];
+assign \Mult1|auto_generated|mac_mult1~9  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [9];
+assign \Mult1|auto_generated|mac_mult1~10  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [10];
+assign \Mult1|auto_generated|mac_mult1~11  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [11];
+assign \Mult1|auto_generated|mac_mult1~12  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [12];
+assign \Mult1|auto_generated|mac_mult1~13  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [13];
+assign \Mult1|auto_generated|mac_mult1~14  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [14];
+assign \Mult1|auto_generated|mac_mult1~15  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [15];
+assign \Mult1|auto_generated|mac_mult1~dataout  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [16];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT1  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [17];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT2  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [18];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT3  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [19];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT4  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [20];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT5  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [21];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT6  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [22];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT7  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [23];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT8  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [24];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT9  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [25];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT10  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [26];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT11  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [27];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT12  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [28];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT13  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [29];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT14  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [30];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT15  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [31];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT16  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [32];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT17  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [33];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT18  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [34];
+assign \Mult1|auto_generated|mac_mult1~DATAOUT19  = \Mult1|auto_generated|mac_mult1_DATAOUT_bus [35];
 
 hard_block auto_generated_inst(
 	.devpor(devpor),
 	.devclrn(devclrn),
 	.devoe(devoe));
 
-// Location: IOOBUF_X34_Y17_N23
+// Location: IOOBUF_X18_Y24_N23
 cycloneive_io_obuf \VGA_Hsync_n~output (
 	.i(\VGA640x480|Hsync_n~1_combout ),
 	.oe(vcc),
@@ -314,7 +541,7 @@ defparam \VGA_Hsync_n~output .bus_hold = "false";
 defparam \VGA_Hsync_n~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X34_Y10_N9
+// Location: IOOBUF_X18_Y0_N23
 cycloneive_io_obuf \VGA_Vsync_n~output (
 	.i(\VGA640x480|Vsync_n~1_combout ),
 	.oe(vcc),
@@ -327,9 +554,9 @@ defparam \VGA_Vsync_n~output .bus_hold = "false";
 defparam \VGA_Vsync_n~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X34_Y17_N2
+// Location: IOOBUF_X21_Y0_N9
 cycloneive_io_obuf \VGA_R[0]~output (
-	.i(\VGA640x480|pixelOut[2]~2_combout ),
+	.i(\VGA640x480|pixelOut[2]~4_combout ),
 	.oe(vcc),
 	.seriesterminationcontrol(16'b0000000000000000),
 	.devoe(devoe),
@@ -340,7 +567,7 @@ defparam \VGA_R[0]~output .bus_hold = "false";
 defparam \VGA_R[0]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X0_Y18_N23
+// Location: IOOBUF_X1_Y24_N9
 cycloneive_io_obuf \VGA_R[1]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -353,7 +580,7 @@ defparam \VGA_R[1]~output .bus_hold = "false";
 defparam \VGA_R[1]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X16_Y0_N2
+// Location: IOOBUF_X7_Y24_N9
 cycloneive_io_obuf \VGA_R[2]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -366,7 +593,7 @@ defparam \VGA_R[2]~output .bus_hold = "false";
 defparam \VGA_R[2]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X13_Y0_N2
+// Location: IOOBUF_X32_Y0_N16
 cycloneive_io_obuf \VGA_R[3]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -379,9 +606,9 @@ defparam \VGA_R[3]~output .bus_hold = "false";
 defparam \VGA_R[3]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X34_Y18_N16
+// Location: IOOBUF_X23_Y0_N16
 cycloneive_io_obuf \VGA_G[0]~output (
-	.i(\VGA640x480|pixelOut[1]~5_combout ),
+	.i(\VGA640x480|pixelOut[2]~4_combout ),
 	.oe(vcc),
 	.seriesterminationcontrol(16'b0000000000000000),
 	.devoe(devoe),
@@ -392,7 +619,7 @@ defparam \VGA_G[0]~output .bus_hold = "false";
 defparam \VGA_G[0]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X32_Y0_N16
+// Location: IOOBUF_X5_Y0_N23
 cycloneive_io_obuf \VGA_G[1]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -418,7 +645,7 @@ defparam \VGA_G[2]~output .bus_hold = "false";
 defparam \VGA_G[2]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X1_Y0_N23
+// Location: IOOBUF_X28_Y24_N23
 cycloneive_io_obuf \VGA_G[3]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -431,9 +658,9 @@ defparam \VGA_G[3]~output .bus_hold = "false";
 defparam \VGA_G[3]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X34_Y18_N2
+// Location: IOOBUF_X23_Y0_N9
 cycloneive_io_obuf \VGA_B[0]~output (
-	.i(\VGA640x480|pixelOut[0]~8_combout ),
+	.i(\VGA640x480|pixelOut[2]~4_combout ),
 	.oe(vcc),
 	.seriesterminationcontrol(16'b0000000000000000),
 	.devoe(devoe),
@@ -444,7 +671,7 @@ defparam \VGA_B[0]~output .bus_hold = "false";
 defparam \VGA_B[0]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X13_Y24_N16
+// Location: IOOBUF_X28_Y24_N16
 cycloneive_io_obuf \VGA_B[1]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -457,7 +684,7 @@ defparam \VGA_B[1]~output .bus_hold = "false";
 defparam \VGA_B[1]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X18_Y0_N23
+// Location: IOOBUF_X0_Y23_N16
 cycloneive_io_obuf \VGA_B[2]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -470,7 +697,7 @@ defparam \VGA_B[2]~output .bus_hold = "false";
 defparam \VGA_B[2]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X34_Y4_N23
+// Location: IOOBUF_X28_Y0_N2
 cycloneive_io_obuf \VGA_B[3]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -519,7 +746,7 @@ defparam \clk~inputclkctrl .clock_type = "global clock";
 defparam \clk~inputclkctrl .ena_register_mode = "none";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N4
+// Location: LCCOMB_X19_Y12_N4
 cycloneive_lcell_comb \VGA640x480|countX[0]~10 (
 // Equation(s):
 // \VGA640x480|countX[0]~10_combout  = \VGA640x480|countX [0] $ (VCC)
@@ -537,7 +764,7 @@ defparam \VGA640x480|countX[0]~10 .lut_mask = 16'h33CC;
 defparam \VGA640x480|countX[0]~10 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N0
+// Location: LCCOMB_X18_Y12_N8
 cycloneive_lcell_comb \~GND (
 // Equation(s):
 // \~GND~combout  = GND
@@ -554,7 +781,7 @@ defparam \~GND .lut_mask = 16'h0000;
 defparam \~GND .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: IOIBUF_X34_Y17_N15
+// Location: IOIBUF_X18_Y0_N15
 cycloneive_io_ibuf \rst~input (
 	.i(rst),
 	.ibar(gnd),
@@ -564,7 +791,7 @@ defparam \rst~input .bus_hold = "false";
 defparam \rst~input .simulate_z_as = "z";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N12
+// Location: LCCOMB_X19_Y12_N12
 cycloneive_lcell_comb \VGA640x480|countX[4]~18 (
 // Equation(s):
 // \VGA640x480|countX[4]~18_combout  = (\VGA640x480|countX [4] & (\VGA640x480|countX[3]~17  $ (GND))) # (!\VGA640x480|countX [4] & (!\VGA640x480|countX[3]~17  & VCC))
@@ -582,7 +809,7 @@ defparam \VGA640x480|countX[4]~18 .lut_mask = 16'hA50A;
 defparam \VGA640x480|countX[4]~18 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N14
+// Location: LCCOMB_X19_Y12_N14
 cycloneive_lcell_comb \VGA640x480|countX[5]~22 (
 // Equation(s):
 // \VGA640x480|countX[5]~22_combout  = (\VGA640x480|countX [5] & (!\VGA640x480|countX[4]~19 )) # (!\VGA640x480|countX [5] & ((\VGA640x480|countX[4]~19 ) # (GND)))
@@ -600,7 +827,7 @@ defparam \VGA640x480|countX[5]~22 .lut_mask = 16'h3C3F;
 defparam \VGA640x480|countX[5]~22 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X28_Y14_N15
+// Location: FF_X19_Y12_N15
 dffeas \VGA640x480|countX[5] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countX[5]~22_combout ),
@@ -619,7 +846,7 @@ defparam \VGA640x480|countX[5] .is_wysiwyg = "true";
 defparam \VGA640x480|countX[5] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N16
+// Location: LCCOMB_X19_Y12_N16
 cycloneive_lcell_comb \VGA640x480|countX[6]~24 (
 // Equation(s):
 // \VGA640x480|countX[6]~24_combout  = (\VGA640x480|countX [6] & (\VGA640x480|countX[5]~23  $ (GND))) # (!\VGA640x480|countX [6] & (!\VGA640x480|countX[5]~23  & VCC))
@@ -637,7 +864,7 @@ defparam \VGA640x480|countX[6]~24 .lut_mask = 16'hC30C;
 defparam \VGA640x480|countX[6]~24 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X28_Y14_N17
+// Location: FF_X19_Y12_N17
 dffeas \VGA640x480|countX[6] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countX[6]~24_combout ),
@@ -656,7 +883,7 @@ defparam \VGA640x480|countX[6] .is_wysiwyg = "true";
 defparam \VGA640x480|countX[6] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N18
+// Location: LCCOMB_X19_Y12_N18
 cycloneive_lcell_comb \VGA640x480|countX[7]~26 (
 // Equation(s):
 // \VGA640x480|countX[7]~26_combout  = (\VGA640x480|countX [7] & (!\VGA640x480|countX[6]~25 )) # (!\VGA640x480|countX [7] & ((\VGA640x480|countX[6]~25 ) # (GND)))
@@ -674,7 +901,7 @@ defparam \VGA640x480|countX[7]~26 .lut_mask = 16'h3C3F;
 defparam \VGA640x480|countX[7]~26 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X28_Y14_N19
+// Location: FF_X19_Y12_N19
 dffeas \VGA640x480|countX[7] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countX[7]~26_combout ),
@@ -693,25 +920,25 @@ defparam \VGA640x480|countX[7] .is_wysiwyg = "true";
 defparam \VGA640x480|countX[7] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N20
+// Location: LCCOMB_X19_Y12_N20
 cycloneive_lcell_comb \VGA640x480|countX[8]~28 (
 // Equation(s):
 // \VGA640x480|countX[8]~28_combout  = (\VGA640x480|countX [8] & (\VGA640x480|countX[7]~27  $ (GND))) # (!\VGA640x480|countX [8] & (!\VGA640x480|countX[7]~27  & VCC))
 // \VGA640x480|countX[8]~29  = CARRY((\VGA640x480|countX [8] & !\VGA640x480|countX[7]~27 ))
 
-	.dataa(gnd),
-	.datab(\VGA640x480|countX [8]),
+	.dataa(\VGA640x480|countX [8]),
+	.datab(gnd),
 	.datac(gnd),
 	.datad(vcc),
 	.cin(\VGA640x480|countX[7]~27 ),
 	.combout(\VGA640x480|countX[8]~28_combout ),
 	.cout(\VGA640x480|countX[8]~29 ));
 // synopsys translate_off
-defparam \VGA640x480|countX[8]~28 .lut_mask = 16'hC30C;
+defparam \VGA640x480|countX[8]~28 .lut_mask = 16'hA50A;
 defparam \VGA640x480|countX[8]~28 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X28_Y14_N21
+// Location: FF_X19_Y12_N21
 dffeas \VGA640x480|countX[8] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countX[8]~28_combout ),
@@ -730,7 +957,7 @@ defparam \VGA640x480|countX[8] .is_wysiwyg = "true";
 defparam \VGA640x480|countX[8] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N22
+// Location: LCCOMB_X19_Y12_N22
 cycloneive_lcell_comb \VGA640x480|countX[9]~30 (
 // Equation(s):
 // \VGA640x480|countX[9]~30_combout  = \VGA640x480|countX [9] $ (\VGA640x480|countX[8]~29 )
@@ -747,7 +974,7 @@ defparam \VGA640x480|countX[9]~30 .lut_mask = 16'h5A5A;
 defparam \VGA640x480|countX[9]~30 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X28_Y14_N23
+// Location: FF_X19_Y12_N23
 dffeas \VGA640x480|countX[9] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countX[9]~30_combout ),
@@ -766,24 +993,24 @@ defparam \VGA640x480|countX[9] .is_wysiwyg = "true";
 defparam \VGA640x480|countX[9] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N0
+// Location: LCCOMB_X19_Y12_N28
 cycloneive_lcell_comb \VGA640x480|countX[9]~20 (
 // Equation(s):
-// \VGA640x480|countX[9]~20_combout  = ((!\VGA640x480|countX [7] & (!\VGA640x480|countX [6] & !\VGA640x480|countX [5]))) # (!\VGA640x480|countX [8])
+// \VGA640x480|countX[9]~20_combout  = ((!\VGA640x480|countX [6] & (!\VGA640x480|countX [5] & !\VGA640x480|countX [7]))) # (!\VGA640x480|countX [8])
 
-	.dataa(\VGA640x480|countX [7]),
-	.datab(\VGA640x480|countX [6]),
+	.dataa(\VGA640x480|countX [6]),
+	.datab(\VGA640x480|countX [8]),
 	.datac(\VGA640x480|countX [5]),
-	.datad(\VGA640x480|countX [8]),
+	.datad(\VGA640x480|countX [7]),
 	.cin(gnd),
 	.combout(\VGA640x480|countX[9]~20_combout ),
 	.cout());
 // synopsys translate_off
-defparam \VGA640x480|countX[9]~20 .lut_mask = 16'h01FF;
+defparam \VGA640x480|countX[9]~20 .lut_mask = 16'h3337;
 defparam \VGA640x480|countX[9]~20 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N26
+// Location: LCCOMB_X19_Y12_N26
 cycloneive_lcell_comb \VGA640x480|countX[9]~21 (
 // Equation(s):
 // \VGA640x480|countX[9]~21_combout  = (\rst~input_o ) # ((\VGA640x480|countX [9] & !\VGA640x480|countX[9]~20_combout ))
@@ -800,7 +1027,7 @@ defparam \VGA640x480|countX[9]~21 .lut_mask = 16'hAAFA;
 defparam \VGA640x480|countX[9]~21 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: FF_X28_Y14_N5
+// Location: FF_X19_Y12_N5
 dffeas \VGA640x480|countX[0] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countX[0]~10_combout ),
@@ -819,7 +1046,7 @@ defparam \VGA640x480|countX[0] .is_wysiwyg = "true";
 defparam \VGA640x480|countX[0] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N6
+// Location: LCCOMB_X19_Y12_N6
 cycloneive_lcell_comb \VGA640x480|countX[1]~12 (
 // Equation(s):
 // \VGA640x480|countX[1]~12_combout  = (\VGA640x480|countX [1] & (!\VGA640x480|countX[0]~11 )) # (!\VGA640x480|countX [1] & ((\VGA640x480|countX[0]~11 ) # (GND)))
@@ -837,7 +1064,7 @@ defparam \VGA640x480|countX[1]~12 .lut_mask = 16'h5A5F;
 defparam \VGA640x480|countX[1]~12 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X28_Y14_N7
+// Location: FF_X19_Y12_N7
 dffeas \VGA640x480|countX[1] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countX[1]~12_combout ),
@@ -856,7 +1083,7 @@ defparam \VGA640x480|countX[1] .is_wysiwyg = "true";
 defparam \VGA640x480|countX[1] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N8
+// Location: LCCOMB_X19_Y12_N8
 cycloneive_lcell_comb \VGA640x480|countX[2]~14 (
 // Equation(s):
 // \VGA640x480|countX[2]~14_combout  = (\VGA640x480|countX [2] & (\VGA640x480|countX[1]~13  $ (GND))) # (!\VGA640x480|countX [2] & (!\VGA640x480|countX[1]~13  & VCC))
@@ -874,7 +1101,7 @@ defparam \VGA640x480|countX[2]~14 .lut_mask = 16'hC30C;
 defparam \VGA640x480|countX[2]~14 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X28_Y14_N9
+// Location: FF_X19_Y12_N9
 dffeas \VGA640x480|countX[2] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countX[2]~14_combout ),
@@ -893,7 +1120,7 @@ defparam \VGA640x480|countX[2] .is_wysiwyg = "true";
 defparam \VGA640x480|countX[2] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N10
+// Location: LCCOMB_X19_Y12_N10
 cycloneive_lcell_comb \VGA640x480|countX[3]~16 (
 // Equation(s):
 // \VGA640x480|countX[3]~16_combout  = (\VGA640x480|countX [3] & (!\VGA640x480|countX[2]~15 )) # (!\VGA640x480|countX [3] & ((\VGA640x480|countX[2]~15 ) # (GND)))
@@ -911,7 +1138,7 @@ defparam \VGA640x480|countX[3]~16 .lut_mask = 16'h5A5F;
 defparam \VGA640x480|countX[3]~16 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X28_Y14_N11
+// Location: FF_X19_Y12_N11
 dffeas \VGA640x480|countX[3] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countX[3]~16_combout ),
@@ -930,7 +1157,7 @@ defparam \VGA640x480|countX[3] .is_wysiwyg = "true";
 defparam \VGA640x480|countX[3] .power_up = "low";
 // synopsys translate_on
 
-// Location: FF_X28_Y14_N13
+// Location: FF_X19_Y12_N13
 dffeas \VGA640x480|countX[4] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countX[4]~18_combout ),
@@ -949,79 +1176,62 @@ defparam \VGA640x480|countX[4] .is_wysiwyg = "true";
 defparam \VGA640x480|countX[4] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N24
+// Location: LCCOMB_X19_Y12_N0
 cycloneive_lcell_comb \VGA640x480|Hsync_n~0 (
 // Equation(s):
 // \VGA640x480|Hsync_n~0_combout  = (!\VGA640x480|countX [8] & (\VGA640x480|countX [9] & \VGA640x480|countX [7]))
 
-	.dataa(gnd),
-	.datab(\VGA640x480|countX [8]),
+	.dataa(\VGA640x480|countX [8]),
+	.datab(gnd),
 	.datac(\VGA640x480|countX [9]),
 	.datad(\VGA640x480|countX [7]),
 	.cin(gnd),
 	.combout(\VGA640x480|Hsync_n~0_combout ),
 	.cout());
 // synopsys translate_off
-defparam \VGA640x480|Hsync_n~0 .lut_mask = 16'h3000;
+defparam \VGA640x480|Hsync_n~0 .lut_mask = 16'h5000;
 defparam \VGA640x480|Hsync_n~0 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N2
+// Location: LCCOMB_X19_Y12_N30
 cycloneive_lcell_comb \VGA640x480|Hsync_n~1 (
 // Equation(s):
-// \VGA640x480|Hsync_n~1_combout  = ((\VGA640x480|countX [4] & (\VGA640x480|countX [5] & \VGA640x480|countX [6])) # (!\VGA640x480|countX [4] & (!\VGA640x480|countX [5] & !\VGA640x480|countX [6]))) # (!\VGA640x480|Hsync_n~0_combout )
+// \VGA640x480|Hsync_n~1_combout  = ((\VGA640x480|countX [4] & (\VGA640x480|countX [6] & \VGA640x480|countX [5])) # (!\VGA640x480|countX [4] & (!\VGA640x480|countX [6] & !\VGA640x480|countX [5]))) # (!\VGA640x480|Hsync_n~0_combout )
 
 	.dataa(\VGA640x480|countX [4]),
-	.datab(\VGA640x480|Hsync_n~0_combout ),
-	.datac(\VGA640x480|countX [5]),
-	.datad(\VGA640x480|countX [6]),
+	.datab(\VGA640x480|countX [6]),
+	.datac(\VGA640x480|Hsync_n~0_combout ),
+	.datad(\VGA640x480|countX [5]),
 	.cin(gnd),
 	.combout(\VGA640x480|Hsync_n~1_combout ),
 	.cout());
 // synopsys translate_off
-defparam \VGA640x480|Hsync_n~1 .lut_mask = 16'hB337;
+defparam \VGA640x480|Hsync_n~1 .lut_mask = 16'h8F1F;
 defparam \VGA640x480|Hsync_n~1 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N10
+// Location: LCCOMB_X18_Y12_N10
 cycloneive_lcell_comb \VGA640x480|countY[0]~9 (
 // Equation(s):
 // \VGA640x480|countY[0]~9_combout  = \VGA640x480|countY [0] $ (VCC)
 // \VGA640x480|countY[0]~10  = CARRY(\VGA640x480|countY [0])
 
-	.dataa(gnd),
-	.datab(\VGA640x480|countY [0]),
+	.dataa(\VGA640x480|countY [0]),
+	.datab(gnd),
 	.datac(gnd),
 	.datad(vcc),
 	.cin(gnd),
 	.combout(\VGA640x480|countY[0]~9_combout ),
 	.cout(\VGA640x480|countY[0]~10 ));
 // synopsys translate_off
-defparam \VGA640x480|countY[0]~9 .lut_mask = 16'h33CC;
+defparam \VGA640x480|countY[0]~9 .lut_mask = 16'h55AA;
 defparam \VGA640x480|countY[0]~9 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: LCCOMB_X24_Y14_N30
-cycloneive_lcell_comb \VGA640x480|countY[0]~feeder (
-// Equation(s):
-// \VGA640x480|countY[0]~feeder_combout  = \VGA640x480|countY[0]~9_combout 
-
-	.dataa(gnd),
-	.datab(\VGA640x480|countY[0]~9_combout ),
-	.datac(gnd),
-	.datad(gnd),
-	.cin(gnd),
-	.combout(\VGA640x480|countY[0]~feeder_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|countY[0]~feeder .lut_mask = 16'hCCCC;
-defparam \VGA640x480|countY[0]~feeder .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: FF_X24_Y14_N31
+// Location: FF_X18_Y12_N11
 dffeas \VGA640x480|countY[0] (
 	.clk(\clk~inputclkctrl_outclk ),
-	.d(\VGA640x480|countY[0]~feeder_combout ),
+	.d(\VGA640x480|countY[0]~9_combout ),
 	.asdata(vcc),
 	.clrn(vcc),
 	.aload(gnd),
@@ -1037,7 +1247,7 @@ defparam \VGA640x480|countY[0] .is_wysiwyg = "true";
 defparam \VGA640x480|countY[0] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N12
+// Location: LCCOMB_X18_Y12_N12
 cycloneive_lcell_comb \VGA640x480|countY[1]~11 (
 // Equation(s):
 // \VGA640x480|countY[1]~11_combout  = (\VGA640x480|countY [1] & (!\VGA640x480|countY[0]~10 )) # (!\VGA640x480|countY [1] & ((\VGA640x480|countY[0]~10 ) # (GND)))
@@ -1055,7 +1265,7 @@ defparam \VGA640x480|countY[1]~11 .lut_mask = 16'h5A5F;
 defparam \VGA640x480|countY[1]~11 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X25_Y14_N13
+// Location: FF_X18_Y12_N13
 dffeas \VGA640x480|countY[1] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countY[1]~11_combout ),
@@ -1074,45 +1284,28 @@ defparam \VGA640x480|countY[1] .is_wysiwyg = "true";
 defparam \VGA640x480|countY[1] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N14
+// Location: LCCOMB_X18_Y12_N14
 cycloneive_lcell_comb \VGA640x480|countY[2]~13 (
 // Equation(s):
 // \VGA640x480|countY[2]~13_combout  = (\VGA640x480|countY [2] & (\VGA640x480|countY[1]~12  $ (GND))) # (!\VGA640x480|countY [2] & (!\VGA640x480|countY[1]~12  & VCC))
 // \VGA640x480|countY[2]~14  = CARRY((\VGA640x480|countY [2] & !\VGA640x480|countY[1]~12 ))
 
-	.dataa(\VGA640x480|countY [2]),
-	.datab(gnd),
+	.dataa(gnd),
+	.datab(\VGA640x480|countY [2]),
 	.datac(gnd),
 	.datad(vcc),
 	.cin(\VGA640x480|countY[1]~12 ),
 	.combout(\VGA640x480|countY[2]~13_combout ),
 	.cout(\VGA640x480|countY[2]~14 ));
 // synopsys translate_off
-defparam \VGA640x480|countY[2]~13 .lut_mask = 16'hA50A;
+defparam \VGA640x480|countY[2]~13 .lut_mask = 16'hC30C;
 defparam \VGA640x480|countY[2]~13 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X24_Y14_N0
-cycloneive_lcell_comb \VGA640x480|countY[2]~feeder (
-// Equation(s):
-// \VGA640x480|countY[2]~feeder_combout  = \VGA640x480|countY[2]~13_combout 
-
-	.dataa(gnd),
-	.datab(\VGA640x480|countY[2]~13_combout ),
-	.datac(gnd),
-	.datad(gnd),
-	.cin(gnd),
-	.combout(\VGA640x480|countY[2]~feeder_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|countY[2]~feeder .lut_mask = 16'hCCCC;
-defparam \VGA640x480|countY[2]~feeder .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: FF_X24_Y14_N1
+// Location: FF_X18_Y12_N15
 dffeas \VGA640x480|countY[2] (
 	.clk(\clk~inputclkctrl_outclk ),
-	.d(\VGA640x480|countY[2]~feeder_combout ),
+	.d(\VGA640x480|countY[2]~13_combout ),
 	.asdata(\~GND~combout ),
 	.clrn(vcc),
 	.aload(gnd),
@@ -1128,7 +1321,7 @@ defparam \VGA640x480|countY[2] .is_wysiwyg = "true";
 defparam \VGA640x480|countY[2] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N16
+// Location: LCCOMB_X18_Y12_N16
 cycloneive_lcell_comb \VGA640x480|countY[3]~15 (
 // Equation(s):
 // \VGA640x480|countY[3]~15_combout  = (\VGA640x480|countY [3] & (!\VGA640x480|countY[2]~14 )) # (!\VGA640x480|countY [3] & ((\VGA640x480|countY[2]~14 ) # (GND)))
@@ -1146,27 +1339,10 @@ defparam \VGA640x480|countY[3]~15 .lut_mask = 16'h3C3F;
 defparam \VGA640x480|countY[3]~15 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X24_Y14_N4
-cycloneive_lcell_comb \VGA640x480|countY[3]~feeder (
-// Equation(s):
-// \VGA640x480|countY[3]~feeder_combout  = \VGA640x480|countY[3]~15_combout 
-
-	.dataa(gnd),
-	.datab(gnd),
-	.datac(gnd),
-	.datad(\VGA640x480|countY[3]~15_combout ),
-	.cin(gnd),
-	.combout(\VGA640x480|countY[3]~feeder_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|countY[3]~feeder .lut_mask = 16'hFF00;
-defparam \VGA640x480|countY[3]~feeder .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: FF_X24_Y14_N5
+// Location: FF_X18_Y12_N17
 dffeas \VGA640x480|countY[3] (
 	.clk(\clk~inputclkctrl_outclk ),
-	.d(\VGA640x480|countY[3]~feeder_combout ),
+	.d(\VGA640x480|countY[3]~15_combout ),
 	.asdata(vcc),
 	.clrn(vcc),
 	.aload(gnd),
@@ -1182,25 +1358,25 @@ defparam \VGA640x480|countY[3] .is_wysiwyg = "true";
 defparam \VGA640x480|countY[3] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N18
+// Location: LCCOMB_X18_Y12_N18
 cycloneive_lcell_comb \VGA640x480|countY[4]~17 (
 // Equation(s):
 // \VGA640x480|countY[4]~17_combout  = (\VGA640x480|countY [4] & (\VGA640x480|countY[3]~16  $ (GND))) # (!\VGA640x480|countY [4] & (!\VGA640x480|countY[3]~16  & VCC))
 // \VGA640x480|countY[4]~18  = CARRY((\VGA640x480|countY [4] & !\VGA640x480|countY[3]~16 ))
 
-	.dataa(\VGA640x480|countY [4]),
-	.datab(gnd),
+	.dataa(gnd),
+	.datab(\VGA640x480|countY [4]),
 	.datac(gnd),
 	.datad(vcc),
 	.cin(\VGA640x480|countY[3]~16 ),
 	.combout(\VGA640x480|countY[4]~17_combout ),
 	.cout(\VGA640x480|countY[4]~18 ));
 // synopsys translate_off
-defparam \VGA640x480|countY[4]~17 .lut_mask = 16'hA50A;
+defparam \VGA640x480|countY[4]~17 .lut_mask = 16'hC30C;
 defparam \VGA640x480|countY[4]~17 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X25_Y14_N19
+// Location: FF_X18_Y12_N19
 dffeas \VGA640x480|countY[4] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countY[4]~17_combout ),
@@ -1219,7 +1395,24 @@ defparam \VGA640x480|countY[4] .is_wysiwyg = "true";
 defparam \VGA640x480|countY[4] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N20
+// Location: LCCOMB_X18_Y12_N4
+cycloneive_lcell_comb \VGA640x480|Vsync_n~0 (
+// Equation(s):
+// \VGA640x480|Vsync_n~0_combout  = (((\VGA640x480|countY [2]) # (\VGA640x480|countY [4])) # (!\VGA640x480|countY [3])) # (!\VGA640x480|countY [1])
+
+	.dataa(\VGA640x480|countY [1]),
+	.datab(\VGA640x480|countY [3]),
+	.datac(\VGA640x480|countY [2]),
+	.datad(\VGA640x480|countY [4]),
+	.cin(gnd),
+	.combout(\VGA640x480|Vsync_n~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \VGA640x480|Vsync_n~0 .lut_mask = 16'hFFF7;
+defparam \VGA640x480|Vsync_n~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y12_N20
 cycloneive_lcell_comb \VGA640x480|countY[5]~19 (
 // Equation(s):
 // \VGA640x480|countY[5]~19_combout  = (\VGA640x480|countY [5] & (!\VGA640x480|countY[4]~18 )) # (!\VGA640x480|countY [5] & ((\VGA640x480|countY[4]~18 ) # (GND)))
@@ -1237,7 +1430,7 @@ defparam \VGA640x480|countY[5]~19 .lut_mask = 16'h3C3F;
 defparam \VGA640x480|countY[5]~19 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X25_Y14_N21
+// Location: FF_X18_Y12_N21
 dffeas \VGA640x480|countY[5] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countY[5]~19_combout ),
@@ -1256,7 +1449,7 @@ defparam \VGA640x480|countY[5] .is_wysiwyg = "true";
 defparam \VGA640x480|countY[5] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N22
+// Location: LCCOMB_X18_Y12_N22
 cycloneive_lcell_comb \VGA640x480|countY[6]~21 (
 // Equation(s):
 // \VGA640x480|countY[6]~21_combout  = (\VGA640x480|countY [6] & (\VGA640x480|countY[5]~20  $ (GND))) # (!\VGA640x480|countY [6] & (!\VGA640x480|countY[5]~20  & VCC))
@@ -1274,27 +1467,10 @@ defparam \VGA640x480|countY[6]~21 .lut_mask = 16'hA50A;
 defparam \VGA640x480|countY[6]~21 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X24_Y14_N2
-cycloneive_lcell_comb \VGA640x480|countY[6]~feeder (
-// Equation(s):
-// \VGA640x480|countY[6]~feeder_combout  = \VGA640x480|countY[6]~21_combout 
-
-	.dataa(gnd),
-	.datab(gnd),
-	.datac(gnd),
-	.datad(\VGA640x480|countY[6]~21_combout ),
-	.cin(gnd),
-	.combout(\VGA640x480|countY[6]~feeder_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|countY[6]~feeder .lut_mask = 16'hFF00;
-defparam \VGA640x480|countY[6]~feeder .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: FF_X24_Y14_N3
+// Location: FF_X18_Y12_N23
 dffeas \VGA640x480|countY[6] (
 	.clk(\clk~inputclkctrl_outclk ),
-	.d(\VGA640x480|countY[6]~feeder_combout ),
+	.d(\VGA640x480|countY[6]~21_combout ),
 	.asdata(\~GND~combout ),
 	.clrn(vcc),
 	.aload(gnd),
@@ -1310,7 +1486,7 @@ defparam \VGA640x480|countY[6] .is_wysiwyg = "true";
 defparam \VGA640x480|countY[6] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N24
+// Location: LCCOMB_X18_Y12_N24
 cycloneive_lcell_comb \VGA640x480|countY[7]~23 (
 // Equation(s):
 // \VGA640x480|countY[7]~23_combout  = (\VGA640x480|countY [7] & (!\VGA640x480|countY[6]~22 )) # (!\VGA640x480|countY [7] & ((\VGA640x480|countY[6]~22 ) # (GND)))
@@ -1328,27 +1504,10 @@ defparam \VGA640x480|countY[7]~23 .lut_mask = 16'h3C3F;
 defparam \VGA640x480|countY[7]~23 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X24_Y14_N6
-cycloneive_lcell_comb \VGA640x480|countY[7]~feeder (
-// Equation(s):
-// \VGA640x480|countY[7]~feeder_combout  = \VGA640x480|countY[7]~23_combout 
-
-	.dataa(gnd),
-	.datab(gnd),
-	.datac(gnd),
-	.datad(\VGA640x480|countY[7]~23_combout ),
-	.cin(gnd),
-	.combout(\VGA640x480|countY[7]~feeder_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|countY[7]~feeder .lut_mask = 16'hFF00;
-defparam \VGA640x480|countY[7]~feeder .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: FF_X24_Y14_N7
+// Location: FF_X18_Y12_N25
 dffeas \VGA640x480|countY[7] (
 	.clk(\clk~inputclkctrl_outclk ),
-	.d(\VGA640x480|countY[7]~feeder_combout ),
+	.d(\VGA640x480|countY[7]~23_combout ),
 	.asdata(\~GND~combout ),
 	.clrn(vcc),
 	.aload(gnd),
@@ -1364,7 +1523,7 @@ defparam \VGA640x480|countY[7] .is_wysiwyg = "true";
 defparam \VGA640x480|countY[7] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N26
+// Location: LCCOMB_X18_Y12_N26
 cycloneive_lcell_comb \VGA640x480|countY[8]~25 (
 // Equation(s):
 // \VGA640x480|countY[8]~25_combout  = \VGA640x480|countY [8] $ (!\VGA640x480|countY[7]~24 )
@@ -1381,7 +1540,7 @@ defparam \VGA640x480|countY[8]~25 .lut_mask = 16'hA5A5;
 defparam \VGA640x480|countY[8]~25 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X25_Y14_N27
+// Location: FF_X18_Y12_N27
 dffeas \VGA640x480|countY[8] (
 	.clk(\clk~inputclkctrl_outclk ),
 	.d(\VGA640x480|countY[8]~25_combout ),
@@ -1400,549 +1559,403 @@ defparam \VGA640x480|countY[8] .is_wysiwyg = "true";
 defparam \VGA640x480|countY[8] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N8
-cycloneive_lcell_comb \VGA640x480|Vsync_n~0 (
-// Equation(s):
-// \VGA640x480|Vsync_n~0_combout  = (\VGA640x480|countY [4]) # (((\VGA640x480|countY [2]) # (!\VGA640x480|countY [8])) # (!\VGA640x480|countY [7]))
-
-	.dataa(\VGA640x480|countY [4]),
-	.datab(\VGA640x480|countY [7]),
-	.datac(\VGA640x480|countY [8]),
-	.datad(\VGA640x480|countY [2]),
-	.cin(gnd),
-	.combout(\VGA640x480|Vsync_n~0_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|Vsync_n~0 .lut_mask = 16'hFFBF;
-defparam \VGA640x480|Vsync_n~0 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X25_Y14_N30
+// Location: LCCOMB_X18_Y12_N6
 cycloneive_lcell_comb \LessThan1~0 (
 // Equation(s):
-// \LessThan1~0_combout  = (\VGA640x480|countY [5] & (\VGA640x480|countY [3] & \VGA640x480|countY [6]))
+// \LessThan1~0_combout  = (\VGA640x480|countY [8] & (\VGA640x480|countY [7] & (\VGA640x480|countY [6] & \VGA640x480|countY [5])))
 
-	.dataa(gnd),
-	.datab(\VGA640x480|countY [5]),
-	.datac(\VGA640x480|countY [3]),
-	.datad(\VGA640x480|countY [6]),
+	.dataa(\VGA640x480|countY [8]),
+	.datab(\VGA640x480|countY [7]),
+	.datac(\VGA640x480|countY [6]),
+	.datad(\VGA640x480|countY [5]),
 	.cin(gnd),
 	.combout(\LessThan1~0_combout ),
 	.cout());
 // synopsys translate_off
-defparam \LessThan1~0 .lut_mask = 16'hC000;
+defparam \LessThan1~0 .lut_mask = 16'h8000;
 defparam \LessThan1~0 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N4
+// Location: LCCOMB_X18_Y12_N0
 cycloneive_lcell_comb \VGA640x480|Vsync_n~1 (
 // Equation(s):
-// \VGA640x480|Vsync_n~1_combout  = ((\VGA640x480|Vsync_n~0_combout ) # (!\LessThan1~0_combout )) # (!\VGA640x480|countY [1])
+// \VGA640x480|Vsync_n~1_combout  = (\VGA640x480|Vsync_n~0_combout ) # (!\LessThan1~0_combout )
 
-	.dataa(\VGA640x480|countY [1]),
-	.datab(\VGA640x480|Vsync_n~0_combout ),
-	.datac(\LessThan1~0_combout ),
-	.datad(gnd),
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(\VGA640x480|Vsync_n~0_combout ),
+	.datad(\LessThan1~0_combout ),
 	.cin(gnd),
 	.combout(\VGA640x480|Vsync_n~1_combout ),
 	.cout());
 // synopsys translate_off
-defparam \VGA640x480|Vsync_n~1 .lut_mask = 16'hDFDF;
+defparam \VGA640x480|Vsync_n~1 .lut_mask = 16'hF0FF;
 defparam \VGA640x480|Vsync_n~1 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: LCCOMB_X28_Y14_N28
-cycloneive_lcell_comb \always0~0 (
+// Location: LCCOMB_X22_Y11_N2
+cycloneive_lcell_comb \Add0~0 (
 // Equation(s):
-// \always0~0_combout  = (\VGA640x480|countX [8]) # ((\VGA640x480|countX [7] & ((\VGA640x480|countX [6]) # (\VGA640x480|countX [5]))))
+// \Add0~0_combout  = \VGA640x480|countX [6] $ (!\VGA640x480|countX [7])
 
-	.dataa(\VGA640x480|countX [7]),
-	.datab(\VGA640x480|countX [6]),
-	.datac(\VGA640x480|countX [5]),
-	.datad(\VGA640x480|countX [8]),
-	.cin(gnd),
-	.combout(\always0~0_combout ),
-	.cout());
-// synopsys translate_off
-defparam \always0~0 .lut_mask = 16'hFFA8;
-defparam \always0~0 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X25_Y14_N6
-cycloneive_lcell_comb \always0~1 (
-// Equation(s):
-// \always0~1_combout  = (\VGA640x480|countX [9]) # ((\VGA640x480|countY [7]) # (\VGA640x480|countY [8]))
-
-	.dataa(\VGA640x480|countX [9]),
-	.datab(\VGA640x480|countY [7]),
-	.datac(\VGA640x480|countY [8]),
+	.dataa(\VGA640x480|countX [6]),
+	.datab(gnd),
+	.datac(\VGA640x480|countX [7]),
 	.datad(gnd),
 	.cin(gnd),
-	.combout(\always0~1_combout ),
+	.combout(\Add0~0_combout ),
 	.cout());
 // synopsys translate_off
-defparam \always0~1 .lut_mask = 16'hFEFE;
-defparam \always0~1 .sum_lutc_input = "datac";
+defparam \Add0~0 .lut_mask = 16'hA5A5;
+defparam \Add0~0 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: LCCOMB_X25_Y14_N28
-cycloneive_lcell_comb \always0~2 (
-// Equation(s):
-// \always0~2_combout  = (\always0~0_combout ) # ((\always0~1_combout ) # ((\VGA640x480|countY [4] & \LessThan1~0_combout )))
-
-	.dataa(\VGA640x480|countY [4]),
-	.datab(\always0~0_combout ),
-	.datac(\LessThan1~0_combout ),
-	.datad(\always0~1_combout ),
-	.cin(gnd),
-	.combout(\always0~2_combout ),
-	.cout());
-// synopsys translate_off
-defparam \always0~2 .lut_mask = 16'hFFEC;
-defparam \always0~2 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X24_Y14_N8
+// Location: LCCOMB_X22_Y11_N4
 cycloneive_lcell_comb \Add0~1 (
 // Equation(s):
-// \Add0~1_cout  = CARRY(!\VGA640x480|countY [0])
+// \Add0~1_combout  = \VGA640x480|countX [8] $ (((\VGA640x480|countX [6]) # (\VGA640x480|countX [7])))
 
-	.dataa(\VGA640x480|countY [0]),
-	.datab(gnd),
+	.dataa(\VGA640x480|countX [6]),
+	.datab(\VGA640x480|countX [8]),
+	.datac(\VGA640x480|countX [7]),
+	.datad(gnd),
+	.cin(gnd),
+	.combout(\Add0~1_combout ),
+	.cout());
+// synopsys translate_off
+defparam \Add0~1 .lut_mask = 16'h3636;
+defparam \Add0~1 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X21_Y11_N30
+cycloneive_lcell_comb \Add0~2 (
+// Equation(s):
+// \Add0~2_combout  = \VGA640x480|countX [9] $ ((((!\VGA640x480|countX [6] & !\VGA640x480|countX [7])) # (!\VGA640x480|countX [8])))
+
+	.dataa(\VGA640x480|countX [8]),
+	.datab(\VGA640x480|countX [6]),
+	.datac(\VGA640x480|countX [9]),
+	.datad(\VGA640x480|countX [7]),
+	.cin(gnd),
+	.combout(\Add0~2_combout ),
+	.cout());
+// synopsys translate_off
+defparam \Add0~2 .lut_mask = 16'hA587;
+defparam \Add0~2 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y12_N24
+cycloneive_lcell_comb \Add0~3 (
+// Equation(s):
+// \Add0~3_combout  = (!\VGA640x480|countX [9] & (((!\VGA640x480|countX [7] & !\VGA640x480|countX [6])) # (!\VGA640x480|countX [8])))
+
+	.dataa(\VGA640x480|countX [8]),
+	.datab(\VGA640x480|countX [7]),
+	.datac(\VGA640x480|countX [9]),
+	.datad(\VGA640x480|countX [6]),
+	.cin(gnd),
+	.combout(\Add0~3_combout ),
+	.cout());
+// synopsys translate_off
+defparam \Add0~3 .lut_mask = 16'h0507;
+defparam \Add0~3 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: DSPMULT_X20_Y11_N0
+cycloneive_mac_mult \Mult0|auto_generated|mac_mult1 (
+	.signa(vcc),
+	.signb(vcc),
+	.clk(gnd),
+	.aclr(gnd),
+	.ena(vcc),
+	.dataa({\Add0~3_combout ,\Add0~2_combout ,\Add0~1_combout ,\Add0~0_combout ,!\VGA640x480|countX [6],\VGA640x480|countX [5],\VGA640x480|countX [4],\VGA640x480|countX [3],\VGA640x480|countX [2],\VGA640x480|countX [1],\VGA640x480|countX [0],gnd,gnd,gnd,gnd,gnd,gnd,gnd}),
+	.datab({\Add0~3_combout ,\Add0~2_combout ,\Add0~1_combout ,\Add0~0_combout ,!\VGA640x480|countX [6],\VGA640x480|countX [5],\VGA640x480|countX [4],\VGA640x480|countX [3],\VGA640x480|countX [2],\VGA640x480|countX [1],\VGA640x480|countX [0],gnd,gnd,gnd,gnd,gnd,gnd,gnd}),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.dataout(\Mult0|auto_generated|mac_mult1_DATAOUT_bus ));
+// synopsys translate_off
+defparam \Mult0|auto_generated|mac_mult1 .dataa_clock = "none";
+defparam \Mult0|auto_generated|mac_mult1 .dataa_width = 18;
+defparam \Mult0|auto_generated|mac_mult1 .datab_clock = "none";
+defparam \Mult0|auto_generated|mac_mult1 .datab_width = 18;
+defparam \Mult0|auto_generated|mac_mult1 .signa_clock = "none";
+defparam \Mult0|auto_generated|mac_mult1 .signb_clock = "none";
+// synopsys translate_on
+
+// Location: DSPOUT_X20_Y11_N2
+cycloneive_mac_out \Mult0|auto_generated|mac_out2 (
+	.clk(gnd),
+	.aclr(gnd),
+	.ena(vcc),
+	.dataa({\Mult0|auto_generated|mac_mult1~DATAOUT21 ,\Mult0|auto_generated|mac_mult1~DATAOUT20 ,\Mult0|auto_generated|mac_mult1~DATAOUT19 ,\Mult0|auto_generated|mac_mult1~DATAOUT18 ,\Mult0|auto_generated|mac_mult1~DATAOUT17 ,\Mult0|auto_generated|mac_mult1~DATAOUT16 ,
+\Mult0|auto_generated|mac_mult1~DATAOUT15 ,\Mult0|auto_generated|mac_mult1~DATAOUT14 ,\Mult0|auto_generated|mac_mult1~DATAOUT13 ,\Mult0|auto_generated|mac_mult1~DATAOUT12 ,\Mult0|auto_generated|mac_mult1~DATAOUT11 ,\Mult0|auto_generated|mac_mult1~DATAOUT10 ,
+\Mult0|auto_generated|mac_mult1~DATAOUT9 ,\Mult0|auto_generated|mac_mult1~DATAOUT8 ,\Mult0|auto_generated|mac_mult1~DATAOUT7 ,\Mult0|auto_generated|mac_mult1~DATAOUT6 ,\Mult0|auto_generated|mac_mult1~DATAOUT5 ,\Mult0|auto_generated|mac_mult1~DATAOUT4 ,
+\Mult0|auto_generated|mac_mult1~DATAOUT3 ,\Mult0|auto_generated|mac_mult1~DATAOUT2 ,\Mult0|auto_generated|mac_mult1~DATAOUT1 ,\Mult0|auto_generated|mac_mult1~dataout ,\Mult0|auto_generated|mac_mult1~13 ,\Mult0|auto_generated|mac_mult1~12 ,
+\Mult0|auto_generated|mac_mult1~11 ,\Mult0|auto_generated|mac_mult1~10 ,\Mult0|auto_generated|mac_mult1~9 ,\Mult0|auto_generated|mac_mult1~8 ,\Mult0|auto_generated|mac_mult1~7 ,\Mult0|auto_generated|mac_mult1~6 ,\Mult0|auto_generated|mac_mult1~5 ,
+\Mult0|auto_generated|mac_mult1~4 ,\Mult0|auto_generated|mac_mult1~3 ,\Mult0|auto_generated|mac_mult1~2 ,\Mult0|auto_generated|mac_mult1~1 ,\Mult0|auto_generated|mac_mult1~0 }),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.dataout(\Mult0|auto_generated|mac_out2_DATAOUT_bus ));
+// synopsys translate_off
+defparam \Mult0|auto_generated|mac_out2 .dataa_width = 36;
+defparam \Mult0|auto_generated|mac_out2 .output_clock = "none";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y12_N30
+cycloneive_lcell_comb \Add1~0 (
+// Equation(s):
+// \Add1~0_combout  = \VGA640x480|countY [4] $ (\VGA640x480|countY [5])
+
+	.dataa(gnd),
+	.datab(\VGA640x480|countY [4]),
+	.datac(gnd),
+	.datad(\VGA640x480|countY [5]),
+	.cin(gnd),
+	.combout(\Add1~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \Add1~0 .lut_mask = 16'h33CC;
+defparam \Add1~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X17_Y12_N12
+cycloneive_lcell_comb \Add1~1 (
+// Equation(s):
+// \Add1~1_combout  = \VGA640x480|countY [6] $ (((\VGA640x480|countY [4] & \VGA640x480|countY [5])))
+
+	.dataa(\VGA640x480|countY [4]),
+	.datab(\VGA640x480|countY [6]),
+	.datac(\VGA640x480|countY [5]),
+	.datad(gnd),
+	.cin(gnd),
+	.combout(\Add1~1_combout ),
+	.cout());
+// synopsys translate_off
+defparam \Add1~1 .lut_mask = 16'h6C6C;
+defparam \Add1~1 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y12_N28
+cycloneive_lcell_comb \Add1~2 (
+// Equation(s):
+// \Add1~2_combout  = \VGA640x480|countY [7] $ (((\VGA640x480|countY [5] & (\VGA640x480|countY [6] & \VGA640x480|countY [4]))))
+
+	.dataa(\VGA640x480|countY [5]),
+	.datab(\VGA640x480|countY [7]),
+	.datac(\VGA640x480|countY [6]),
+	.datad(\VGA640x480|countY [4]),
+	.cin(gnd),
+	.combout(\Add1~2_combout ),
+	.cout());
+// synopsys translate_off
+defparam \Add1~2 .lut_mask = 16'h6CCC;
+defparam \Add1~2 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X17_Y12_N18
+cycloneive_lcell_comb \Add1~3 (
+// Equation(s):
+// \Add1~3_combout  = (\VGA640x480|countY [4] & (\VGA640x480|countY [6] & (\VGA640x480|countY [5] & \VGA640x480|countY [7])))
+
+	.dataa(\VGA640x480|countY [4]),
+	.datab(\VGA640x480|countY [6]),
+	.datac(\VGA640x480|countY [5]),
+	.datad(\VGA640x480|countY [7]),
+	.cin(gnd),
+	.combout(\Add1~3_combout ),
+	.cout());
+// synopsys translate_off
+defparam \Add1~3 .lut_mask = 16'h8000;
+defparam \Add1~3 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X17_Y12_N4
+cycloneive_lcell_comb \Add1~4 (
+// Equation(s):
+// \Add1~4_combout  = \Add1~3_combout  $ (!\VGA640x480|countY [8])
+
+	.dataa(gnd),
+	.datab(\Add1~3_combout ),
+	.datac(gnd),
+	.datad(\VGA640x480|countY [8]),
+	.cin(gnd),
+	.combout(\Add1~4_combout ),
+	.cout());
+// synopsys translate_off
+defparam \Add1~4 .lut_mask = 16'hCC33;
+defparam \Add1~4 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X17_Y12_N2
+cycloneive_lcell_comb \Add1~5 (
+// Equation(s):
+// \Add1~5_combout  = (!\Add1~3_combout  & !\VGA640x480|countY [8])
+
+	.dataa(gnd),
+	.datab(\Add1~3_combout ),
+	.datac(gnd),
+	.datad(\VGA640x480|countY [8]),
+	.cin(gnd),
+	.combout(\Add1~5_combout ),
+	.cout());
+// synopsys translate_off
+defparam \Add1~5 .lut_mask = 16'h0033;
+defparam \Add1~5 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: DSPMULT_X20_Y12_N0
+cycloneive_mac_mult \Mult1|auto_generated|mac_mult1 (
+	.signa(vcc),
+	.signb(vcc),
+	.clk(gnd),
+	.aclr(gnd),
+	.ena(vcc),
+	.dataa({\Add1~5_combout ,\Add1~4_combout ,\Add1~2_combout ,\Add1~1_combout ,\Add1~0_combout ,!\VGA640x480|countY [4],\VGA640x480|countY [3],\VGA640x480|countY [2],\VGA640x480|countY [1],\VGA640x480|countY [0],gnd,gnd,gnd,gnd,gnd,gnd,gnd,gnd}),
+	.datab({\Add1~5_combout ,\Add1~4_combout ,\Add1~2_combout ,\Add1~1_combout ,\Add1~0_combout ,!\VGA640x480|countY [4],\VGA640x480|countY [3],\VGA640x480|countY [2],\VGA640x480|countY [1],\VGA640x480|countY [0],gnd,gnd,gnd,gnd,gnd,gnd,gnd,gnd}),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.dataout(\Mult1|auto_generated|mac_mult1_DATAOUT_bus ));
+// synopsys translate_off
+defparam \Mult1|auto_generated|mac_mult1 .dataa_clock = "none";
+defparam \Mult1|auto_generated|mac_mult1 .dataa_width = 18;
+defparam \Mult1|auto_generated|mac_mult1 .datab_clock = "none";
+defparam \Mult1|auto_generated|mac_mult1 .datab_width = 18;
+defparam \Mult1|auto_generated|mac_mult1 .signa_clock = "none";
+defparam \Mult1|auto_generated|mac_mult1 .signb_clock = "none";
+// synopsys translate_on
+
+// Location: DSPOUT_X20_Y12_N2
+cycloneive_mac_out \Mult1|auto_generated|mac_out2 (
+	.clk(gnd),
+	.aclr(gnd),
+	.ena(vcc),
+	.dataa({\Mult1|auto_generated|mac_mult1~DATAOUT19 ,\Mult1|auto_generated|mac_mult1~DATAOUT18 ,\Mult1|auto_generated|mac_mult1~DATAOUT17 ,\Mult1|auto_generated|mac_mult1~DATAOUT16 ,\Mult1|auto_generated|mac_mult1~DATAOUT15 ,\Mult1|auto_generated|mac_mult1~DATAOUT14 ,
+\Mult1|auto_generated|mac_mult1~DATAOUT13 ,\Mult1|auto_generated|mac_mult1~DATAOUT12 ,\Mult1|auto_generated|mac_mult1~DATAOUT11 ,\Mult1|auto_generated|mac_mult1~DATAOUT10 ,\Mult1|auto_generated|mac_mult1~DATAOUT9 ,\Mult1|auto_generated|mac_mult1~DATAOUT8 ,
+\Mult1|auto_generated|mac_mult1~DATAOUT7 ,\Mult1|auto_generated|mac_mult1~DATAOUT6 ,\Mult1|auto_generated|mac_mult1~DATAOUT5 ,\Mult1|auto_generated|mac_mult1~DATAOUT4 ,\Mult1|auto_generated|mac_mult1~DATAOUT3 ,\Mult1|auto_generated|mac_mult1~DATAOUT2 ,
+\Mult1|auto_generated|mac_mult1~DATAOUT1 ,\Mult1|auto_generated|mac_mult1~dataout ,\Mult1|auto_generated|mac_mult1~15 ,\Mult1|auto_generated|mac_mult1~14 ,\Mult1|auto_generated|mac_mult1~13 ,\Mult1|auto_generated|mac_mult1~12 ,\Mult1|auto_generated|mac_mult1~11 ,
+\Mult1|auto_generated|mac_mult1~10 ,\Mult1|auto_generated|mac_mult1~9 ,\Mult1|auto_generated|mac_mult1~8 ,\Mult1|auto_generated|mac_mult1~7 ,\Mult1|auto_generated|mac_mult1~6 ,\Mult1|auto_generated|mac_mult1~5 ,\Mult1|auto_generated|mac_mult1~4 ,
+\Mult1|auto_generated|mac_mult1~3 ,\Mult1|auto_generated|mac_mult1~2 ,\Mult1|auto_generated|mac_mult1~1 ,\Mult1|auto_generated|mac_mult1~0 }),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.dataout(\Mult1|auto_generated|mac_out2_DATAOUT_bus ));
+// synopsys translate_off
+defparam \Mult1|auto_generated|mac_out2 .dataa_width = 36;
+defparam \Mult1|auto_generated|mac_out2 .output_clock = "none";
+// synopsys translate_on
+
+// Location: LCCOMB_X21_Y12_N12
+cycloneive_lcell_comb \Add2~1 (
+// Equation(s):
+// \Add2~1_cout  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT2  & \Mult1|auto_generated|mac_out2~DATAOUT2 ))
+
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT2 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT2 ),
 	.datac(gnd),
 	.datad(vcc),
 	.cin(gnd),
 	.combout(),
-	.cout(\Add0~1_cout ));
+	.cout(\Add2~1_cout ));
 // synopsys translate_off
-defparam \Add0~1 .lut_mask = 16'h0055;
-defparam \Add0~1 .sum_lutc_input = "datac";
+defparam \Add2~1 .lut_mask = 16'h0088;
+defparam \Add2~1 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: LCCOMB_X24_Y14_N10
-cycloneive_lcell_comb \Add0~2 (
+// Location: LCCOMB_X21_Y12_N14
+cycloneive_lcell_comb \Add2~3 (
 // Equation(s):
-// \Add0~2_combout  = (\VGA640x480|countY [1] & ((\Add0~1_cout ) # (GND))) # (!\VGA640x480|countY [1] & (!\Add0~1_cout ))
-// \Add0~3  = CARRY((\VGA640x480|countY [1]) # (!\Add0~1_cout ))
+// \Add2~3_cout  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT3  & (!\Mult1|auto_generated|mac_out2~DATAOUT3  & !\Add2~1_cout )) # (!\Mult0|auto_generated|mac_out2~DATAOUT3  & ((!\Add2~1_cout ) # (!\Mult1|auto_generated|mac_out2~DATAOUT3 ))))
 
-	.dataa(gnd),
-	.datab(\VGA640x480|countY [1]),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT3 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT3 ),
 	.datac(gnd),
 	.datad(vcc),
-	.cin(\Add0~1_cout ),
-	.combout(\Add0~2_combout ),
-	.cout(\Add0~3 ));
+	.cin(\Add2~1_cout ),
+	.combout(),
+	.cout(\Add2~3_cout ));
 // synopsys translate_off
-defparam \Add0~2 .lut_mask = 16'hC3CF;
-defparam \Add0~2 .sum_lutc_input = "cin";
+defparam \Add2~3 .lut_mask = 16'h0017;
+defparam \Add2~3 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X24_Y14_N12
-cycloneive_lcell_comb \Add0~4 (
+// Location: LCCOMB_X21_Y12_N16
+cycloneive_lcell_comb \Add2~5 (
 // Equation(s):
-// \Add0~4_combout  = (\VGA640x480|countY [2] & (!\Add0~3  & VCC)) # (!\VGA640x480|countY [2] & (\Add0~3  $ (GND)))
-// \Add0~5  = CARRY((!\VGA640x480|countY [2] & !\Add0~3 ))
+// \Add2~5_cout  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT4  & ((\Mult1|auto_generated|mac_out2~DATAOUT4 ) # (!\Add2~3_cout ))) # (!\Mult0|auto_generated|mac_out2~DATAOUT4  & (\Mult1|auto_generated|mac_out2~DATAOUT4  & !\Add2~3_cout )))
 
-	.dataa(gnd),
-	.datab(\VGA640x480|countY [2]),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT4 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT4 ),
 	.datac(gnd),
 	.datad(vcc),
-	.cin(\Add0~3 ),
-	.combout(\Add0~4_combout ),
-	.cout(\Add0~5 ));
+	.cin(\Add2~3_cout ),
+	.combout(),
+	.cout(\Add2~5_cout ));
 // synopsys translate_off
-defparam \Add0~4 .lut_mask = 16'h3C03;
-defparam \Add0~4 .sum_lutc_input = "cin";
+defparam \Add2~5 .lut_mask = 16'h008E;
+defparam \Add2~5 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X24_Y14_N14
-cycloneive_lcell_comb \Add0~6 (
+// Location: LCCOMB_X21_Y12_N18
+cycloneive_lcell_comb \Add2~7 (
 // Equation(s):
-// \Add0~6_combout  = (\VGA640x480|countY [3] & ((\Add0~5 ) # (GND))) # (!\VGA640x480|countY [3] & (!\Add0~5 ))
-// \Add0~7  = CARRY((\VGA640x480|countY [3]) # (!\Add0~5 ))
+// \Add2~7_cout  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT5  & (!\Mult1|auto_generated|mac_out2~DATAOUT5  & !\Add2~5_cout )) # (!\Mult0|auto_generated|mac_out2~DATAOUT5  & ((!\Add2~5_cout ) # (!\Mult1|auto_generated|mac_out2~DATAOUT5 ))))
 
-	.dataa(gnd),
-	.datab(\VGA640x480|countY [3]),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT5 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT5 ),
 	.datac(gnd),
 	.datad(vcc),
-	.cin(\Add0~5 ),
-	.combout(\Add0~6_combout ),
-	.cout(\Add0~7 ));
+	.cin(\Add2~5_cout ),
+	.combout(),
+	.cout(\Add2~7_cout ));
 // synopsys translate_off
-defparam \Add0~6 .lut_mask = 16'hC3CF;
-defparam \Add0~6 .sum_lutc_input = "cin";
+defparam \Add2~7 .lut_mask = 16'h0017;
+defparam \Add2~7 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X24_Y14_N16
-cycloneive_lcell_comb \Add0~8 (
+// Location: LCCOMB_X21_Y12_N20
+cycloneive_lcell_comb \Add2~9 (
 // Equation(s):
-// \Add0~8_combout  = (\VGA640x480|countY [4] & (!\Add0~7  & VCC)) # (!\VGA640x480|countY [4] & (\Add0~7  $ (GND)))
-// \Add0~9  = CARRY((!\VGA640x480|countY [4] & !\Add0~7 ))
+// \Add2~9_cout  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT6  & ((\Mult1|auto_generated|mac_out2~DATAOUT6 ) # (!\Add2~7_cout ))) # (!\Mult0|auto_generated|mac_out2~DATAOUT6  & (\Mult1|auto_generated|mac_out2~DATAOUT6  & !\Add2~7_cout )))
 
-	.dataa(gnd),
-	.datab(\VGA640x480|countY [4]),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT6 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT6 ),
 	.datac(gnd),
 	.datad(vcc),
-	.cin(\Add0~7 ),
-	.combout(\Add0~8_combout ),
-	.cout(\Add0~9 ));
+	.cin(\Add2~7_cout ),
+	.combout(),
+	.cout(\Add2~9_cout ));
 // synopsys translate_off
-defparam \Add0~8 .lut_mask = 16'h3C03;
-defparam \Add0~8 .sum_lutc_input = "cin";
+defparam \Add2~9 .lut_mask = 16'h008E;
+defparam \Add2~9 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X24_Y14_N18
-cycloneive_lcell_comb \Add0~10 (
+// Location: LCCOMB_X21_Y12_N22
+cycloneive_lcell_comb \Add2~11 (
 // Equation(s):
-// \Add0~10_combout  = (\VGA640x480|countY [5] & ((\Add0~9 ) # (GND))) # (!\VGA640x480|countY [5] & (!\Add0~9 ))
-// \Add0~11  = CARRY((\VGA640x480|countY [5]) # (!\Add0~9 ))
+// \Add2~11_cout  = CARRY((\Mult1|auto_generated|mac_out2~DATAOUT7  & (!\Mult0|auto_generated|mac_out2~DATAOUT7  & !\Add2~9_cout )) # (!\Mult1|auto_generated|mac_out2~DATAOUT7  & ((!\Add2~9_cout ) # (!\Mult0|auto_generated|mac_out2~DATAOUT7 ))))
 
-	.dataa(\VGA640x480|countY [5]),
-	.datab(gnd),
+	.dataa(\Mult1|auto_generated|mac_out2~DATAOUT7 ),
+	.datab(\Mult0|auto_generated|mac_out2~DATAOUT7 ),
 	.datac(gnd),
 	.datad(vcc),
-	.cin(\Add0~9 ),
-	.combout(\Add0~10_combout ),
-	.cout(\Add0~11 ));
+	.cin(\Add2~9_cout ),
+	.combout(),
+	.cout(\Add2~11_cout ));
 // synopsys translate_off
-defparam \Add0~10 .lut_mask = 16'hA5AF;
-defparam \Add0~10 .sum_lutc_input = "cin";
+defparam \Add2~11 .lut_mask = 16'h0017;
+defparam \Add2~11 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X24_Y14_N20
-cycloneive_lcell_comb \Add0~12 (
-// Equation(s):
-// \Add0~12_combout  = (\VGA640x480|countY [6] & (!\Add0~11  & VCC)) # (!\VGA640x480|countY [6] & (\Add0~11  $ (GND)))
-// \Add0~13  = CARRY((!\VGA640x480|countY [6] & !\Add0~11 ))
-
-	.dataa(gnd),
-	.datab(\VGA640x480|countY [6]),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add0~11 ),
-	.combout(\Add0~12_combout ),
-	.cout(\Add0~13 ));
-// synopsys translate_off
-defparam \Add0~12 .lut_mask = 16'h3C03;
-defparam \Add0~12 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X24_Y14_N22
-cycloneive_lcell_comb \Add0~14 (
-// Equation(s):
-// \Add0~14_combout  = (\VGA640x480|countY [7] & ((\Add0~13 ) # (GND))) # (!\VGA640x480|countY [7] & (!\Add0~13 ))
-// \Add0~15  = CARRY((\VGA640x480|countY [7]) # (!\Add0~13 ))
-
-	.dataa(\VGA640x480|countY [7]),
-	.datab(gnd),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add0~13 ),
-	.combout(\Add0~14_combout ),
-	.cout(\Add0~15 ));
-// synopsys translate_off
-defparam \Add0~14 .lut_mask = 16'hA5AF;
-defparam \Add0~14 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X24_Y14_N24
-cycloneive_lcell_comb \Add0~16 (
-// Equation(s):
-// \Add0~16_combout  = (\VGA640x480|countY [8] & (!\Add0~15  & VCC)) # (!\VGA640x480|countY [8] & (\Add0~15  $ (GND)))
-// \Add0~17  = CARRY((!\VGA640x480|countY [8] & !\Add0~15 ))
-
-	.dataa(gnd),
-	.datab(\VGA640x480|countY [8]),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add0~15 ),
-	.combout(\Add0~16_combout ),
-	.cout(\Add0~17 ));
-// synopsys translate_off
-defparam \Add0~16 .lut_mask = 16'h3C03;
-defparam \Add0~16 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X24_Y14_N26
-cycloneive_lcell_comb \Add0~18 (
-// Equation(s):
-// \Add0~18_combout  = !\Add0~17 
-// \Add0~19  = CARRY(!\Add0~17 )
-
-	.dataa(gnd),
-	.datab(gnd),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add0~17 ),
-	.combout(\Add0~18_combout ),
-	.cout(\Add0~19 ));
-// synopsys translate_off
-defparam \Add0~18 .lut_mask = 16'h0F0F;
-defparam \Add0~18 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X24_Y14_N28
-cycloneive_lcell_comb \Add0~20 (
-// Equation(s):
-// \Add0~20_combout  = \Add0~19 
-
-	.dataa(gnd),
-	.datab(gnd),
-	.datac(gnd),
-	.datad(gnd),
-	.cin(\Add0~19 ),
-	.combout(\Add0~20_combout ),
-	.cout());
-// synopsys translate_off
-defparam \Add0~20 .lut_mask = 16'hF0F0;
-defparam \Add0~20 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X23_Y14_N14
-cycloneive_lcell_comb \Add1~0 (
-// Equation(s):
-// \Add1~0_combout  = (\VGA640x480|countY [0] & (\Add0~8_combout  $ (VCC))) # (!\VGA640x480|countY [0] & (\Add0~8_combout  & VCC))
-// \Add1~1  = CARRY((\VGA640x480|countY [0] & \Add0~8_combout ))
-
-	.dataa(\VGA640x480|countY [0]),
-	.datab(\Add0~8_combout ),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(gnd),
-	.combout(\Add1~0_combout ),
-	.cout(\Add1~1 ));
-// synopsys translate_off
-defparam \Add1~0 .lut_mask = 16'h6688;
-defparam \Add1~0 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X23_Y14_N16
-cycloneive_lcell_comb \Add1~2 (
-// Equation(s):
-// \Add1~2_combout  = (\VGA640x480|countY [1] & ((\Add0~10_combout  & (\Add1~1  & VCC)) # (!\Add0~10_combout  & (!\Add1~1 )))) # (!\VGA640x480|countY [1] & ((\Add0~10_combout  & (!\Add1~1 )) # (!\Add0~10_combout  & ((\Add1~1 ) # (GND)))))
-// \Add1~3  = CARRY((\VGA640x480|countY [1] & (!\Add0~10_combout  & !\Add1~1 )) # (!\VGA640x480|countY [1] & ((!\Add1~1 ) # (!\Add0~10_combout ))))
-
-	.dataa(\VGA640x480|countY [1]),
-	.datab(\Add0~10_combout ),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add1~1 ),
-	.combout(\Add1~2_combout ),
-	.cout(\Add1~3 ));
-// synopsys translate_off
-defparam \Add1~2 .lut_mask = 16'h9617;
-defparam \Add1~2 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X23_Y14_N18
-cycloneive_lcell_comb \Add1~4 (
-// Equation(s):
-// \Add1~4_combout  = ((\Add0~12_combout  $ (\VGA640x480|countY [2] $ (!\Add1~3 )))) # (GND)
-// \Add1~5  = CARRY((\Add0~12_combout  & ((\VGA640x480|countY [2]) # (!\Add1~3 ))) # (!\Add0~12_combout  & (\VGA640x480|countY [2] & !\Add1~3 )))
-
-	.dataa(\Add0~12_combout ),
-	.datab(\VGA640x480|countY [2]),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add1~3 ),
-	.combout(\Add1~4_combout ),
-	.cout(\Add1~5 ));
-// synopsys translate_off
-defparam \Add1~4 .lut_mask = 16'h698E;
-defparam \Add1~4 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X23_Y14_N20
-cycloneive_lcell_comb \Add1~6 (
-// Equation(s):
-// \Add1~6_combout  = (\VGA640x480|countY [3] & ((\Add0~14_combout  & (\Add1~5  & VCC)) # (!\Add0~14_combout  & (!\Add1~5 )))) # (!\VGA640x480|countY [3] & ((\Add0~14_combout  & (!\Add1~5 )) # (!\Add0~14_combout  & ((\Add1~5 ) # (GND)))))
-// \Add1~7  = CARRY((\VGA640x480|countY [3] & (!\Add0~14_combout  & !\Add1~5 )) # (!\VGA640x480|countY [3] & ((!\Add1~5 ) # (!\Add0~14_combout ))))
-
-	.dataa(\VGA640x480|countY [3]),
-	.datab(\Add0~14_combout ),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add1~5 ),
-	.combout(\Add1~6_combout ),
-	.cout(\Add1~7 ));
-// synopsys translate_off
-defparam \Add1~6 .lut_mask = 16'h9617;
-defparam \Add1~6 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X23_Y14_N22
-cycloneive_lcell_comb \Add1~8 (
-// Equation(s):
-// \Add1~8_combout  = ((\Add0~16_combout  $ (\VGA640x480|countY [4] $ (!\Add1~7 )))) # (GND)
-// \Add1~9  = CARRY((\Add0~16_combout  & ((\VGA640x480|countY [4]) # (!\Add1~7 ))) # (!\Add0~16_combout  & (\VGA640x480|countY [4] & !\Add1~7 )))
-
-	.dataa(\Add0~16_combout ),
-	.datab(\VGA640x480|countY [4]),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add1~7 ),
-	.combout(\Add1~8_combout ),
-	.cout(\Add1~9 ));
-// synopsys translate_off
-defparam \Add1~8 .lut_mask = 16'h698E;
-defparam \Add1~8 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X23_Y14_N24
-cycloneive_lcell_comb \Add1~10 (
-// Equation(s):
-// \Add1~10_combout  = (\VGA640x480|countY [5] & ((\Add0~18_combout  & (\Add1~9  & VCC)) # (!\Add0~18_combout  & (!\Add1~9 )))) # (!\VGA640x480|countY [5] & ((\Add0~18_combout  & (!\Add1~9 )) # (!\Add0~18_combout  & ((\Add1~9 ) # (GND)))))
-// \Add1~11  = CARRY((\VGA640x480|countY [5] & (!\Add0~18_combout  & !\Add1~9 )) # (!\VGA640x480|countY [5] & ((!\Add1~9 ) # (!\Add0~18_combout ))))
-
-	.dataa(\VGA640x480|countY [5]),
-	.datab(\Add0~18_combout ),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add1~9 ),
-	.combout(\Add1~10_combout ),
-	.cout(\Add1~11 ));
-// synopsys translate_off
-defparam \Add1~10 .lut_mask = 16'h9617;
-defparam \Add1~10 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X23_Y14_N26
-cycloneive_lcell_comb \Add1~12 (
-// Equation(s):
-// \Add1~12_combout  = ((\VGA640x480|countY [6] $ (\Add0~20_combout  $ (!\Add1~11 )))) # (GND)
-// \Add1~13  = CARRY((\VGA640x480|countY [6] & ((\Add0~20_combout ) # (!\Add1~11 ))) # (!\VGA640x480|countY [6] & (\Add0~20_combout  & !\Add1~11 )))
-
-	.dataa(\VGA640x480|countY [6]),
-	.datab(\Add0~20_combout ),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add1~11 ),
-	.combout(\Add1~12_combout ),
-	.cout(\Add1~13 ));
-// synopsys translate_off
-defparam \Add1~12 .lut_mask = 16'h698E;
-defparam \Add1~12 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X22_Y14_N4
-cycloneive_lcell_comb \Add2~0 (
-// Equation(s):
-// \Add2~0_combout  = (\VGA640x480|countX [3] & (\VGA640x480|countY [0] $ (VCC))) # (!\VGA640x480|countX [3] & (\VGA640x480|countY [0] & VCC))
-// \Add2~1  = CARRY((\VGA640x480|countX [3] & \VGA640x480|countY [0]))
-
-	.dataa(\VGA640x480|countX [3]),
-	.datab(\VGA640x480|countY [0]),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(gnd),
-	.combout(\Add2~0_combout ),
-	.cout(\Add2~1 ));
-// synopsys translate_off
-defparam \Add2~0 .lut_mask = 16'h6688;
-defparam \Add2~0 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X22_Y14_N6
-cycloneive_lcell_comb \Add2~2 (
-// Equation(s):
-// \Add2~2_combout  = (\VGA640x480|countX [4] & ((\Add0~2_combout  & (\Add2~1  & VCC)) # (!\Add0~2_combout  & (!\Add2~1 )))) # (!\VGA640x480|countX [4] & ((\Add0~2_combout  & (!\Add2~1 )) # (!\Add0~2_combout  & ((\Add2~1 ) # (GND)))))
-// \Add2~3  = CARRY((\VGA640x480|countX [4] & (!\Add0~2_combout  & !\Add2~1 )) # (!\VGA640x480|countX [4] & ((!\Add2~1 ) # (!\Add0~2_combout ))))
-
-	.dataa(\VGA640x480|countX [4]),
-	.datab(\Add0~2_combout ),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add2~1 ),
-	.combout(\Add2~2_combout ),
-	.cout(\Add2~3 ));
-// synopsys translate_off
-defparam \Add2~2 .lut_mask = 16'h9617;
-defparam \Add2~2 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X22_Y14_N8
-cycloneive_lcell_comb \Add2~4 (
-// Equation(s):
-// \Add2~4_combout  = ((\Add0~4_combout  $ (\VGA640x480|countX [5] $ (!\Add2~3 )))) # (GND)
-// \Add2~5  = CARRY((\Add0~4_combout  & ((\VGA640x480|countX [5]) # (!\Add2~3 ))) # (!\Add0~4_combout  & (\VGA640x480|countX [5] & !\Add2~3 )))
-
-	.dataa(\Add0~4_combout ),
-	.datab(\VGA640x480|countX [5]),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add2~3 ),
-	.combout(\Add2~4_combout ),
-	.cout(\Add2~5 ));
-// synopsys translate_off
-defparam \Add2~4 .lut_mask = 16'h698E;
-defparam \Add2~4 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X22_Y14_N10
-cycloneive_lcell_comb \Add2~6 (
-// Equation(s):
-// \Add2~6_combout  = (\Add0~6_combout  & ((\VGA640x480|countX [6] & (\Add2~5  & VCC)) # (!\VGA640x480|countX [6] & (!\Add2~5 )))) # (!\Add0~6_combout  & ((\VGA640x480|countX [6] & (!\Add2~5 )) # (!\VGA640x480|countX [6] & ((\Add2~5 ) # (GND)))))
-// \Add2~7  = CARRY((\Add0~6_combout  & (!\VGA640x480|countX [6] & !\Add2~5 )) # (!\Add0~6_combout  & ((!\Add2~5 ) # (!\VGA640x480|countX [6]))))
-
-	.dataa(\Add0~6_combout ),
-	.datab(\VGA640x480|countX [6]),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add2~5 ),
-	.combout(\Add2~6_combout ),
-	.cout(\Add2~7 ));
-// synopsys translate_off
-defparam \Add2~6 .lut_mask = 16'h9617;
-defparam \Add2~6 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X22_Y14_N12
-cycloneive_lcell_comb \Add2~8 (
-// Equation(s):
-// \Add2~8_combout  = ((\VGA640x480|countX [7] $ (\Add1~0_combout  $ (!\Add2~7 )))) # (GND)
-// \Add2~9  = CARRY((\VGA640x480|countX [7] & ((\Add1~0_combout ) # (!\Add2~7 ))) # (!\VGA640x480|countX [7] & (\Add1~0_combout  & !\Add2~7 )))
-
-	.dataa(\VGA640x480|countX [7]),
-	.datab(\Add1~0_combout ),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add2~7 ),
-	.combout(\Add2~8_combout ),
-	.cout(\Add2~9 ));
-// synopsys translate_off
-defparam \Add2~8 .lut_mask = 16'h698E;
-defparam \Add2~8 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X22_Y14_N14
-cycloneive_lcell_comb \Add2~10 (
-// Equation(s):
-// \Add2~10_combout  = (\VGA640x480|countX [8] & ((\Add1~2_combout  & (\Add2~9  & VCC)) # (!\Add1~2_combout  & (!\Add2~9 )))) # (!\VGA640x480|countX [8] & ((\Add1~2_combout  & (!\Add2~9 )) # (!\Add1~2_combout  & ((\Add2~9 ) # (GND)))))
-// \Add2~11  = CARRY((\VGA640x480|countX [8] & (!\Add1~2_combout  & !\Add2~9 )) # (!\VGA640x480|countX [8] & ((!\Add2~9 ) # (!\Add1~2_combout ))))
-
-	.dataa(\VGA640x480|countX [8]),
-	.datab(\Add1~2_combout ),
-	.datac(gnd),
-	.datad(vcc),
-	.cin(\Add2~9 ),
-	.combout(\Add2~10_combout ),
-	.cout(\Add2~11 ));
-// synopsys translate_off
-defparam \Add2~10 .lut_mask = 16'h9617;
-defparam \Add2~10 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X22_Y14_N16
+// Location: LCCOMB_X21_Y12_N24
 cycloneive_lcell_comb \Add2~12 (
 // Equation(s):
-// \Add2~12_combout  = ((\VGA640x480|countX [9] $ (\Add1~4_combout  $ (!\Add2~11 )))) # (GND)
-// \Add2~13  = CARRY((\VGA640x480|countX [9] & ((\Add1~4_combout ) # (!\Add2~11 ))) # (!\VGA640x480|countX [9] & (\Add1~4_combout  & !\Add2~11 )))
+// \Add2~12_combout  = ((\Mult1|auto_generated|mac_out2~DATAOUT8  $ (\Mult0|auto_generated|mac_out2~DATAOUT8  $ (!\Add2~11_cout )))) # (GND)
+// \Add2~13  = CARRY((\Mult1|auto_generated|mac_out2~DATAOUT8  & ((\Mult0|auto_generated|mac_out2~DATAOUT8 ) # (!\Add2~11_cout ))) # (!\Mult1|auto_generated|mac_out2~DATAOUT8  & (\Mult0|auto_generated|mac_out2~DATAOUT8  & !\Add2~11_cout )))
 
-	.dataa(\VGA640x480|countX [9]),
-	.datab(\Add1~4_combout ),
+	.dataa(\Mult1|auto_generated|mac_out2~DATAOUT8 ),
+	.datab(\Mult0|auto_generated|mac_out2~DATAOUT8 ),
 	.datac(gnd),
 	.datad(vcc),
-	.cin(\Add2~11 ),
+	.cin(\Add2~11_cout ),
 	.combout(\Add2~12_combout ),
 	.cout(\Add2~13 ));
 // synopsys translate_off
@@ -1950,1351 +1963,444 @@ defparam \Add2~12 .lut_mask = 16'h698E;
 defparam \Add2~12 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X22_Y14_N18
+// Location: LCCOMB_X21_Y12_N26
 cycloneive_lcell_comb \Add2~14 (
 // Equation(s):
-// \Add2~14_combout  = (\Add1~6_combout  & (!\Add2~13 )) # (!\Add1~6_combout  & ((\Add2~13 ) # (GND)))
-// \Add2~15  = CARRY((!\Add2~13 ) # (!\Add1~6_combout ))
+// \Add2~14_combout  = (\Mult1|auto_generated|mac_out2~DATAOUT9  & ((\Mult0|auto_generated|mac_out2~DATAOUT9  & (\Add2~13  & VCC)) # (!\Mult0|auto_generated|mac_out2~DATAOUT9  & (!\Add2~13 )))) # (!\Mult1|auto_generated|mac_out2~DATAOUT9  & 
+// ((\Mult0|auto_generated|mac_out2~DATAOUT9  & (!\Add2~13 )) # (!\Mult0|auto_generated|mac_out2~DATAOUT9  & ((\Add2~13 ) # (GND)))))
+// \Add2~15  = CARRY((\Mult1|auto_generated|mac_out2~DATAOUT9  & (!\Mult0|auto_generated|mac_out2~DATAOUT9  & !\Add2~13 )) # (!\Mult1|auto_generated|mac_out2~DATAOUT9  & ((!\Add2~13 ) # (!\Mult0|auto_generated|mac_out2~DATAOUT9 ))))
 
-	.dataa(\Add1~6_combout ),
-	.datab(gnd),
+	.dataa(\Mult1|auto_generated|mac_out2~DATAOUT9 ),
+	.datab(\Mult0|auto_generated|mac_out2~DATAOUT9 ),
 	.datac(gnd),
 	.datad(vcc),
 	.cin(\Add2~13 ),
 	.combout(\Add2~14_combout ),
 	.cout(\Add2~15 ));
 // synopsys translate_off
-defparam \Add2~14 .lut_mask = 16'h5A5F;
+defparam \Add2~14 .lut_mask = 16'h9617;
 defparam \Add2~14 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X22_Y14_N20
+// Location: LCCOMB_X21_Y12_N28
 cycloneive_lcell_comb \Add2~16 (
 // Equation(s):
-// \Add2~16_combout  = (\Add1~8_combout  & (\Add2~15  $ (GND))) # (!\Add1~8_combout  & (!\Add2~15  & VCC))
-// \Add2~17  = CARRY((\Add1~8_combout  & !\Add2~15 ))
+// \Add2~16_combout  = ((\Mult0|auto_generated|mac_out2~DATAOUT10  $ (\Mult1|auto_generated|mac_out2~DATAOUT10  $ (!\Add2~15 )))) # (GND)
+// \Add2~17  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT10  & ((\Mult1|auto_generated|mac_out2~DATAOUT10 ) # (!\Add2~15 ))) # (!\Mult0|auto_generated|mac_out2~DATAOUT10  & (\Mult1|auto_generated|mac_out2~DATAOUT10  & !\Add2~15 )))
 
-	.dataa(gnd),
-	.datab(\Add1~8_combout ),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT10 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT10 ),
 	.datac(gnd),
 	.datad(vcc),
 	.cin(\Add2~15 ),
 	.combout(\Add2~16_combout ),
 	.cout(\Add2~17 ));
 // synopsys translate_off
-defparam \Add2~16 .lut_mask = 16'hC30C;
+defparam \Add2~16 .lut_mask = 16'h698E;
 defparam \Add2~16 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X22_Y14_N22
+// Location: LCCOMB_X21_Y12_N30
 cycloneive_lcell_comb \Add2~18 (
 // Equation(s):
-// \Add2~18_combout  = (\Add1~10_combout  & (!\Add2~17 )) # (!\Add1~10_combout  & ((\Add2~17 ) # (GND)))
-// \Add2~19  = CARRY((!\Add2~17 ) # (!\Add1~10_combout ))
+// \Add2~18_combout  = (\Mult0|auto_generated|mac_out2~DATAOUT11  & ((\Mult1|auto_generated|mac_out2~DATAOUT11  & (\Add2~17  & VCC)) # (!\Mult1|auto_generated|mac_out2~DATAOUT11  & (!\Add2~17 )))) # (!\Mult0|auto_generated|mac_out2~DATAOUT11  & 
+// ((\Mult1|auto_generated|mac_out2~DATAOUT11  & (!\Add2~17 )) # (!\Mult1|auto_generated|mac_out2~DATAOUT11  & ((\Add2~17 ) # (GND)))))
+// \Add2~19  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT11  & (!\Mult1|auto_generated|mac_out2~DATAOUT11  & !\Add2~17 )) # (!\Mult0|auto_generated|mac_out2~DATAOUT11  & ((!\Add2~17 ) # (!\Mult1|auto_generated|mac_out2~DATAOUT11 ))))
 
-	.dataa(\Add1~10_combout ),
-	.datab(gnd),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT11 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT11 ),
 	.datac(gnd),
 	.datad(vcc),
 	.cin(\Add2~17 ),
 	.combout(\Add2~18_combout ),
 	.cout(\Add2~19 ));
 // synopsys translate_off
-defparam \Add2~18 .lut_mask = 16'h5A5F;
+defparam \Add2~18 .lut_mask = 16'h9617;
 defparam \Add2~18 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X22_Y14_N24
+// Location: LCCOMB_X21_Y11_N0
 cycloneive_lcell_comb \Add2~20 (
 // Equation(s):
-// \Add2~20_combout  = (\Add1~12_combout  & (\Add2~19  $ (GND))) # (!\Add1~12_combout  & (!\Add2~19  & VCC))
-// \Add2~21  = CARRY((\Add1~12_combout  & !\Add2~19 ))
+// \Add2~20_combout  = ((\Mult0|auto_generated|mac_out2~DATAOUT12  $ (\Mult1|auto_generated|mac_out2~DATAOUT12  $ (!\Add2~19 )))) # (GND)
+// \Add2~21  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT12  & ((\Mult1|auto_generated|mac_out2~DATAOUT12 ) # (!\Add2~19 ))) # (!\Mult0|auto_generated|mac_out2~DATAOUT12  & (\Mult1|auto_generated|mac_out2~DATAOUT12  & !\Add2~19 )))
 
-	.dataa(gnd),
-	.datab(\Add1~12_combout ),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT12 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT12 ),
 	.datac(gnd),
 	.datad(vcc),
 	.cin(\Add2~19 ),
 	.combout(\Add2~20_combout ),
 	.cout(\Add2~21 ));
 // synopsys translate_off
-defparam \Add2~20 .lut_mask = 16'hC30C;
+defparam \Add2~20 .lut_mask = 16'h698E;
 defparam \Add2~20 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X23_Y14_N28
-cycloneive_lcell_comb \Add1~14 (
-// Equation(s):
-// \Add1~14_combout  = \VGA640x480|countY [7] $ (\Add1~13  $ (\Add0~20_combout ))
-
-	.dataa(\VGA640x480|countY [7]),
-	.datab(gnd),
-	.datac(gnd),
-	.datad(\Add0~20_combout ),
-	.cin(\Add1~13 ),
-	.combout(\Add1~14_combout ),
-	.cout());
-// synopsys translate_off
-defparam \Add1~14 .lut_mask = 16'hA55A;
-defparam \Add1~14 .sum_lutc_input = "cin";
-// synopsys translate_on
-
-// Location: LCCOMB_X22_Y14_N26
+// Location: LCCOMB_X21_Y11_N2
 cycloneive_lcell_comb \Add2~22 (
 // Equation(s):
-// \Add2~22_combout  = \Add2~21  $ (\Add1~14_combout )
+// \Add2~22_combout  = (\Mult0|auto_generated|mac_out2~DATAOUT13  & ((\Mult1|auto_generated|mac_out2~DATAOUT13  & (\Add2~21  & VCC)) # (!\Mult1|auto_generated|mac_out2~DATAOUT13  & (!\Add2~21 )))) # (!\Mult0|auto_generated|mac_out2~DATAOUT13  & 
+// ((\Mult1|auto_generated|mac_out2~DATAOUT13  & (!\Add2~21 )) # (!\Mult1|auto_generated|mac_out2~DATAOUT13  & ((\Add2~21 ) # (GND)))))
+// \Add2~23  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT13  & (!\Mult1|auto_generated|mac_out2~DATAOUT13  & !\Add2~21 )) # (!\Mult0|auto_generated|mac_out2~DATAOUT13  & ((!\Add2~21 ) # (!\Mult1|auto_generated|mac_out2~DATAOUT13 ))))
 
-	.dataa(gnd),
-	.datab(gnd),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT13 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT13 ),
 	.datac(gnd),
-	.datad(\Add1~14_combout ),
+	.datad(vcc),
 	.cin(\Add2~21 ),
 	.combout(\Add2~22_combout ),
-	.cout());
+	.cout(\Add2~23 ));
 // synopsys translate_off
-defparam \Add2~22 .lut_mask = 16'h0FF0;
+defparam \Add2~22 .lut_mask = 16'h9617;
 defparam \Add2~22 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X26_Y14_N18
-cycloneive_lcell_comb \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode220w[2] (
-// Equation(s):
-// \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode220w [2] = (!\always0~2_combout  & (\Add2~20_combout  & !\Add2~22_combout ))
-
-	.dataa(gnd),
-	.datab(\always0~2_combout ),
-	.datac(\Add2~20_combout ),
-	.datad(\Add2~22_combout ),
-	.cin(gnd),
-	.combout(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode220w [2]),
-	.cout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode220w[2] .lut_mask = 16'h0030;
-defparam \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode220w[2] .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N28
-cycloneive_lcell_comb \DP_RAM_addr_out[0]~0 (
-// Equation(s):
-// \DP_RAM_addr_out[0]~0_combout  = (\VGA640x480|countX [0] & !\always0~2_combout )
-
-	.dataa(\VGA640x480|countX [0]),
-	.datab(gnd),
-	.datac(gnd),
-	.datad(\always0~2_combout ),
-	.cin(gnd),
-	.combout(\DP_RAM_addr_out[0]~0_combout ),
-	.cout());
-// synopsys translate_off
-defparam \DP_RAM_addr_out[0]~0 .lut_mask = 16'h00AA;
-defparam \DP_RAM_addr_out[0]~0 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N2
-cycloneive_lcell_comb \DP_RAM_addr_out[1]~1 (
-// Equation(s):
-// \DP_RAM_addr_out[1]~1_combout  = (\VGA640x480|countX [1] & !\always0~2_combout )
-
-	.dataa(\VGA640x480|countX [1]),
-	.datab(gnd),
-	.datac(gnd),
-	.datad(\always0~2_combout ),
-	.cin(gnd),
-	.combout(\DP_RAM_addr_out[1]~1_combout ),
-	.cout());
-// synopsys translate_off
-defparam \DP_RAM_addr_out[1]~1 .lut_mask = 16'h00AA;
-defparam \DP_RAM_addr_out[1]~1 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N20
-cycloneive_lcell_comb \DP_RAM_addr_out[2]~2 (
-// Equation(s):
-// \DP_RAM_addr_out[2]~2_combout  = (\VGA640x480|countX [2]) # (\always0~2_combout )
-
-	.dataa(gnd),
-	.datab(\VGA640x480|countX [2]),
-	.datac(gnd),
-	.datad(\always0~2_combout ),
-	.cin(gnd),
-	.combout(\DP_RAM_addr_out[2]~2_combout ),
-	.cout());
-// synopsys translate_off
-defparam \DP_RAM_addr_out[2]~2 .lut_mask = 16'hFFCC;
-defparam \DP_RAM_addr_out[2]~2 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X21_Y14_N28
+// Location: LCCOMB_X21_Y11_N4
 cycloneive_lcell_comb \Add2~24 (
 // Equation(s):
-// \Add2~24_combout  = (\Add2~0_combout ) # (\always0~2_combout )
+// \Add2~24_combout  = ((\Mult0|auto_generated|mac_out2~DATAOUT14  $ (\Mult1|auto_generated|mac_out2~DATAOUT14  $ (!\Add2~23 )))) # (GND)
+// \Add2~25  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT14  & ((\Mult1|auto_generated|mac_out2~DATAOUT14 ) # (!\Add2~23 ))) # (!\Mult0|auto_generated|mac_out2~DATAOUT14  & (\Mult1|auto_generated|mac_out2~DATAOUT14  & !\Add2~23 )))
 
-	.dataa(\Add2~0_combout ),
-	.datab(gnd),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT14 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT14 ),
 	.datac(gnd),
-	.datad(\always0~2_combout ),
-	.cin(gnd),
+	.datad(vcc),
+	.cin(\Add2~23 ),
 	.combout(\Add2~24_combout ),
-	.cout());
+	.cout(\Add2~25 ));
 // synopsys translate_off
-defparam \Add2~24 .lut_mask = 16'hFFAA;
-defparam \Add2~24 .sum_lutc_input = "datac";
+defparam \Add2~24 .lut_mask = 16'h698E;
+defparam \Add2~24 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X23_Y14_N10
-cycloneive_lcell_comb \Add2~25 (
-// Equation(s):
-// \Add2~25_combout  = (\Add2~2_combout  & !\always0~2_combout )
-
-	.dataa(gnd),
-	.datab(gnd),
-	.datac(\Add2~2_combout ),
-	.datad(\always0~2_combout ),
-	.cin(gnd),
-	.combout(\Add2~25_combout ),
-	.cout());
-// synopsys translate_off
-defparam \Add2~25 .lut_mask = 16'h00F0;
-defparam \Add2~25 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X22_Y14_N0
+// Location: LCCOMB_X21_Y11_N6
 cycloneive_lcell_comb \Add2~26 (
 // Equation(s):
-// \Add2~26_combout  = (\Add2~4_combout  & !\always0~2_combout )
+// \Add2~26_combout  = (\Mult0|auto_generated|mac_out2~DATAOUT15  & ((\Mult1|auto_generated|mac_out2~DATAOUT15  & (\Add2~25  & VCC)) # (!\Mult1|auto_generated|mac_out2~DATAOUT15  & (!\Add2~25 )))) # (!\Mult0|auto_generated|mac_out2~DATAOUT15  & 
+// ((\Mult1|auto_generated|mac_out2~DATAOUT15  & (!\Add2~25 )) # (!\Mult1|auto_generated|mac_out2~DATAOUT15  & ((\Add2~25 ) # (GND)))))
+// \Add2~27  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT15  & (!\Mult1|auto_generated|mac_out2~DATAOUT15  & !\Add2~25 )) # (!\Mult0|auto_generated|mac_out2~DATAOUT15  & ((!\Add2~25 ) # (!\Mult1|auto_generated|mac_out2~DATAOUT15 ))))
 
-	.dataa(gnd),
-	.datab(gnd),
-	.datac(\Add2~4_combout ),
-	.datad(\always0~2_combout ),
-	.cin(gnd),
-	.combout(\Add2~26_combout ),
-	.cout());
-// synopsys translate_off
-defparam \Add2~26 .lut_mask = 16'h00F0;
-defparam \Add2~26 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X23_Y14_N12
-cycloneive_lcell_comb \Add2~27 (
-// Equation(s):
-// \Add2~27_combout  = (!\always0~2_combout  & \Add2~6_combout )
-
-	.dataa(gnd),
-	.datab(\always0~2_combout ),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT15 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT15 ),
 	.datac(gnd),
-	.datad(\Add2~6_combout ),
-	.cin(gnd),
-	.combout(\Add2~27_combout ),
-	.cout());
+	.datad(vcc),
+	.cin(\Add2~25 ),
+	.combout(\Add2~26_combout ),
+	.cout(\Add2~27 ));
 // synopsys translate_off
-defparam \Add2~27 .lut_mask = 16'h3300;
-defparam \Add2~27 .sum_lutc_input = "datac";
+defparam \Add2~26 .lut_mask = 16'h9617;
+defparam \Add2~26 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X23_Y14_N6
+// Location: LCCOMB_X21_Y12_N8
+cycloneive_lcell_comb \LessThan2~0 (
+// Equation(s):
+// \LessThan2~0_combout  = (!\Add2~18_combout  & (!\Add2~16_combout  & (!\Add2~14_combout  & !\Add2~12_combout )))
+
+	.dataa(\Add2~18_combout ),
+	.datab(\Add2~16_combout ),
+	.datac(\Add2~14_combout ),
+	.datad(\Add2~12_combout ),
+	.cin(gnd),
+	.combout(\LessThan2~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \LessThan2~0 .lut_mask = 16'h0001;
+defparam \LessThan2~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X21_Y11_N24
+cycloneive_lcell_comb \VGA640x480|pixelOut[2]~3 (
+// Equation(s):
+// \VGA640x480|pixelOut[2]~3_combout  = (\Add2~26_combout  & (\Add2~24_combout  & ((\Add2~20_combout ) # (!\LessThan2~0_combout ))))
+
+	.dataa(\Add2~26_combout ),
+	.datab(\Add2~20_combout ),
+	.datac(\Add2~24_combout ),
+	.datad(\LessThan2~0_combout ),
+	.cin(gnd),
+	.combout(\VGA640x480|pixelOut[2]~3_combout ),
+	.cout());
+// synopsys translate_off
+defparam \VGA640x480|pixelOut[2]~3 .lut_mask = 16'h80A0;
+defparam \VGA640x480|pixelOut[2]~3 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X21_Y11_N8
 cycloneive_lcell_comb \Add2~28 (
 // Equation(s):
-// \Add2~28_combout  = (!\always0~2_combout  & \Add2~8_combout )
+// \Add2~28_combout  = ((\Mult0|auto_generated|mac_out2~DATAOUT16  $ (\Mult1|auto_generated|mac_out2~DATAOUT16  $ (!\Add2~27 )))) # (GND)
+// \Add2~29  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT16  & ((\Mult1|auto_generated|mac_out2~DATAOUT16 ) # (!\Add2~27 ))) # (!\Mult0|auto_generated|mac_out2~DATAOUT16  & (\Mult1|auto_generated|mac_out2~DATAOUT16  & !\Add2~27 )))
 
-	.dataa(gnd),
-	.datab(\always0~2_combout ),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT16 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT16 ),
 	.datac(gnd),
-	.datad(\Add2~8_combout ),
-	.cin(gnd),
+	.datad(vcc),
+	.cin(\Add2~27 ),
 	.combout(\Add2~28_combout ),
-	.cout());
+	.cout(\Add2~29 ));
 // synopsys translate_off
-defparam \Add2~28 .lut_mask = 16'h3300;
-defparam \Add2~28 .sum_lutc_input = "datac";
+defparam \Add2~28 .lut_mask = 16'h698E;
+defparam \Add2~28 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X23_Y14_N8
-cycloneive_lcell_comb \Add2~29 (
-// Equation(s):
-// \Add2~29_combout  = (\always0~2_combout ) # (\Add2~10_combout )
-
-	.dataa(gnd),
-	.datab(\always0~2_combout ),
-	.datac(gnd),
-	.datad(\Add2~10_combout ),
-	.cin(gnd),
-	.combout(\Add2~29_combout ),
-	.cout());
-// synopsys translate_off
-defparam \Add2~29 .lut_mask = 16'hFFCC;
-defparam \Add2~29 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X23_Y14_N30
+// Location: LCCOMB_X21_Y11_N10
 cycloneive_lcell_comb \Add2~30 (
 // Equation(s):
-// \Add2~30_combout  = (\Add2~12_combout ) # (\always0~2_combout )
+// \Add2~30_combout  = (\Mult0|auto_generated|mac_out2~DATAOUT17  & ((\Mult1|auto_generated|mac_out2~DATAOUT17  & (\Add2~29  & VCC)) # (!\Mult1|auto_generated|mac_out2~DATAOUT17  & (!\Add2~29 )))) # (!\Mult0|auto_generated|mac_out2~DATAOUT17  & 
+// ((\Mult1|auto_generated|mac_out2~DATAOUT17  & (!\Add2~29 )) # (!\Mult1|auto_generated|mac_out2~DATAOUT17  & ((\Add2~29 ) # (GND)))))
+// \Add2~31  = CARRY((\Mult0|auto_generated|mac_out2~DATAOUT17  & (!\Mult1|auto_generated|mac_out2~DATAOUT17  & !\Add2~29 )) # (!\Mult0|auto_generated|mac_out2~DATAOUT17  & ((!\Add2~29 ) # (!\Mult1|auto_generated|mac_out2~DATAOUT17 ))))
 
-	.dataa(gnd),
-	.datab(gnd),
-	.datac(\Add2~12_combout ),
-	.datad(\always0~2_combout ),
-	.cin(gnd),
-	.combout(\Add2~30_combout ),
-	.cout());
-// synopsys translate_off
-defparam \Add2~30 .lut_mask = 16'hFFF0;
-defparam \Add2~30 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X22_Y14_N2
-cycloneive_lcell_comb \Add2~31 (
-// Equation(s):
-// \Add2~31_combout  = (!\always0~2_combout  & \Add2~14_combout )
-
-	.dataa(gnd),
-	.datab(\always0~2_combout ),
+	.dataa(\Mult0|auto_generated|mac_out2~DATAOUT17 ),
+	.datab(\Mult1|auto_generated|mac_out2~DATAOUT17 ),
 	.datac(gnd),
-	.datad(\Add2~14_combout ),
-	.cin(gnd),
-	.combout(\Add2~31_combout ),
-	.cout());
+	.datad(vcc),
+	.cin(\Add2~29 ),
+	.combout(\Add2~30_combout ),
+	.cout(\Add2~31 ));
 // synopsys translate_off
-defparam \Add2~31 .lut_mask = 16'h3300;
-defparam \Add2~31 .sum_lutc_input = "datac";
+defparam \Add2~30 .lut_mask = 16'h9617;
+defparam \Add2~30 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X23_Y14_N4
+// Location: LCCOMB_X21_Y11_N12
 cycloneive_lcell_comb \Add2~32 (
 // Equation(s):
-// \Add2~32_combout  = (\always0~2_combout ) # (\Add2~16_combout )
+// \Add2~32_combout  = ((\Mult1|auto_generated|mac_out2~DATAOUT18  $ (\Mult0|auto_generated|mac_out2~DATAOUT18  $ (!\Add2~31 )))) # (GND)
+// \Add2~33  = CARRY((\Mult1|auto_generated|mac_out2~DATAOUT18  & ((\Mult0|auto_generated|mac_out2~DATAOUT18 ) # (!\Add2~31 ))) # (!\Mult1|auto_generated|mac_out2~DATAOUT18  & (\Mult0|auto_generated|mac_out2~DATAOUT18  & !\Add2~31 )))
 
-	.dataa(gnd),
-	.datab(\always0~2_combout ),
+	.dataa(\Mult1|auto_generated|mac_out2~DATAOUT18 ),
+	.datab(\Mult0|auto_generated|mac_out2~DATAOUT18 ),
 	.datac(gnd),
-	.datad(\Add2~16_combout ),
-	.cin(gnd),
+	.datad(vcc),
+	.cin(\Add2~31 ),
 	.combout(\Add2~32_combout ),
-	.cout());
+	.cout(\Add2~33 ));
 // synopsys translate_off
-defparam \Add2~32 .lut_mask = 16'hFFCC;
-defparam \Add2~32 .sum_lutc_input = "datac";
+defparam \Add2~32 .lut_mask = 16'h698E;
+defparam \Add2~32 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: LCCOMB_X23_Y14_N2
-cycloneive_lcell_comb \Add2~33 (
-// Equation(s):
-// \Add2~33_combout  = (!\always0~2_combout  & \Add2~18_combout )
-
-	.dataa(gnd),
-	.datab(\always0~2_combout ),
-	.datac(gnd),
-	.datad(\Add2~18_combout ),
-	.cin(gnd),
-	.combout(\Add2~33_combout ),
-	.cout());
-// synopsys translate_off
-defparam \Add2~33 .lut_mask = 16'h3300;
-defparam \Add2~33 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: M9K_X27_Y15_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode220w [2]),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a5_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_first_bit_number = 2;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .mem_init3 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .mem_init2 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .mem_init1 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a5 .mem_init0 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-// synopsys translate_on
-
-// Location: LCCOMB_X22_Y14_N28
-cycloneive_lcell_comb \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode206w[2] (
-// Equation(s):
-// \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode206w [2] = (!\always0~2_combout  & (!\Add2~22_combout  & !\Add2~20_combout ))
-
-	.dataa(gnd),
-	.datab(\always0~2_combout ),
-	.datac(\Add2~22_combout ),
-	.datad(\Add2~20_combout ),
-	.cin(gnd),
-	.combout(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode206w [2]),
-	.cout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode206w[2] .lut_mask = 16'h0003;
-defparam \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode206w[2] .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: M9K_X15_Y13_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode206w [2]),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a2_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_first_bit_number = 2;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .mem_init3 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .mem_init2 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .mem_init1 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a2 .mem_init0 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-// synopsys translate_on
-
-// Location: LCCOMB_X23_Y14_N0
+// Location: LCCOMB_X21_Y11_N14
 cycloneive_lcell_comb \Add2~34 (
 // Equation(s):
-// \Add2~34_combout  = (!\always0~2_combout  & \Add2~20_combout )
+// \Add2~34_combout  = (\Mult1|auto_generated|mac_out2~DATAOUT19  & ((\Mult0|auto_generated|mac_out2~DATAOUT19  & (\Add2~33  & VCC)) # (!\Mult0|auto_generated|mac_out2~DATAOUT19  & (!\Add2~33 )))) # (!\Mult1|auto_generated|mac_out2~DATAOUT19  & 
+// ((\Mult0|auto_generated|mac_out2~DATAOUT19  & (!\Add2~33 )) # (!\Mult0|auto_generated|mac_out2~DATAOUT19  & ((\Add2~33 ) # (GND)))))
+// \Add2~35  = CARRY((\Mult1|auto_generated|mac_out2~DATAOUT19  & (!\Mult0|auto_generated|mac_out2~DATAOUT19  & !\Add2~33 )) # (!\Mult1|auto_generated|mac_out2~DATAOUT19  & ((!\Add2~33 ) # (!\Mult0|auto_generated|mac_out2~DATAOUT19 ))))
 
-	.dataa(gnd),
-	.datab(\always0~2_combout ),
+	.dataa(\Mult1|auto_generated|mac_out2~DATAOUT19 ),
+	.datab(\Mult0|auto_generated|mac_out2~DATAOUT19 ),
 	.datac(gnd),
-	.datad(\Add2~20_combout ),
-	.cin(gnd),
+	.datad(vcc),
+	.cin(\Add2~33 ),
 	.combout(\Add2~34_combout ),
-	.cout());
+	.cout(\Add2~35 ));
 // synopsys translate_off
-defparam \Add2~34 .lut_mask = 16'h3300;
-defparam \Add2~34 .sum_lutc_input = "datac";
+defparam \Add2~34 .lut_mask = 16'h9617;
+defparam \Add2~34 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X23_Y14_N1
-dffeas \DP_RAM|ram_rtl_0|auto_generated|address_reg_a[0] (
-	.clk(\clk~inputclkctrl_outclk ),
-	.d(\Add2~34_combout ),
-	.asdata(vcc),
-	.clrn(vcc),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.q(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0]),
-	.prn(vcc));
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|address_reg_a[0] .is_wysiwyg = "true";
-defparam \DP_RAM|ram_rtl_0|auto_generated|address_reg_a[0] .power_up = "low";
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N10
-cycloneive_lcell_comb \Add2~35 (
+// Location: LCCOMB_X21_Y11_N16
+cycloneive_lcell_comb \Add2~36 (
 // Equation(s):
-// \Add2~35_combout  = (\always0~2_combout ) # (\Add2~22_combout )
+// \Add2~36_combout  = ((\Mult1|auto_generated|mac_out2~DATAOUT19  $ (\Mult0|auto_generated|mac_out2~DATAOUT20  $ (!\Add2~35 )))) # (GND)
+// \Add2~37  = CARRY((\Mult1|auto_generated|mac_out2~DATAOUT19  & ((\Mult0|auto_generated|mac_out2~DATAOUT20 ) # (!\Add2~35 ))) # (!\Mult1|auto_generated|mac_out2~DATAOUT19  & (\Mult0|auto_generated|mac_out2~DATAOUT20  & !\Add2~35 )))
 
-	.dataa(gnd),
-	.datab(\always0~2_combout ),
+	.dataa(\Mult1|auto_generated|mac_out2~DATAOUT19 ),
+	.datab(\Mult0|auto_generated|mac_out2~DATAOUT20 ),
 	.datac(gnd),
-	.datad(\Add2~22_combout ),
-	.cin(gnd),
-	.combout(\Add2~35_combout ),
-	.cout());
+	.datad(vcc),
+	.cin(\Add2~35 ),
+	.combout(\Add2~36_combout ),
+	.cout(\Add2~37 ));
 // synopsys translate_off
-defparam \Add2~35 .lut_mask = 16'hFFCC;
-defparam \Add2~35 .sum_lutc_input = "datac";
+defparam \Add2~36 .lut_mask = 16'h698E;
+defparam \Add2~36 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: FF_X26_Y14_N11
-dffeas \DP_RAM|ram_rtl_0|auto_generated|address_reg_a[1] (
-	.clk(\clk~inputclkctrl_outclk ),
-	.d(\Add2~35_combout ),
-	.asdata(vcc),
-	.clrn(vcc),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.q(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1]),
-	.prn(vcc));
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|address_reg_a[1] .is_wysiwyg = "true";
-defparam \DP_RAM|ram_rtl_0|auto_generated|address_reg_a[1] .power_up = "low";
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N24
+// Location: LCCOMB_X21_Y11_N26
 cycloneive_lcell_comb \VGA640x480|pixelOut[2]~0 (
 // Equation(s):
-// \VGA640x480|pixelOut[2]~0_combout  = (!\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1] & ((\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & (\DP_RAM|ram_rtl_0|auto_generated|ram_block1a5~portadataout )) # 
-// (!\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & ((\DP_RAM|ram_rtl_0|auto_generated|ram_block1a2~portadataout )))))
+// \VGA640x480|pixelOut[2]~0_combout  = (!\Add2~32_combout  & (!\Add2~36_combout  & (!\Add2~34_combout  & !\Add2~30_combout )))
 
-	.dataa(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a5~portadataout ),
-	.datab(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a2~portadataout ),
-	.datac(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0]),
-	.datad(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1]),
+	.dataa(\Add2~32_combout ),
+	.datab(\Add2~36_combout ),
+	.datac(\Add2~34_combout ),
+	.datad(\Add2~30_combout ),
 	.cin(gnd),
 	.combout(\VGA640x480|pixelOut[2]~0_combout ),
 	.cout());
 // synopsys translate_off
-defparam \VGA640x480|pixelOut[2]~0 .lut_mask = 16'h00AC;
+defparam \VGA640x480|pixelOut[2]~0 .lut_mask = 16'h0001;
 defparam \VGA640x480|pixelOut[2]~0 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: LCCOMB_X22_Y14_N30
-cycloneive_lcell_comb \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode238w[2] (
+// Location: LCCOMB_X21_Y11_N18
+cycloneive_lcell_comb \Add2~38 (
 // Equation(s):
-// \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode238w [2] = (!\always0~2_combout  & (\Add2~22_combout  & \Add2~20_combout ))
+// \Add2~38_combout  = (\Mult1|auto_generated|mac_out2~DATAOUT19  & ((\Mult0|auto_generated|mac_out2~DATAOUT21  & (\Add2~37  & VCC)) # (!\Mult0|auto_generated|mac_out2~DATAOUT21  & (!\Add2~37 )))) # (!\Mult1|auto_generated|mac_out2~DATAOUT19  & 
+// ((\Mult0|auto_generated|mac_out2~DATAOUT21  & (!\Add2~37 )) # (!\Mult0|auto_generated|mac_out2~DATAOUT21  & ((\Add2~37 ) # (GND)))))
+// \Add2~39  = CARRY((\Mult1|auto_generated|mac_out2~DATAOUT19  & (!\Mult0|auto_generated|mac_out2~DATAOUT21  & !\Add2~37 )) # (!\Mult1|auto_generated|mac_out2~DATAOUT19  & ((!\Add2~37 ) # (!\Mult0|auto_generated|mac_out2~DATAOUT21 ))))
+
+	.dataa(\Mult1|auto_generated|mac_out2~DATAOUT19 ),
+	.datab(\Mult0|auto_generated|mac_out2~DATAOUT21 ),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\Add2~37 ),
+	.combout(\Add2~38_combout ),
+	.cout(\Add2~39 ));
+// synopsys translate_off
+defparam \Add2~38 .lut_mask = 16'h9617;
+defparam \Add2~38 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X21_Y11_N20
+cycloneive_lcell_comb \Add2~40 (
+// Equation(s):
+// \Add2~40_combout  = \Mult0|auto_generated|mac_out2~DATAOUT21  $ (\Add2~39  $ (!\Mult1|auto_generated|mac_out2~DATAOUT19 ))
 
 	.dataa(gnd),
-	.datab(\always0~2_combout ),
-	.datac(\Add2~22_combout ),
-	.datad(\Add2~20_combout ),
-	.cin(gnd),
-	.combout(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode238w [2]),
+	.datab(\Mult0|auto_generated|mac_out2~DATAOUT21 ),
+	.datac(gnd),
+	.datad(\Mult1|auto_generated|mac_out2~DATAOUT19 ),
+	.cin(\Add2~39 ),
+	.combout(\Add2~40_combout ),
 	.cout());
 // synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode238w[2] .lut_mask = 16'h3000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode238w[2] .sum_lutc_input = "datac";
+defparam \Add2~40 .lut_mask = 16'h3CC3;
+defparam \Add2~40 .sum_lutc_input = "cin";
 // synopsys translate_on
 
-// Location: M9K_X15_Y15_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode238w [2]),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a11_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_first_bit_number = 2;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .mem_init3 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .mem_init2 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .mem_init1 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a11 .mem_init0 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N6
-cycloneive_lcell_comb \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode229w[2]~0 (
-// Equation(s):
-// \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode229w[2]~0_combout  = (\always0~2_combout ) # ((!\Add2~20_combout  & \Add2~22_combout ))
-
-	.dataa(gnd),
-	.datab(\always0~2_combout ),
-	.datac(\Add2~20_combout ),
-	.datad(\Add2~22_combout ),
-	.cin(gnd),
-	.combout(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode229w[2]~0_combout ),
-	.cout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode229w[2]~0 .lut_mask = 16'hCFCC;
-defparam \DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode229w[2]~0 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: M9K_X27_Y13_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode229w[2]~0_combout ),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a8_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_first_bit_number = 2;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .mem_init3 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .mem_init2 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .mem_init1 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003FFFFFFFFFFFFFFF800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a8 .mem_init0 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N30
+// Location: LCCOMB_X21_Y11_N28
 cycloneive_lcell_comb \VGA640x480|pixelOut[2]~1 (
 // Equation(s):
-// \VGA640x480|pixelOut[2]~1_combout  = (\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1] & ((\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & (\DP_RAM|ram_rtl_0|auto_generated|ram_block1a11~portadataout )) # 
-// (!\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & ((\DP_RAM|ram_rtl_0|auto_generated|ram_block1a8~portadataout )))))
+// \VGA640x480|pixelOut[2]~1_combout  = (!\Add2~28_combout  & (((!\VGA640x480|countX [8] & !\VGA640x480|countX [7])) # (!\VGA640x480|countX [9])))
 
-	.dataa(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0]),
-	.datab(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a11~portadataout ),
-	.datac(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a8~portadataout ),
-	.datad(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1]),
+	.dataa(\VGA640x480|countX [8]),
+	.datab(\VGA640x480|countX [9]),
+	.datac(\Add2~28_combout ),
+	.datad(\VGA640x480|countX [7]),
 	.cin(gnd),
 	.combout(\VGA640x480|pixelOut[2]~1_combout ),
 	.cout());
 // synopsys translate_off
-defparam \VGA640x480|pixelOut[2]~1 .lut_mask = 16'hD800;
+defparam \VGA640x480|pixelOut[2]~1 .lut_mask = 16'h0307;
 defparam \VGA640x480|pixelOut[2]~1 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: LCCOMB_X26_Y14_N16
-cycloneive_lcell_comb \VGA640x480|LessThan0~0 (
-// Equation(s):
-// \VGA640x480|LessThan0~0_combout  = ((!\VGA640x480|countX [7] & !\VGA640x480|countX [8])) # (!\VGA640x480|countX [9])
-
-	.dataa(gnd),
-	.datab(\VGA640x480|countX [9]),
-	.datac(\VGA640x480|countX [7]),
-	.datad(\VGA640x480|countX [8]),
-	.cin(gnd),
-	.combout(\VGA640x480|LessThan0~0_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|LessThan0~0 .lut_mask = 16'h333F;
-defparam \VGA640x480|LessThan0~0 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N0
+// Location: LCCOMB_X21_Y11_N22
 cycloneive_lcell_comb \VGA640x480|pixelOut[2]~2 (
 // Equation(s):
-// \VGA640x480|pixelOut[2]~2_combout  = (\VGA640x480|LessThan0~0_combout  & ((\VGA640x480|pixelOut[2]~0_combout ) # (\VGA640x480|pixelOut[2]~1_combout )))
+// \VGA640x480|pixelOut[2]~2_combout  = (!\Add2~38_combout  & (!\Add2~40_combout  & (!\LessThan1~0_combout  & \VGA640x480|pixelOut[2]~1_combout )))
 
-	.dataa(gnd),
-	.datab(\VGA640x480|pixelOut[2]~0_combout ),
-	.datac(\VGA640x480|pixelOut[2]~1_combout ),
-	.datad(\VGA640x480|LessThan0~0_combout ),
+	.dataa(\Add2~38_combout ),
+	.datab(\Add2~40_combout ),
+	.datac(\LessThan1~0_combout ),
+	.datad(\VGA640x480|pixelOut[2]~1_combout ),
 	.cin(gnd),
 	.combout(\VGA640x480|pixelOut[2]~2_combout ),
 	.cout());
 // synopsys translate_off
-defparam \VGA640x480|pixelOut[2]~2 .lut_mask = 16'hFC00;
+defparam \VGA640x480|pixelOut[2]~2 .lut_mask = 16'h0100;
 defparam \VGA640x480|pixelOut[2]~2 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: M9K_X27_Y12_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode229w[2]~0_combout ),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a7_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_first_bit_number = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .mem_init3 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .mem_init2 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .mem_init1 = 2048'h000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a7 .mem_init0 = 2048'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-// synopsys translate_on
-
-// Location: M9K_X15_Y16_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode238w [2]),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a10_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_first_bit_number = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .mem_init3 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .mem_init2 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .mem_init1 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a10 .mem_init0 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N4
-cycloneive_lcell_comb \VGA640x480|pixelOut[1]~4 (
+// Location: LCCOMB_X22_Y11_N16
+cycloneive_lcell_comb \VGA640x480|pixelOut[2]~4 (
 // Equation(s):
-// \VGA640x480|pixelOut[1]~4_combout  = (\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1] & ((\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & ((\DP_RAM|ram_rtl_0|auto_generated|ram_block1a10~portadataout ))) # 
-// (!\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & (\DP_RAM|ram_rtl_0|auto_generated|ram_block1a7~portadataout ))))
+// \VGA640x480|pixelOut[2]~4_combout  = (\VGA640x480|pixelOut[2]~0_combout  & (\VGA640x480|pixelOut[2]~2_combout  & ((!\VGA640x480|pixelOut[2]~3_combout ) # (!\Add2~22_combout ))))
 
-	.dataa(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1]),
-	.datab(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a7~portadataout ),
-	.datac(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a10~portadataout ),
-	.datad(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0]),
+	.dataa(\Add2~22_combout ),
+	.datab(\VGA640x480|pixelOut[2]~3_combout ),
+	.datac(\VGA640x480|pixelOut[2]~0_combout ),
+	.datad(\VGA640x480|pixelOut[2]~2_combout ),
 	.cin(gnd),
-	.combout(\VGA640x480|pixelOut[1]~4_combout ),
+	.combout(\VGA640x480|pixelOut[2]~4_combout ),
 	.cout());
 // synopsys translate_off
-defparam \VGA640x480|pixelOut[1]~4 .lut_mask = 16'hA088;
-defparam \VGA640x480|pixelOut[1]~4 .sum_lutc_input = "datac";
+defparam \VGA640x480|pixelOut[2]~4 .lut_mask = 16'h7000;
+defparam \VGA640x480|pixelOut[2]~4 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: M9K_X15_Y12_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode206w [2]),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a1_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_first_bit_number = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .mem_init3 = 2048'h0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .mem_init2 = 2048'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .mem_init1 = 2048'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a1 .mem_init0 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-// synopsys translate_on
-
-// Location: M9K_X27_Y17_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode220w [2]),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a4_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_first_bit_number = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .mem_init3 = 2048'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .mem_init2 = 2048'h000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .mem_init1 = 2048'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a4 .mem_init0 = 2048'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N22
-cycloneive_lcell_comb \VGA640x480|pixelOut[1]~3 (
-// Equation(s):
-// \VGA640x480|pixelOut[1]~3_combout  = (!\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1] & ((\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & ((\DP_RAM|ram_rtl_0|auto_generated|ram_block1a4~portadataout ))) # 
-// (!\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & (\DP_RAM|ram_rtl_0|auto_generated|ram_block1a1~portadataout ))))
-
-	.dataa(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1]),
-	.datab(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a1~portadataout ),
-	.datac(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0]),
-	.datad(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a4~portadataout ),
-	.cin(gnd),
-	.combout(\VGA640x480|pixelOut[1]~3_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|pixelOut[1]~3 .lut_mask = 16'h5404;
-defparam \VGA640x480|pixelOut[1]~3 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N14
-cycloneive_lcell_comb \VGA640x480|pixelOut[1]~5 (
-// Equation(s):
-// \VGA640x480|pixelOut[1]~5_combout  = (\VGA640x480|LessThan0~0_combout  & ((\VGA640x480|pixelOut[1]~4_combout ) # (\VGA640x480|pixelOut[1]~3_combout )))
-
-	.dataa(gnd),
-	.datab(\VGA640x480|pixelOut[1]~4_combout ),
-	.datac(\VGA640x480|pixelOut[1]~3_combout ),
-	.datad(\VGA640x480|LessThan0~0_combout ),
-	.cin(gnd),
-	.combout(\VGA640x480|pixelOut[1]~5_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|pixelOut[1]~5 .lut_mask = 16'hFC00;
-defparam \VGA640x480|pixelOut[1]~5 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: M9K_X15_Y14_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode206w [2]),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a0_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_first_bit_number = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .mem_init3 = 2048'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .mem_init2 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .mem_init1 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a0 .mem_init0 = 2048'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-// synopsys translate_on
-
-// Location: M9K_X27_Y16_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode220w [2]),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a3_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_first_bit_number = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .mem_init3 = 2048'h000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .mem_init2 = 2048'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .mem_init1 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a3 .mem_init0 = 2048'h0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N12
-cycloneive_lcell_comb \VGA640x480|pixelOut[0]~6 (
-// Equation(s):
-// \VGA640x480|pixelOut[0]~6_combout  = (!\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1] & ((\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & ((\DP_RAM|ram_rtl_0|auto_generated|ram_block1a3~portadataout ))) # 
-// (!\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & (\DP_RAM|ram_rtl_0|auto_generated|ram_block1a0~portadataout ))))
-
-	.dataa(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0]),
-	.datab(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a0~portadataout ),
-	.datac(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a3~portadataout ),
-	.datad(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1]),
-	.cin(gnd),
-	.combout(\VGA640x480|pixelOut[0]~6_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|pixelOut[0]~6 .lut_mask = 16'h00E4;
-defparam \VGA640x480|pixelOut[0]~6 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: M9K_X27_Y11_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode229w[2]~0_combout ),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a6_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_first_bit_number = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .mem_init3 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .mem_init2 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .mem_init1 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a6 .mem_init0 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-// synopsys translate_on
-
-// Location: M9K_X27_Y14_N0
-cycloneive_ram_block \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 (
-	.portawe(vcc),
-	.portare(vcc),
-	.portaaddrstall(gnd),
-	.portbwe(gnd),
-	.portbre(vcc),
-	.portbaddrstall(gnd),
-	.clk0(\clk~inputclkctrl_outclk ),
-	.clk1(gnd),
-	.ena0(\DP_RAM|ram_rtl_0|auto_generated|rden_decode|w_anode238w [2]),
-	.ena1(vcc),
-	.ena2(vcc),
-	.ena3(vcc),
-	.clr0(gnd),
-	.clr1(gnd),
-	.portadatain(1'b0),
-	.portaaddr({\Add2~33_combout ,\Add2~32_combout ,\Add2~31_combout ,\Add2~30_combout ,\Add2~29_combout ,\Add2~28_combout ,\Add2~27_combout ,\Add2~26_combout ,\Add2~25_combout ,\Add2~24_combout ,\DP_RAM_addr_out[2]~2_combout ,\DP_RAM_addr_out[1]~1_combout ,
-\DP_RAM_addr_out[0]~0_combout }),
-	.portabyteenamasks(1'b1),
-	.portbdatain(1'b0),
-	.portbaddr(13'b0000000000000),
-	.portbbyteenamasks(1'b1),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.portadataout(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a9_PORTADATAOUT_bus ),
-	.portbdataout());
-// synopsys translate_off
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .clk0_core_clock_enable = "ena0";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .data_interleave_offset_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .data_interleave_width_in_bits = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .init_file = "db/test_VGA.ram0_buffer_ram_dp_ad84a06c.hdl.mif";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .init_file_layout = "port_a";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .logical_ram_name = "buffer_ram_dp:DP_RAM|altsyncram:ram_rtl_0|altsyncram_0r71:auto_generated|ALTSYNCRAM";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .operation_mode = "rom";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_address_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_byte_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_data_out_clear = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_data_out_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_first_address = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_first_bit_number = 0;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_last_address = 8191;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_logical_ram_depth = 32768;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_logical_ram_width = 3;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_read_during_write_mode = "new_data_with_nbe_read";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_a_write_enable_clock = "none";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_b_address_width = 13;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .port_b_data_width = 1;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .ram_block_type = "M9K";
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .mem_init3 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .mem_init2 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .mem_init1 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-defparam \DP_RAM|ram_rtl_0|auto_generated|ram_block1a9 .mem_init0 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N26
-cycloneive_lcell_comb \VGA640x480|pixelOut[0]~7 (
-// Equation(s):
-// \VGA640x480|pixelOut[0]~7_combout  = (\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1] & ((\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & ((\DP_RAM|ram_rtl_0|auto_generated|ram_block1a9~portadataout ))) # 
-// (!\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0] & (\DP_RAM|ram_rtl_0|auto_generated|ram_block1a6~portadataout ))))
-
-	.dataa(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a6~portadataout ),
-	.datab(\DP_RAM|ram_rtl_0|auto_generated|ram_block1a9~portadataout ),
-	.datac(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [0]),
-	.datad(\DP_RAM|ram_rtl_0|auto_generated|address_reg_a [1]),
-	.cin(gnd),
-	.combout(\VGA640x480|pixelOut[0]~7_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|pixelOut[0]~7 .lut_mask = 16'hCA00;
-defparam \VGA640x480|pixelOut[0]~7 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: LCCOMB_X26_Y14_N8
-cycloneive_lcell_comb \VGA640x480|pixelOut[0]~8 (
-// Equation(s):
-// \VGA640x480|pixelOut[0]~8_combout  = (\VGA640x480|LessThan0~0_combout  & ((\VGA640x480|pixelOut[0]~6_combout ) # (\VGA640x480|pixelOut[0]~7_combout )))
-
-	.dataa(\VGA640x480|pixelOut[0]~6_combout ),
-	.datab(gnd),
-	.datac(\VGA640x480|pixelOut[0]~7_combout ),
-	.datad(\VGA640x480|LessThan0~0_combout ),
-	.cin(gnd),
-	.combout(\VGA640x480|pixelOut[0]~8_combout ),
-	.cout());
-// synopsys translate_off
-defparam \VGA640x480|pixelOut[0]~8 .lut_mask = 16'hFA00;
-defparam \VGA640x480|pixelOut[0]~8 .sum_lutc_input = "datac";
-// synopsys translate_on
-
-// Location: IOIBUF_X0_Y11_N15
-cycloneive_io_ibuf \bntr~input (
-	.i(bntr),
+// Location: IOIBUF_X18_Y24_N15
+cycloneive_io_ibuf \sw0~input (
+	.i(sw0),
 	.ibar(gnd),
-	.o(\bntr~input_o ));
+	.o(\sw0~input_o ));
 // synopsys translate_off
-defparam \bntr~input .bus_hold = "false";
-defparam \bntr~input .simulate_z_as = "z";
+defparam \sw0~input .bus_hold = "false";
+defparam \sw0~input .simulate_z_as = "z";
 // synopsys translate_on
 
-// Location: IOIBUF_X0_Y11_N22
-cycloneive_io_ibuf \bntl~input (
-	.i(bntl),
+// Location: IOIBUF_X16_Y24_N22
+cycloneive_io_ibuf \sw1~input (
+	.i(sw1),
 	.ibar(gnd),
-	.o(\bntl~input_o ));
+	.o(\sw1~input_o ));
 // synopsys translate_off
-defparam \bntl~input .bus_hold = "false";
-defparam \bntl~input .simulate_z_as = "z";
+defparam \sw1~input .bus_hold = "false";
+defparam \sw1~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X16_Y24_N15
+cycloneive_io_ibuf \sw2~input (
+	.i(sw2),
+	.ibar(gnd),
+	.o(\sw2~input_o ));
+// synopsys translate_off
+defparam \sw2~input .bus_hold = "false";
+defparam \sw2~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X0_Y21_N8
+cycloneive_io_ibuf \sw3~input (
+	.i(sw3),
+	.ibar(gnd),
+	.o(\sw3~input_o ));
+// synopsys translate_off
+defparam \sw3~input .bus_hold = "false";
+defparam \sw3~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X34_Y9_N1
+cycloneive_io_ibuf \sw4~input (
+	.i(sw4),
+	.ibar(gnd),
+	.o(\sw4~input_o ));
+// synopsys translate_off
+defparam \sw4~input .bus_hold = "false";
+defparam \sw4~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X23_Y24_N8
+cycloneive_io_ibuf \sw5~input (
+	.i(sw5),
+	.ibar(gnd),
+	.o(\sw5~input_o ));
+// synopsys translate_off
+defparam \sw5~input .bus_hold = "false";
+defparam \sw5~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X23_Y24_N1
+cycloneive_io_ibuf \sw6~input (
+	.i(sw6),
+	.ibar(gnd),
+	.o(\sw6~input_o ));
+// synopsys translate_off
+defparam \sw6~input .bus_hold = "false";
+defparam \sw6~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X16_Y24_N8
+cycloneive_io_ibuf \sw7~input (
+	.i(sw7),
+	.ibar(gnd),
+	.o(\sw7~input_o ));
+// synopsys translate_off
+defparam \sw7~input .bus_hold = "false";
+defparam \sw7~input .simulate_z_as = "z";
 // synopsys translate_on
 
 assign VGA_Hsync_n = \VGA_Hsync_n~output_o ;

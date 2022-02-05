@@ -1,18 +1,18 @@
 `timescale 1ns / 1ps
 
-module test_VGA(
+module test_VGA (
     input wire clk,  // Entrada reloj 
     input wire rst,  // Entrada reset
 
 	// VGA input/output  
     output wire VGA_Hsync_n,  // Señal de sincronización en horizontal
     output wire VGA_Vsync_n,  // Señal de sincronización en vertical
-    output wire [3:0] VGA_R,	// Salida VGA Rojo (4 bits)
-    output wire [3:0] VGA_G,  // Salida VGA Verde (4bits)
-    output wire [3:0] VGA_B,  // Salida VGA Azul (4 bits)
-    output wire clkout,  
+    output wire VGA_R,	// Salida VGA Rojo (4 bits)
+    output wire VGA_G,  // Salida VGA Verde (4bits)
+    output wire VGA_B,  // Salida VGA Azul (4 bits)
+    output clkout,  
+
 	// input/output
-	
 	
 	input wire sw0,
 	input wire sw1,
@@ -56,7 +56,7 @@ wire [DW-1:0] data_RGB444;  // salida del driver VGA al puerto
 wire [9:0]VGA_posX;		   // Determinar la pos de memoria que viene del VGA
 wire [8:0]VGA_posY;		   // Determinar la pos de memoria que viene del VGA
 
-reg [DW-1:0] cuadroColores [0: 8 - 1];
+// reg [DW-1:0] cuadroColores [0: 2**AW - 1];
 wire [2:0] cuadroColores0;
 wire [2:0] cuadroColores1;
 wire [2:0] cuadroColores2;
@@ -89,16 +89,20 @@ por lo tanto, los bits menos significactivos deben ser cero
 **************************************************************************** */
 assign clk12M = clk;
 
-/*
-cl_25_24_quartus clk25(
-	.areset(rst),
-	.inclk0(clk12M),
-	.c0(clk25M)
+reg [1:0] cfreq=0;
+assign clk25M = cfreq[0];
+always @(posedge clk) begin
+		cfreq<=cfreq+1;
+end
+// cl_25_24_quartus clk25(
+// 	.areset(rst),
+// 	.inclk0(clk12M),
+// 	.c0(clk25M)
 	
-);
-*/
+// );
 
-assign clk25M=clk;
+
+// assign clk25M=clk;
 assign clkout=clk25M;
 
 /* ****************************************************************************
@@ -138,7 +142,7 @@ VGA_Driver640x480 VGA640x480
 
  
 /* ****************************************************************************
-LÓgica para actualizar el pixel acorde con la buffer de memoria y el pixel de 
+Lógica para actualizar el pixel acorde con la buffer de memoria y el pixel de 
 VGA si la imagen de la camara es menor que el display  VGA, los pixeles 
 adicionales seran iguales al color del último pixel de memoria 
 **************************************************************************** */
@@ -168,30 +172,31 @@ localparam xc7 = CAM_SCREEN_X/4;
 always @ (VGA_posX, VGA_posY) begin
 		if ((VGA_posX>CAM_SCREEN_X-1) || (VGA_posY>CAM_SCREEN_Y-1))
 			// DP_RAM_addr_out=19212; //0F0 000 1111 000
-			data_mem = 3'b000;
+			data_mem = 3'b111; // Colorear en blanco - se ve más facil el borde de pantalla
 		else
-			// DP_RAM_addr_out=VGA_posX+VGA_posY*CAM_SCREEN_Y;
-			if ( (VGA_posX-CAM_SCREEN_X/2)**2 + (VGA_posY-CAM_SCREEN_Y/2)**2 < (CAM_SCREEN_Y/2)**2)
-				data_mem = 3'b111;
+			// if ( (VGA_posX-CAM_SCREEN_X/2)**2 + (VGA_posY-CAM_SCREEN_Y/2)**2 < (CAM_SCREEN_Y/2)**2)
+			// 	data_mem = 3'b111;
+			// else
+			// 	data_mem = 3'b000;
+			if (VGA_posX < xc0 && VGA_posY < yc0 )
+				data_mem = cuadroColores0;
+			else if ((VGA_posX > xc0 && VGA_posX < xc1) && (VGA_posY < yc0) )
+				data_mem = cuadroColores1;
+			else if ((VGA_posX > xc1 && VGA_posX < xc2) && (VGA_posY < yc0) )
+				data_mem = cuadroColores2;
+			else if ((VGA_posX > xc2 && VGA_posX < xc3) && (VGA_posY < yc0) )
+				data_mem = cuadroColores3;
+				// segunda fila
+			else if (VGA_posX < xc0 && VGA_posY > yc0 )
+				data_mem = cuadroColores4;
+			else if ((VGA_posX > xc0 && VGA_posX < xc1) && (VGA_posY > yc0) )
+				data_mem = cuadroColores5;
+			else if ((VGA_posX > xc1 && VGA_posX < xc2) && (VGA_posY > yc0) )
+				data_mem = cuadroColores6;
+			else if ((VGA_posX > xc2 && VGA_posX < xc3) && (VGA_posY > yc0) )
+				data_mem = cuadroColores7;
 			else
-				data_mem = 3'b000;
-			// if (VGA_posX < xc0 && VGA_posY < yc0 )
-			// 	data_mem = cuadroColores0;
-			// else if ((VGA_posX > xc0 && VGA_posX < xc1) && (VGA_posY < yc0) )
-			// 	data_mem = cuadroColores1;
-			// else if ((VGA_posX > xc1 && VGA_posX < xc2) && (VGA_posY < yc0) )
-			// 	data_mem = cuadroColores2;
-			// else if ((VGA_posX > xc2 && VGA_posX < xc3) && (VGA_posY < yc0) )
-			// 	data_mem = cuadroColores3;
-			// 	// segunda fila
-			// else if (VGA_posX < xc0 && VGA_posY > yc0 )
-			// 	data_mem = cuadroColores4;
-			// else if ((VGA_posX > xc0 && VGA_posX < xc1) && (VGA_posY > yc0) )
-			// 	data_mem = cuadroColores5;
-			// else if ((VGA_posX > xc1 && VGA_posX < xc2) && (VGA_posY > yc0) )
-			// 	data_mem = cuadroColores6;
-			// else if ((VGA_posX > xc2 && VGA_posX < xc3) && (VGA_posY > yc0) )
-			// 	data_mem = cuadroColores7;
+				data_mem = 3'b100; // red color for borders+
 end
 
 

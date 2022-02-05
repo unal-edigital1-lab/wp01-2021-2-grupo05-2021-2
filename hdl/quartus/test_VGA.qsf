@@ -73,4 +73,31 @@ set_global_assignment -name VERILOG_FILE scr/FSM_game.v
 set_global_assignment -name VERILOG_FILE scr/VGA_driver.v
 set_global_assignment -name VERILOG_FILE scr/test_VGA.v
 set_global_assignment -name VERILOG_FILE scr/buffer_ram_dp.v
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER sw0 -section_id SWs
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER sw1 -section_id SWs
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER sw2 -section_id SWs
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER sw3 -section_id SWs
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER sw4 -section_id SWs
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER sw5 -section_id SWs
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER sw6 -section_id SWs
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER sw7 -section_id SWs
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER VGA_Hsync_n -section_id config
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER VGA_Vsync_n -section_id config
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER clk -section_id config
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER rst -section_id config
+set_location_assignment PIN_58 -to sw0
+set_location_assignment PIN_59 -to sw1
+set_location_assignment PIN_60 -to sw2
+set_location_assignment PIN_64 -to sw3
+set_location_assignment PIN_65 -to sw4
+set_location_assignment PIN_66 -to sw5
+set_location_assignment PIN_67 -to sw6
+set_location_assignment PIN_68 -to sw7
+set_location_assignment PIN_142 -to VGA_Hsync_n
+set_location_assignment PIN_143 -to VGA_Vsync_n
+set_location_assignment PIN_23 -to clk
+set_location_assignment PIN_86 -to rst
+set_location_assignment PIN_144 -to VGA_B
+set_location_assignment PIN_1 -to VGA_G
+set_location_assignment PIN_2 -to VGA_R
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

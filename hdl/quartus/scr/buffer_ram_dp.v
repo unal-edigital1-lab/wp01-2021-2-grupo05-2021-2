@@ -48,8 +48,8 @@ end
 always @(posedge clk_r) begin 
 		data_out <= ram[addr_out]; 
 		// data_out <= 3'b111; 
-		$display("Data out: %b", data_out);
-		$display("Addres: %b", addr_out);
+		// $display("Data out: %b", data_out);
+		// $display("Addres: %b", addr_out);
 end
 
 // integer i;

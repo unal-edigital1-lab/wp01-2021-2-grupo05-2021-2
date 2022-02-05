@@ -30,16 +30,16 @@ module FSM_game #(
 	001 (sin oprimir el interruptor), el resultado será 110.
 	*/
 
-	initial begin
-		cuadroColores0 = 3'b000;
-		cuadroColores1 = 3'b001;
-		cuadroColores2 = 3'b010;
-		cuadroColores3 = 3'b011;
-		cuadroColores4 = 3'b100;
-		cuadroColores5 = 3'b101;
-		cuadroColores6 = 3'b110;
-		cuadroColores7 = 3'b111;
-	end
+	// initial begin
+	// 	cuadroColores0 = 3'b000;
+	// 	cuadroColores1 = 3'b001;
+	// 	cuadroColores2 = 3'b010;
+	// 	cuadroColores3 = 3'b011;
+	// 	cuadroColores4 = 3'b100;
+	// 	cuadroColores5 = 3'b101;
+	// 	cuadroColores6 = 3'b110;
+	// 	cuadroColores7 = 3'b111;
+	// end
 
 	always @(posedge clk) begin
 			if (sw0)
@@ -74,26 +74,7 @@ module FSM_game #(
 				cuadroColores7 = 3'b111;
 			else
 				cuadroColores7 = ~3'b111;
-			// if (sw1)
-			// 	cuadroColores1 = 3'b010;//011
-			// if (sw1)
-			// 	cuadroColores2 = ~cuadroColores2;
-			// if (sw0)
-			// 	cuadroColores[0] = ~cuadroColores[0];
-			// if (sw1)
-			// 	cuadroColores[1] = ~cuadroColores[1];
-			// if (sw2)
-			// 	cuadroColores[2] = ~cuadroColores[2];
-			// if (sw3)
-			// 	cuadroColores[3] = ~cuadroColores[3];
-			// if (sw4)
-			// 	cuadroColores[4] = ~cuadroColores[4];
-			// if (sw5)
-			// 	cuadroColores[5] = ~cuadroColores[5];
-			// if (sw6)
-			// 	cuadroColores[6] = ~cuadroColores[6];
-			// if (sw7)
-			// 	cuadroColores[7] = ~cuadroColores[7];
+
 	end
 
 endmodule

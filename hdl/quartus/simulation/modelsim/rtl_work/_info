@@ -10,102 +10,102 @@ z2
 cModel Technology
 Z0 dG:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/simulation/modelsim
 vFSM_game
-!s110 1643954396
+Z1 !s110 1644072592
 !i10b 1
-!s100 h=F6O<WP;^ba3Zfge<E8k2
-Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
-I5U]44bJ^S[YoiJ4dlaVkn0
-Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s100 MiO>c<;fV5B=dSFae7<`91
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IPlDB<KJVcQFV^dbgzFiF90
+Z3 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1643953165
+w1644068651
 8G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/FSM_game.v
 FG:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/FSM_game.v
 !i122 0
-L0 3 97
-Z3 OV;L;2020.1;71
+L0 3 78
+Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-!s108 1643954396.000000
+Z5 !s108 1644072592.000000
 !s107 G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/FSM_game.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr|G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/FSM_game.v|
 !i113 1
-Z4 o-vlog01compat -work work
-Z5 !s92 -vlog01compat -work work {+incdir+G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr}
-Z6 tCvgOpt 0
+Z6 o-vlog01compat -work work
+Z7 !s92 -vlog01compat -work work {+incdir+G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr}
+Z8 tCvgOpt 0
 n@f@s@m_game
 vtest_VGA
-Z7 !s110 1643954397
-!i10b 1
-!s100 HjQA>Rj5glRCj@ahIQLOU2
 R1
-IP]VQH_R2A_acgmVV[G74M0
+!i10b 1
+!s100 iY0UhWP02R@>N6TS::4K>1
 R2
+Io:Z7CAWiiBK2KXFhz>W5C1
+R3
 R0
-w1643954329
+w1644072454
 8G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v
 FG:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v
 !i122 2
-L0 3 225
-R3
+L0 3 224
+R4
 r1
 !s85 0
 31
-Z8 !s108 1643954397.000000
+R5
 !s107 G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr|G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v|
 !i113 1
-R4
-R5
 R6
+R7
+R8
 ntest_@v@g@a
 vtest_VGA_TB
-R7
+!s110 1644072593
 !i10b 1
 !s100 EYjIPb>CBVel>MXVb6DOz1
-R1
-IImW78diBP3ABVi=]055PI0
 R2
+IImW78diBP3ABVi=]055PI0
+R3
 R0
 w1643952855
 8G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA_TB.v
 FG:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA_TB.v
 !i122 3
 L0 22 102
-R3
+R4
 r1
 !s85 0
 31
-R8
+R5
 !s107 G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA_TB.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr|G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA_TB.v|
 !i113 1
-R4
-R5
 R6
+R7
+R8
 ntest_@v@g@a_@t@b
 vVGA_Driver640x480
-R7
+R1
 !i10b 1
 !s100 9i=<FAQ8Xc23WXYo816b71
-R1
-I<^cG76_;><DIlR0h<0ID[1
 R2
+I<^cG76_;><DIlR0h<0ID[1
+R3
 R0
 w1643691680
 8G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v
 FG:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v
 !i122 1
 L0 2 61
-R3
+R4
 r1
 !s85 0
 31
-R8
+R5
 !s107 G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr|G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v|
 !i113 1
-R4
-R5
 R6
+R7
+R8
 n@v@g@a_@driver640x480

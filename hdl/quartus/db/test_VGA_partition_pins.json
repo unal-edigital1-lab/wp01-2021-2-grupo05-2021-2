@@ -24,11 +24,27 @@
 					"strict" : false
 				},
 				{
-					"name" : "clkout",
+					"name" : "clk",
 					"strict" : false
 				},
 				{
 					"name" : "rst",
+					"strict" : false
+				},
+				{
+					"name" : "sw2",
+					"strict" : false
+				},
+				{
+					"name" : "sw1",
+					"strict" : false
+				},
+				{
+					"name" : "sw3",
+					"strict" : false
+				},
+				{
+					"name" : "sw0",
 					"strict" : false
 				},
 				{
@@ -40,31 +56,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "sw7",
-					"strict" : false
-				},
-				{
 					"name" : "sw4",
 					"strict" : false
 				},
 				{
-					"name" : "sw1",
-					"strict" : false
-				},
-				{
-					"name" : "sw2",
-					"strict" : false
-				},
-				{
-					"name" : "sw0",
-					"strict" : false
-				},
-				{
-					"name" : "sw3",
-					"strict" : false
-				},
-				{
-					"name" : "clk",
+					"name" : "sw7",
 					"strict" : false
 				}
 			]

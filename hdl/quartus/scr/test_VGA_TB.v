@@ -28,9 +28,9 @@ module test_VGA_TB;
 	// Outputs
 	wire VGA_Hsync_n;
 	wire VGA_Vsync_n;
-	wire [3:0] VGA_R;
-	wire [3:0] VGA_G;
-	wire [3:0] VGA_B;
+	wire VGA_R;
+	wire VGA_G;
+	wire VGA_B;
 	reg sw0;
 	reg sw1;
 	reg sw2;
@@ -57,8 +57,7 @@ module test_VGA_TB;
 		.sw4(sw4),
 		.sw5(sw5),
 		.sw6(sw6),
-		.sw7(sw7),
-		.clkout(clkout)
+		.sw7(sw7)
 	);
 	
 	initial begin
@@ -107,7 +106,7 @@ module test_VGA_TB;
       f = $fopen("file_test_vga.txt","w");
    end
 	
-	reg clk_w =0;
+	reg clk_w = 0;
 	always #1 clk_w  = ~clk_w;
 	
 	/* ecsritura de log para cargar se cargados en https://ericeastwood.com/lab/vga-simulator/
@@ -115,8 +114,8 @@ module test_VGA_TB;
 	*/
 	initial forever begin
 	@(posedge clk_w)
-		$fwrite(f,"%0t ps: %b %b %b %b %b\n",$time,VGA_Hsync_n, VGA_Vsync_n, VGA_R[2:0],VGA_G[2:0],VGA_B[1:0]);
-		$display("%0t ps: %b %b %b %b %b\n",$time,VGA_Hsync_n, VGA_Vsync_n, VGA_R[2:0],VGA_G[2:0],VGA_B[1:0]);
+		$fwrite(f,"%0t ps: %b %b %b %b %b\n",$time,VGA_Hsync_n, VGA_Vsync_n, {2'b00, VGA_R}, {2'b00, VGA_G}, {1'b0, VGA_B});
+		$display("%0t ps: %b %b %b %b %b\n",$time,VGA_Hsync_n, VGA_Vsync_n, VGA_R, VGA_G, VGA_B);
 		
 	end
 	

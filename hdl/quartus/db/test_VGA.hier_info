@@ -1,13 +1,11 @@
 |test_VGA
-clk => cfreq[0].CLK
-clk => cfreq[1].CLK
+clk => clk25M.IN2
 rst => rst.IN2
 VGA_Hsync_n << VGA_Driver640x480:VGA640x480.Hsync_n
 VGA_Vsync_n << VGA_Driver640x480:VGA640x480.Vsync_n
 VGA_R << VGA_Driver640x480:VGA640x480.pixelOut
 VGA_G << VGA_Driver640x480:VGA640x480.pixelOut
 VGA_B << VGA_Driver640x480:VGA640x480.pixelOut
-clkout << clk25M.DB_MAX_OUTPUT_PORT_TYPE
 sw0 => sw0.IN1
 sw1 => sw1.IN1
 sw2 => sw2.IN1
@@ -178,6 +176,5 @@ cuadroColores6[2] <= cuadroColores6[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 cuadroColores7[0] <= cuadroColores7[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 cuadroColores7[1] <= cuadroColores7[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 cuadroColores7[2] <= cuadroColores7[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-px_wr <= <GND>
 
 

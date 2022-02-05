@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module FSM_game #(
-		parameter AW = 3, 
+		parameter AW = 3,
 		parameter DW = 3)
 	(
 	 	input clk, input rst,
@@ -15,10 +15,10 @@ module FSM_game #(
 		output reg [DW-1:0] cuadroColores4,
 		output reg [DW-1:0] cuadroColores5,
 		output reg [DW-1:0] cuadroColores6,
-		output reg [DW-1:0] cuadroColores7,
+		output reg [DW-1:0] cuadroColores7
 		// output mem_px_addr,
 		// output mem_px_data,
-		output px_wr
+		// output px_wr
    );
 
 	/*

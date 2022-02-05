@@ -8,4 +8,13 @@ module gen_Clk25M  (
 
 assign CLK_OUT1=CLK_IN1;
 
+
+
+// reg cfreq = 0;
+
+// assign clk25M = cfreq[0];
+// always @(posedge clk) begin
+// 		cfreq<=cfreq+1;
+// end
+
 endmodule

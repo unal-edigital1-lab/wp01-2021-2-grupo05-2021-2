@@ -1,27 +1,21 @@
 `timescale 1ns / 1ps
 
 module test_VGA (
-    input wire clk,  // Entrada reloj 
-    input wire rst,  // Entrada reset
+    input clk,  // Entrada reloj 
+    input rst,  // Entrada reset
 
-	// VGA input/output  
-    output wire VGA_Hsync_n,  // Señal de sincronización en horizontal
-    output wire VGA_Vsync_n,  // Señal de sincronización en vertical
-    output wire VGA_R,	// Salida VGA Rojo (4 bits)
-    output wire VGA_G,  // Salida VGA Verde (4bits)
-    output wire VGA_B,  // Salida VGA Azul (4 bits)
-    output clkout,  
+	// VGA
 
-	// input/output
+	// Sincronización horizontal y vertical 
+    output VGA_Hsync_n,
+    output VGA_Vsync_n,
+	// Salida VGA RGB111
+    output VGA_R, output VGA_G, output VGA_B,
+
+	// control
 	
-	input wire sw0,
-	input wire sw1,
-	input wire sw2,
-	input wire sw3,
-	input wire sw4,
-	input wire sw5,
-	input wire sw6,
-	input wire sw7
+	input sw0, input sw1, input sw2, input sw3,
+	input sw4, input sw5, input sw6, input sw7
 );
 
 
@@ -35,26 +29,28 @@ module test_VGA (
 parameter CAM_SCREEN_X = 640;
 parameter CAM_SCREEN_Y = 480;
 
-localparam AW = 3; // 2^AW = 8 celdas de memoria
+localparam AW = 3; // 2^AW = 8 direcciones de memoria
 localparam DW = 3; // 2^DW número de colores posibles
 
-// Clk 
+// Señales clock
 wire clk12M;
 wire clk25M;
 
-// Conexión dual por ram
+// // Conexión dual por ram
 
-wire  [AW-1: 0] DP_RAM_addr_in;  
-wire  [DW-1: 0] DP_RAM_data_in;
-wire DP_RAM_regW;
+// wire  [AW-1: 0] DP_RAM_addr_in;  
+// wire  [DW-1: 0] DP_RAM_data_in;
+// wire DP_RAM_regW;
 
-reg  [AW-1: 0] DP_RAM_addr_out;  
+// reg  [AW-1: 0] DP_RAM_addr_out;  
 	
 // Conexión VGA Driver
 reg [DW-1:0] data_mem;	   // Salida de dp_ram al driver VGA
-wire [DW-1:0] data_RGB444;  // salida del driver VGA al puerto
-wire [9:0]VGA_posX;		   // Determinar la pos de memoria que viene del VGA
-wire [8:0]VGA_posY;		   // Determinar la pos de memoria que viene del VGA
+wire [DW-1:0] data_RGB444;  // Salida del driver VGA al puerto
+
+// Posición de memoria actual del cursor VGA
+wire [9:0] VGA_posX;		   
+wire [8:0] VGA_posY;		   
 
 // reg [DW-1:0] cuadroColores [0: 2**AW - 1];
 wire [2:0] cuadroColores0;
@@ -65,35 +61,39 @@ wire [2:0] cuadroColores4;
 wire [2:0] cuadroColores5;
 wire [2:0] cuadroColores6;
 wire [2:0] cuadroColores7;
-/* ****************************************************************************
-la pantalla VGA es RGB 444, pero el almacenamiento en memoria se hace 332
-por lo tanto, los bits menos significactivos deben ser cero
-**************************************************************************** */
-	// assign VGA_R = data_RGB444[11:10];
-	// assign VGA_G = data_RGB444[7:6];
-	// assign VGA_B = data_RGB444[3:2];
-	
-	// assign VGA_R = {data_RGB444[2], 3'b000};
-	// assign VGA_G = {data_RGB444[1], 3'b000};
-	// assign VGA_B = {data_RGB444[0], 3'b000};
 
+/* ****************************************************************************
+Se asignan los bits para cada color (RGB) serán enviados al puerto VGA.
+**************************************************************************** */
+	
 	assign VGA_R = data_RGB444[2];
 	assign VGA_G = data_RGB444[1];
 	assign VGA_B = data_RGB444[0];
 
 /* ****************************************************************************
-  Este bloque se debe modificar según sea le caso. El ejemplo esta dado para
-  fpga Spartan6 lx9 a 32MHz.
-  usar "tools -> IP Generator ..."  y general el ip con Clocking Wizard
-  el bloque genera un reloj de 25Mhz usado para el VGA , a partir de una frecuencia de 12 Mhz
-**************************************************************************** */
-assign clk12M = clk;
+  Se genera una señal clock de 25M Hz a partir de la señal clock de la FPGA,
+  la cual según el datasheet es de 50M Hz.
+  
+  ¿Por qué debe ser de 25M Hz?
+  Como la tasa de refresco del monitor es de 60 Hz, significa que el código, 
+  al recorrer todos los píxeles (640*480 = 307 200) con un reloj de 50Mhz,
+  abrá recorrido la pantalla  (50Mhz/2)/307200 = 81.2 veces, puesto que las
+  coordenadas del pixel se actualizan conforme cada flanco de subida del la
+  señal de reloj (se divide en 2 porque es el número de flancos de subida 
+  que hay). Por tanto, es necesario reducir la señal de reloj. Se reduce 
+  al divisor entero más cercano (2). De este modo, con 25Mhz, se tienen
+  40.6 imágenes por segundo y no hay pérdida de datos.
 
-reg [1:0] cfreq=0;
-assign clk25M = cfreq[0];
-always @(posedge clk) begin
-		cfreq<=cfreq+1;
-end
+**************************************************************************** */
+// assign clk50M = clk;
+// half_clk clk_div_2 (.clk(clk50M), .clk_half(clk25M));
+
+// reg [1:0] cfreq=0;
+// assign clk25M = cfreq[0];
+// always @(posedge clk) begin
+// 		cfreq<=cfreq+1;
+// end
+
 // cl_25_24_quartus clk25(
 // 	.areset(rst),
 // 	.inclk0(clk12M),
@@ -102,8 +102,8 @@ end
 // );
 
 
-// assign clk25M=clk;
-assign clkout=clk25M;
+assign clk25M=clk;
+// assign clkout=clk25M;
 
 /* ****************************************************************************
 buffer_ram_dp buffer memoria dual port y reloj de lectura y escritura separados
@@ -125,16 +125,17 @@ se recomiendia dejar DW a 8, con el fin de optimizar recursos  y hacer RGB 332
 
 /* ****************************************************************************
 VGA_Driver640x480
+tiempo que se tarda en imprimir toda la pantalla
+1 s/40.6 pantallas = 24.63ms/pantalla
 **************************************************************************** */
 VGA_Driver640x480 VGA640x480
 (
 	.rst(rst),
 	.clk(clk25M), 				// 25MHz  para 60 hz de 640x480
 	.pixelIn(data_mem), 		// entrada del valor de color  pixel RGB 444 
-//	.pixelIn(RED_VGA), 		// entrada del valor de color  pixel RGB 444 
-	.pixelOut(data_RGB444), // salida del valor pixel a la VGA 
-	.Hsync_n(VGA_Hsync_n),	// señal de sincronizaciÓn en horizontal negada
-	.Vsync_n(VGA_Vsync_n),	// señal de sincronizaciÓn en vertical negada 
+	.pixelOut(data_RGB444),     // salida del valor pixel a la VGA 
+	.Hsync_n(VGA_Hsync_n),	    // señal de sincronizaciÓn en horizontal negada
+	.Vsync_n(VGA_Vsync_n),	    // señal de sincronizaciÓn en vertical negada 
 	.posX(VGA_posX), 			// posición en horizontal del pixel siguiente
 	.posY(VGA_posY) 			// posición en vertical  del pixel siguiente
 
@@ -223,8 +224,8 @@ respectivo subcuadro de la pantalla
 		cuadroColores4,
 		cuadroColores5,
 		cuadroColores6,
-		cuadroColores7,
-		DP_RAM_regW
+		cuadroColores7
+		// DP_RAM_regW
 		// .mem_px_addr(DP_RAM_addr_in),
 		// .mem_px_data(DP_RAM_data_in),
 		// .px_wr(DP_RAM_regW)

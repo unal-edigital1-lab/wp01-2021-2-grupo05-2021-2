@@ -1,5 +1,5 @@
 Analysis & Synthesis report for test_VGA
-Sat Feb 05 12:47:13 2022
+Sat Feb 05 17:52:32 2022
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -17,8 +17,8 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   9. General Register Statistics
  10. Multiplexer Restructuring Statistics (Restructuring Performed)
  11. Parameter Settings for User Entity Instance: Top-level Entity: |test_VGA
- 12. Parameter Settings for User Entity Instance: FSM_game:juego
- 13. Port Connectivity Checks: "FSM_game:juego"
+ 12. Parameter Settings for User Entity Instance: VGA_Driver640x480:VGA640x480
+ 13. Parameter Settings for User Entity Instance: FSM_game:juego
  14. Port Connectivity Checks: "VGA_Driver640x480:VGA640x480"
  15. Post-Synthesis Netlist Statistics for Top Partition
  16. Elapsed Time Per Partition
@@ -49,16 +49,16 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Feb 05 12:47:13 2022       ;
+; Analysis & Synthesis Status        ; Successful - Sat Feb 05 17:52:32 2022       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; test_VGA                                    ;
 ; Top-level Entity Name              ; test_VGA                                    ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 91                                          ;
-;     Total combinational functions  ; 83                                          ;
-;     Dedicated logic registers      ; 34                                          ;
-; Total registers                    ; 34                                          ;
-; Total pins                         ; 16                                          ;
+; Total logic elements               ; 88                                          ;
+;     Total combinational functions  ; 80                                          ;
+;     Dedicated logic registers      ; 33                                          ;
+; Total registers                    ; 33                                          ;
+; Total pins                         ; 15                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -169,8 +169,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-4         ;   0.0%      ;
+;     Processors 2-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -185,36 +184,36 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary            ;
-+---------------------------------------------+----------+
-; Resource                                    ; Usage    ;
-+---------------------------------------------+----------+
-; Estimated Total logic elements              ; 91       ;
-;                                             ;          ;
-; Total combinational functions               ; 83       ;
-; Logic element usage by number of LUT inputs ;          ;
-;     -- 4 input functions                    ; 40       ;
-;     -- 3 input functions                    ; 9        ;
-;     -- <=2 input functions                  ; 34       ;
-;                                             ;          ;
-; Logic elements by mode                      ;          ;
-;     -- normal mode                          ; 66       ;
-;     -- arithmetic mode                      ; 17       ;
-;                                             ;          ;
-; Total registers                             ; 34       ;
-;     -- Dedicated logic registers            ; 34       ;
-;     -- I/O registers                        ; 0        ;
-;                                             ;          ;
-; I/O pins                                    ; 16       ;
-;                                             ;          ;
-; Embedded Multiplier 9-bit elements          ; 0        ;
-;                                             ;          ;
-; Maximum fan-out node                        ; cfreq[0] ;
-; Maximum fan-out                             ; 35       ;
-; Total fan-out                               ; 378      ;
-; Average fan-out                             ; 2.54     ;
-+---------------------------------------------+----------+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 88        ;
+;                                             ;           ;
+; Total combinational functions               ; 80        ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 41        ;
+;     -- 3 input functions                    ; 9         ;
+;     -- <=2 input functions                  ; 30        ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 63        ;
+;     -- arithmetic mode                      ; 17        ;
+;                                             ;           ;
+; Total registers                             ; 33        ;
+;     -- Dedicated logic registers            ; 33        ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 15        ;
+;                                             ;           ;
+; Embedded Multiplier 9-bit elements          ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 33        ;
+; Total fan-out                               ; 372       ;
+; Average fan-out                             ; 2.60      ;
++---------------------------------------------+-----------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -222,9 +221,9 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------+-------------------+--------------+
 ; Compilation Hierarchy Node        ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                    ; Entity Name       ; Library Name ;
 +-----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------+-------------------+--------------+
-; |test_VGA                         ; 83 (30)             ; 34 (1)                    ; 0           ; 0            ; 0       ; 0         ; 16   ; 0            ; |test_VGA                              ; test_VGA          ; work         ;
+; |test_VGA                         ; 80 (29)             ; 33 (0)                    ; 0           ; 0            ; 0       ; 0         ; 15   ; 0            ; |test_VGA                              ; test_VGA          ; work         ;
 ;    |FSM_game:juego|               ; 6 (6)               ; 14 (14)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |test_VGA|FSM_game:juego               ; FSM_game          ; work         ;
-;    |VGA_Driver640x480:VGA640x480| ; 47 (47)             ; 19 (19)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |test_VGA|VGA_Driver640x480:VGA640x480 ; VGA_Driver640x480 ; work         ;
+;    |VGA_Driver640x480:VGA640x480| ; 45 (45)             ; 19 (19)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |test_VGA|VGA_Driver640x480:VGA640x480 ; VGA_Driver640x480 ; work         ;
 +-----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------+-------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -242,8 +241,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; FSM_game:juego|cuadroColores0[1,2]     ; Merged with FSM_game:juego|cuadroColores0[0] ;
 ; FSM_game:juego|cuadroColores4[1]       ; Merged with FSM_game:juego|cuadroColores4[0] ;
 ; FSM_game:juego|cuadroColores3[1]       ; Merged with FSM_game:juego|cuadroColores3[0] ;
-; cfreq[1]                               ; Lost fanout                                  ;
-; Total Number of Removed Registers = 11 ;                                              ;
+; Total Number of Removed Registers = 10 ;                                              ;
 +----------------------------------------+----------------------------------------------+
 
 
@@ -252,7 +250,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 34    ;
+; Total registers                              ; 33    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 19    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
@@ -284,6 +282,17 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: VGA_Driver640x480:VGA640x480 ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; SCREEN_X       ; 640   ; Signed Integer                                   ;
+; SCREEN_Y       ; 480   ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +-------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: FSM_game:juego ;
 +----------------+-------+------------------------------------+
@@ -293,15 +302,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; DW             ; 3     ; Signed Integer                     ;
 +----------------+-------+------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "FSM_game:juego"                                                                      ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; Port  ; Type   ; Severity ; Details                                                                             ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; px_wr ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -319,23 +319,23 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 16                          ;
-; cycloneiii_ff         ; 34                          ;
+; boundary_port         ; 15                          ;
+; cycloneiii_ff         ; 33                          ;
 ;     ENA SLD           ; 9                           ;
 ;     SLD               ; 10                          ;
-;     plain             ; 15                          ;
-; cycloneiii_lcell_comb ; 84                          ;
+;     plain             ; 14                          ;
+; cycloneiii_lcell_comb ; 80                          ;
 ;     arith             ; 17                          ;
 ;         2 data inputs ; 17                          ;
-;     normal            ; 67                          ;
+;     normal            ; 63                          ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 11                          ;
-;         2 data inputs ; 6                           ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 4                           ;
 ;         3 data inputs ; 9                           ;
-;         4 data inputs ; 40                          ;
+;         4 data inputs ; 41                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 10.00                       ;
-; Average LUT depth     ; 4.99                        ;
+; Max LUT depth         ; 9.00                        ;
+; Average LUT depth     ; 4.67                        ;
 +-----------------------+-----------------------------+
 
 
@@ -354,10 +354,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Sat Feb 05 12:47:03 2022
+    Info: Processing started: Sat Feb 05 17:52:20 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off test_VGA -c test_VGA
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file scr/half_clk.v
+    Info (12023): Found entity 1: half_clk File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/half_clk.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file scr/test_vga_tb.v
     Info (12023): Found entity 1: test_VGA_TB File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA_TB.v Line: 22
 Info (12021): Found 1 design units, including 1 entities, in source file scr/cl_25_24_quartus.v
@@ -374,39 +376,35 @@ Warning (12162): EDA synthesis tool is specified as "Custom", but Library Mappin
 Warning (12163): EDA synthesis tool is specified as "Custom", but VCC is not specified
 Warning (12164): EDA synthesis tool is specified as "Custom", but GND is not specified
 Info (12127): Elaborating entity "test_VGA" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at test_VGA.v(42): object "clk12M" assigned a value but never read File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 42
-Warning (10230): Verilog HDL assignment warning at test_VGA.v(95): truncated value with size 32 to match size of target (2) File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 95
-Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(182): variable "cuadroColores0" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 182
-Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(184): variable "cuadroColores1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 184
-Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(186): variable "cuadroColores2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 186
-Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(188): variable "cuadroColores3" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 188
-Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(191): variable "cuadroColores4" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 191
-Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(193): variable "cuadroColores5" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 193
-Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(195): variable "cuadroColores6" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 195
-Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(197): variable "cuadroColores7" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 197
-Info (12128): Elaborating entity "VGA_Driver640x480" for hierarchy "VGA_Driver640x480:VGA640x480" File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 141
-Warning (10230): Verilog HDL assignment warning at VGA_driver.v(42): truncated value with size 32 to match size of target (10) File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v Line: 42
-Warning (10230): Verilog HDL assignment warning at VGA_driver.v(43): truncated value with size 32 to match size of target (9) File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v Line: 43
-Warning (10230): Verilog HDL assignment warning at VGA_driver.v(52): truncated value with size 32 to match size of target (9) File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v Line: 52
-Warning (10230): Verilog HDL assignment warning at VGA_driver.v(56): truncated value with size 32 to match size of target (10) File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v Line: 56
-Info (12128): Elaborating entity "FSM_game" for hierarchy "FSM_game:juego" File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 231
-Warning (10034): Output port "px_wr" at FSM_game.v(22) has no driver File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/FSM_game.v Line: 22
+Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(183): variable "cuadroColores0" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 183
+Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(185): variable "cuadroColores1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 185
+Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(187): variable "cuadroColores2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 187
+Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(189): variable "cuadroColores3" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 189
+Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(192): variable "cuadroColores4" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 192
+Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(194): variable "cuadroColores5" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 194
+Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(196): variable "cuadroColores6" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 196
+Warning (10235): Verilog HDL Always Construct warning at test_VGA.v(198): variable "cuadroColores7" is read inside the Always Construct but isn't in the Always Construct's Event Control File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 198
+Info (12128): Elaborating entity "VGA_Driver640x480" for hierarchy "VGA_Driver640x480:VGA640x480" File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 142
+Warning (10230): Verilog HDL assignment warning at VGA_driver.v(45): truncated value with size 32 to match size of target (10) File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v Line: 45
+Warning (10230): Verilog HDL assignment warning at VGA_driver.v(46): truncated value with size 32 to match size of target (9) File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v Line: 46
+Warning (10230): Verilog HDL assignment warning at VGA_driver.v(55): truncated value with size 32 to match size of target (9) File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v Line: 55
+Warning (10230): Verilog HDL assignment warning at VGA_driver.v(59): truncated value with size 32 to match size of target (10) File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/VGA_driver.v Line: 59
+Info (12128): Elaborating entity "FSM_game" for hierarchy "FSM_game:juego" File: G:/Users/Administrador/Documents/UNAL Docs/2021 - II/Electronica Digital I/Lab/wp01-2021-2-grupo05-2021-2/hdl/quartus/scr/test_VGA.v Line: 232
 Warning (12162): EDA synthesis tool is specified as "Custom", but Library Mapping File is not specified
 Warning (12163): EDA synthesis tool is specified as "Custom", but VCC is not specified
 Warning (12164): EDA synthesis tool is specified as "Custom", but GND is not specified
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 1 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 107 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 103 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 10 input pins
-    Info (21059): Implemented 6 output pins
-    Info (21061): Implemented 91 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 23 warnings
-    Info: Peak virtual memory: 4778 megabytes
-    Info: Processing ended: Sat Feb 05 12:47:13 2022
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:24
+    Info (21059): Implemented 5 output pins
+    Info (21061): Implemented 88 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 4759 megabytes
+    Info: Processing ended: Sat Feb 05 17:52:32 2022
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:29
 
 

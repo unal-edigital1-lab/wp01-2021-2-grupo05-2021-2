@@ -1,13 +1,12 @@
 `timescale 1ns / 1ps
 
-module FSM_game #(
+module FSM_game # (
 		parameter AW = 3,
 		parameter DW = 3)
 	(
 	 	input clk, input rst,
 		input sw0, input sw1, input sw2, input sw3,
 		input sw4, 	input sw5, 	input sw6, 	input sw7,
-		// output reg [DW-1:0] cuadroColores[0:2**AW - 1],
 		output reg [DW-1:0] cuadroColores0,
 		output reg [DW-1:0] cuadroColores1,
 		output reg [DW-1:0] cuadroColores2,
@@ -16,9 +15,6 @@ module FSM_game #(
 		output reg [DW-1:0] cuadroColores5,
 		output reg [DW-1:0] cuadroColores6,
 		output reg [DW-1:0] cuadroColores7
-		// output mem_px_addr,
-		// output mem_px_data,
-		// output px_wr
    );
 
 	/*
@@ -29,18 +25,7 @@ module FSM_game #(
 	se oprime el interruptor 2 y a ese le corresponde el color 
 	001 (sin oprimir el interruptor), el resultado será 110.
 	*/
-
-	// initial begin
-	// 	cuadroColores0 = 3'b000;
-	// 	cuadroColores1 = 3'b001;
-	// 	cuadroColores2 = 3'b010;
-	// 	cuadroColores3 = 3'b011;
-	// 	cuadroColores4 = 3'b100;
-	// 	cuadroColores5 = 3'b101;
-	// 	cuadroColores6 = 3'b110;
-	// 	cuadroColores7 = 3'b111;
-	// end
-
+	
 	always @(posedge clk) begin
 			if (sw0)
 				cuadroColores0 = ~3'b000;

@@ -1,24 +1,5 @@
 `timescale 10ns / 1ns
 
-////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer:
-//
-// Create Date:   09:45:24 12/04/2019
-// Design Name:   test_VGA
-// Project Name:  test_VGA
-// Target Device:  
-// Tool versions:  
-// Description: 
-//
-// Dependencies:
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-////////////////////////////////////////////////////////////////////////////////
-
 module test_VGA_TB;
 
 	// Inputs
@@ -31,6 +12,8 @@ module test_VGA_TB;
 	wire VGA_R;
 	wire VGA_G;
 	wire VGA_B;
+
+	// Control
 	reg sw0;
 	reg sw1;
 	reg sw2;
@@ -39,7 +22,6 @@ module test_VGA_TB;
 	reg sw5;
 	reg sw6;
 	reg sw7;
-	wire clkout;
 
 	// Instantiate the Unit Under Test (UUT)
 	test_VGA uut (
@@ -47,17 +29,10 @@ module test_VGA_TB;
 		.rst(rst), 
 		.VGA_Hsync_n(VGA_Hsync_n), 
 		.VGA_Vsync_n(VGA_Vsync_n), 
-		.VGA_R(VGA_R), 
-		.VGA_G(VGA_G), 
-		.VGA_B(VGA_B),
-		.sw0(sw0),
-		.sw1(sw1),
-		.sw2(sw2),
-		.sw3(sw3),
-		.sw4(sw4),
-		.sw5(sw5),
-		.sw6(sw6),
-		.sw7(sw7)
+		.VGA_R(VGA_R), .VGA_G(VGA_G), .VGA_B(VGA_B),
+
+		.sw0(sw0), .sw1(sw1), .sw2(sw2), .sw3(sw3),
+		.sw4(sw4), .sw5(sw5), .sw6(sw6), .sw7(sw7)
 	);
 	
 	initial begin
@@ -95,7 +70,6 @@ module test_VGA_TB;
 	reg [9:0]row_cnt=0;
 	
 	
-	
 	/*************************************************************************
 			INICIO DE  GENERACION DE ARCHIVO test_vga	
 	**************************************************************************/
@@ -109,8 +83,8 @@ module test_VGA_TB;
 	reg clk_w = 0;
 	always #1 clk_w  = ~clk_w;
 	
-	/* ecsritura de log para cargar se cargados en https://ericeastwood.com/lab/vga-simulator/
-	kk
+	
+	/* ecsritura de log para cargarse en https://ericeastwood.com/lab/vga-simulator/
 	*/
 	initial forever begin
 	@(posedge clk_w)

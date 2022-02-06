@@ -25,41 +25,40 @@ module FSM_game # (
 	se oprime el interruptor 2 y a ese le corresponde el color 
 	001 (sin oprimir el interruptor), el resultado será 110.
 	*/
-	
+	localparam colorBase = 3'b010;
 	always @(posedge clk) begin
 			if (sw0)
-				cuadroColores0 = ~3'b000;
+				cuadroColores0 = colorBase;
 			else 
-				cuadroColores0 = 3'b000;
+				cuadroColores0 = 3'b111;
 			if (sw1)
+				cuadroColores1 = colorBase;
+			else
 				cuadroColores1 = 3'b001;
-			else
-				cuadroColores1 = ~3'b001;
 			if (sw2)
-				cuadroColores2 = 3'b010;
+				cuadroColores2 = colorBase;
 			else
-				cuadroColores2 = ~3'b010;
+				cuadroColores2 = 3'b001;
 			if (sw3)
-				cuadroColores3 = 3'b011;
+				cuadroColores3 = colorBase;
 			else
-				cuadroColores3 = ~3'b011;
+				cuadroColores3 = 3'b110;
 			if (sw4)
-				cuadroColores4 = 3'b100;
+				cuadroColores4 = colorBase;
 			else
-				cuadroColores4 = ~3'b100;
+				cuadroColores4 = 3'b011;
 			if (sw5)
-				cuadroColores5 = 3'b101;
+				cuadroColores5 = colorBase;
 			else
-				cuadroColores5 = ~3'b101;
+				cuadroColores5 = 3'b110;
 			if (sw6)
-				cuadroColores6 = 3'b110;
+				cuadroColores6 = colorBase;
 			else
-				cuadroColores6 = ~3'b110;
+				cuadroColores6 = 3'b011;
 			if (sw7)
-				cuadroColores7 = 3'b111;
+				cuadroColores7 = colorBase;
 			else
-				cuadroColores7 = ~3'b111;
-
+				cuadroColores7 = 3'b111;
 	end
 
 endmodule

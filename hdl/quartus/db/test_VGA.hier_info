@@ -1,5 +1,5 @@
 |test_VGA
-clk => clk25M.IN2
+clk => clk50M.IN1
 rst => rst.IN2
 VGA_Hsync_n << VGA_Driver640x480:VGA640x480.Hsync_n
 VGA_Vsync_n << VGA_Driver640x480:VGA640x480.Vsync_n
@@ -14,6 +14,11 @@ sw4 => sw4.IN1
 sw5 => sw5.IN1
 sw6 => sw6.IN1
 sw7 => sw7.IN1
+
+
+|test_VGA|half_clk:clk_div_2
+clk => cfreq.CLK
+clk_half <= cfreq.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |test_VGA|VGA_Driver640x480:VGA640x480
@@ -129,28 +134,16 @@ clk => cuadroColores0[1]~reg0.CLK
 clk => cuadroColores0[2]~reg0.CLK
 rst => ~NO_FANOUT~
 sw0 => cuadroColores0[2]~reg0.DATAIN
-sw0 => cuadroColores0[1]~reg0.DATAIN
 sw0 => cuadroColores0[0]~reg0.DATAIN
-sw1 => cuadroColores1[0]~reg0.DATAIN
-sw1 => cuadroColores1[2]~reg0.DATAIN
 sw1 => cuadroColores1[1]~reg0.DATAIN
+sw1 => cuadroColores1[0]~reg0.DATAIN
 sw2 => cuadroColores2[1]~reg0.DATAIN
-sw2 => cuadroColores2[2]~reg0.DATAIN
 sw2 => cuadroColores2[0]~reg0.DATAIN
-sw3 => cuadroColores3[1]~reg0.DATAIN
-sw3 => cuadroColores3[0]~reg0.DATAIN
 sw3 => cuadroColores3[2]~reg0.DATAIN
-sw4 => cuadroColores4[2]~reg0.DATAIN
-sw4 => cuadroColores4[1]~reg0.DATAIN
 sw4 => cuadroColores4[0]~reg0.DATAIN
 sw5 => cuadroColores5[2]~reg0.DATAIN
-sw5 => cuadroColores5[0]~reg0.DATAIN
-sw5 => cuadroColores5[1]~reg0.DATAIN
-sw6 => cuadroColores6[2]~reg0.DATAIN
-sw6 => cuadroColores6[1]~reg0.DATAIN
 sw6 => cuadroColores6[0]~reg0.DATAIN
 sw7 => cuadroColores7[2]~reg0.DATAIN
-sw7 => cuadroColores7[1]~reg0.DATAIN
 sw7 => cuadroColores7[0]~reg0.DATAIN
 cuadroColores0[0] <= cuadroColores0[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 cuadroColores0[1] <= cuadroColores0[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE

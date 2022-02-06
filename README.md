@@ -26,3 +26,5 @@ Según lo encontrado en el datasheet de la tarjeta de desarrollado, sumado a lo 
 
 ### Pregunta 3
 ###¿Usted qué estrategia para modificar la RAM considera para la implementación de la FSM del juego?
+
+Debido a que la lógica del juego no necesita de mucho espacio para guardar sus datos y operar de manera óptima, no es necesario utilizar un módulo de memoria RAM dedicado. De este modo, la modificación para modificar la RAM consistiria en no hacer uso de ella, puesto que sería un consumo de recursos innecesario.

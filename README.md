@@ -14,6 +14,8 @@ Durante el curso se han visto diversos temas que implican el aprendizaje y enten
 
 ## Desarrollo
 
+En esta sección se verá cómo se planeó el desarrollo del juego.
+
 ## Preguntas planteadas.
 
 ### Pregunta 1.
@@ -38,7 +40,7 @@ Según lo encontrado en el datasheet de la tarjeta de desarrollado, sumado a lo 
 Debido a que la lógica del juego no necesita de mucho espacio para guardar sus datos y operar de manera óptima, no es necesario utilizar un módulo de memoria RAM dedicado. De este modo, la modificación para modificar la RAM consistiria en no hacer uso de ella, puesto que sería un consumo de recursos innecesario.
 
 
-## Descripción del uego.
+## Descripción del juego.
 
 El juego de la memoria, también conocido como el juego de voltear tarjetas, es aquel donde se tienen una serie de tarjetas, las cuales todas tienen una cara en común y del otro lado de la cara tendrán un dibujo característico. Es así, como se contará con parejas de tarjetas que tengan exactamente la misma figura de una cara y la misma de la otra cara. Se procede a colocar todas las cartas boca abajo en un espacio, donde claramente no se sabe la ubicación de cada tarjeta, haciendo que quede un mosaico de tarjetas con patrones iguales entre sí, pero que tienen dibujos característicos debajo de ellas.
 
@@ -53,5 +55,72 @@ Dado a que el tiempo era limitado, se tuvieron que realizar ciertas simplificaci
 -  El número de cartas usadas fue de ocho, debido a la división del display en 4x2. Es así como se posee un número de cuatro posibles parejas para encontrar. Si bien, el juego es algo corto, solamente es para fines educativos.
 - Las cartas no muestran figuras al voltearse, sino que se toman colores, dado a que la idea es la misma y es lo más simplificado que se puede llegar a hacer. Surgió la idea de colocar algunas figuras para darle más personalidad al juego, pero se terminó por descartar debido a los ajustes que se tenían que realizar en el display, haciendo que quizá no alcance la memoria.
 - La ubicación de los colores de las cartas no cambia, es la misma siempre. Realmente no se programó una distribución aleatoria para los colores mostrados “al voltear la carta”, por lo que siempre estarán la misma ubicación y lo único que cambia es el orden en el que se voltean las cartas. El botón de reset colocará las cartas en su color original, es decir, todas de exactamente el mismo color.
+
+```verilog 
+module VGA_Driver640x480 #(
+	parameter SCREEN_X = 640,
+	parameter SCREEN_Y = 480
+)
+(
+	input rst,  // Entrada reset
+	input clk, 	// Entrada reloj 25MHz para 60 hz de 640x480
+	input  [11:0] pixelIn, 	// entrada del valor de color  pixel 
+	output  [11:0] pixelOut, // salida pixel VGA (RGB)
+	output  Hsync_n,		// seÃ±al de sincronizaciÃ³n en horizontal negada
+	output  Vsync_n,		// seÃ±al de sincronizaciÃ³n en vertical negada 
+	output  [9:0] posX, 	// posicion en horizontal del pixel siguiente
+	output  [8:0] posY 		// posicion en vertical  del pixel siguiente
+);
+
+// localparam SCREEN_X = 640; // Tamaño de la VGA horizontal 
+localparam FRONT_PORCH_X =16;  // Pixeles de sincronización
+localparam SYNC_PULSE_X = 96;
+localparam BACK_PORCH_X = 48;
+localparam TOTAL_SCREEN_X = SCREEN_X+FRONT_PORCH_X+SYNC_PULSE_X+BACK_PORCH_X; 	// total pixel pantalla en horizontal 
+
+
+// localparam SCREEN_Y = 480;  // Tamaño de la VGA vertical
+localparam FRONT_PORCH_Y =10;  // Pixeles de sincronización
+localparam SYNC_PULSE_Y = 2;
+localparam BACK_PORCH_Y = 33;
+localparam TOTAL_SCREEN_Y = SCREEN_Y+FRONT_PORCH_Y+SYNC_PULSE_Y+BACK_PORCH_Y; 	// total pixel pantalla en Vertical 
+
+
+reg  [9:0] countX;
+reg  [8:0] countY;
+
+assign posX    = countX;
+assign posY    = countY;
+
+assign pixelOut = (countX<SCREEN_X) ? (pixelIn ) : (12'b000000000000) ; // Dejar en blanco la zona del porch
+
+assign Hsync_n = ~((countX>=SCREEN_X+FRONT_PORCH_X) && (countX<SCREEN_X+SYNC_PULSE_X+FRONT_PORCH_X)); // Sincronización horizontal
+assign Vsync_n = ~((countY>=SCREEN_Y+FRONT_PORCH_Y) && (countY<SCREEN_Y+FRONT_PORCH_Y+SYNC_PULSE_Y)); // Sincronización vertical
+
+
+always @(posedge clk) begin
+	if (~rst) begin
+		countX <= TOTAL_SCREEN_X-10; /*para la simulación sea mas rapido*/
+		countY <= TOTAL_SCREEN_Y-4;/*para la simulación sea mas rapido*/
+	end
+	else begin 
+		if (countX >= (TOTAL_SCREEN_X)) begin
+			countX <= 0;
+			if (countY >= (TOTAL_SCREEN_Y)) begin
+				countY <= 0;
+			end 
+			else begin
+				countY <= countY + 1;
+			end
+		end 
+		else begin
+			countX <= countX + 1;
+			countY <= countY;
+		end
+	end
+end
+
+endmodule
+```
 
 

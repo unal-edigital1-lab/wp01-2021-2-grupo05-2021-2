@@ -11,6 +11,9 @@
 
 Durante el curso se han visto diversos temas que implican el aprendizaje y entendimiento del lenguaje en verilog, la manipulación de quartus, realización de chequeos con el testbech y la implementación de la lógica en la FPGA, asignando entonces pines para poder llevar el funcionamiento del circuito al hardware, y ultimadamente usando dispositivos para el muestreo como lo es un monitor VGA. Es así como en este proyecto, se aplican nuevamente esos conocimientos adquiridos para fines lúdicos y educativos, llegando entonces al desarrollo de un juego algo simple pero que muestra en entendimiento de los tópicos vistos dentro del curso. Es denominado el juego de la memoria y se verá cómo funciona desde el desarrollo del código hasta la implementación en la tarjeta y la pantalla VGA, de modo que el usuario pueda interactuar por medio de la tarjeta, logrando “jugar”
 
+## Objetivos
+
+
 
 ## Implementos
 - Pantalla con entrada VGA y cuya resolución sea 640x480.
@@ -18,11 +21,8 @@ Durante el curso se han visto diversos temas que implican el aprendizaje y enten
 - Cable VGA.
 - Código.
 
-## Desarrollo
 
-En esta sección se verá cómo se planeó el desarrollo del juego.
-
-## Preguntas planteadas.
+## Preguntas planteadas
 
 ### Pregunta 1.
 ### Definir, ¿Cuál es el tamaño máximo de buffer de memoria que puede crear, acorde a la FPGA?, contraste este resultado con la memoria necesaria para la visualización en un pantalla VGA 640 x 480 de RGB444, y compruebe si es posible dejando el 50 % libre de la memoria.
@@ -69,14 +69,14 @@ Al principio del planteamiento del juego, realmente no se pensó desde siempre e
 
 De esta forma, sería posible usar toda la pantalla de colores sin llenar la memoria de la tarjeta, en lugar de sólo emular el juego en un pequeño espacio del monitor debido a la reducción en la resolución. Es así como mediante la configuración correcta para acoplar los módulos correspondientes al VGA se pudo realizar la lógica del programa, la cual podía emular todos los colores disponibles. Usando el archivo de salida imagen.men y colocando un reloj para cambiar constantemente la señal de los dipswitch a ver si la lógica funcionaba en el simulador web de imagen VGA, se pudo observar que la imagen arrojada por la página confirmaba el funcionamiento.
 
-![Screenshot](Imagenes/HJ1.jpg)
-* Archivo image.men subido a la página de simulación con un reloj que cambiaba la señal del registro de los colores comprobando que se cambiaban a su negado.
+	![Screenshot](Imagenes/HJ1.jpg)
+	* Archivo image.men subido a la página de simulación con un reloj que cambiaba la señal del registro de los colores comprobando que se cambiaban a su negado.
 
 Al comprobar que todo estaba en orden con la lógica diseñaba y el funcionamiento era un hecho, logrando no obtener errores o alertas significativas, se emprendió la labor de acoplar el monitor. Es así como por medio de un monitor VGA de uno de los integrantes del grupo, el proyecto pudo ser implementado en la tarjeta y mostrado en su estado inicial en la pantalla, en la pantalla, justamente en la resolución que se planeó. Los colores se configuraron un poco más vívidos que los que aparecían en la simulación de la pantalla en la página, de modo que eran más fáciles de distinguir. El problema es que habían unos inexplicables errores a la hora del muestreo, donde aparecían líneas blancas en la pantalla inicial, pero que sin embargo, era algo despreciable que no afectaba al funcionamiento del juego e incluso era a veces imperceptible.
 
 
-![Screenshot](Imagenes/HJ3.jpg)
-* Idea inicial de proyecto implementada y mostrada en el monitor VGA exitosamente.
+	![Screenshot](Imagenes/HJ3.jpg)
+	* Idea inicial de proyecto implementada y mostrada en el monitor VGA exitosamente.
 
 
 

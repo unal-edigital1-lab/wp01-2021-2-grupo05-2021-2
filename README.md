@@ -13,8 +13,11 @@ Durante el curso se han visto diversos temas que implican el aprendizaje y enten
 
 ## Objetivos
 
-- 
-- 
+- Modificar el código suministrado para realizar simulaciones de visualización de imágenes en resolución VGA por medio de archivos de salida que puede ser testeados en páginas web con esta función, dando la posibilidad de observar la imagen.
+- Hacer la implementación del código modificando los módulos para poder acoplar satisfactoriamente una pantalla VGA real con una resolución compatible con la tarjeta Cyclone IV suministrada para poder mostrar una imagen programa en la pantalla.
+- Por medio de lógica y demás recursos adquiridos en el aprendizaje de la clase, diseñar un programa capaz de emular un juego al gusto del grupo. Se escogió al juego de la memoria debido a la simplicidad del mismo y el tiempo limitado.
+- Obtener un juego funcional que use como interfaz de visualización al monitor VGA y de manipulación a la tarjeta, por medio de los dipswitch o cualquier otra adición que sea necesaria de realizar para poder colocar los controles.
+
 
 ## Implementos
 - Pantalla con entrada VGA y cuya resolución sea 640x480.
@@ -88,9 +91,14 @@ Una vez implementado el juego se buscó tratar de mejorar agregando algunas figu
 ![Screenshot](Imagenes/HJ2.jpg)
 	* Experimento de muestreo de un círculo en VGA usando el sitio de simulación propuesto.
 
+Finalmente, se documentó todo el código usado y todo fue subido al informe final para la presentación en clase.
+
 ## Código de los módulos usados
+A continuación, se verán los códigos de los módulos programados para que el juefo funcione correctamente tanto en la simulación como en la implementación. Se comentaron las partes más importantes y aclaraciones de porqué se usan o no se usan algunos parámetros, cono la memoria RAM, por ejemplo.
 
 ### FSM_game.v
+Lógica para el funcionamiento del juego.
+
 ```verilog 
 `timescale 1ns / 1ps
 
@@ -153,6 +161,7 @@ endmodule
 
 ### VGA_driver.v
 Código para acoplar la pantalla VGA.
+
 ```verilog 
 module VGA_Driver640x480 #(
 	parameter SCREEN_X = 640,
@@ -221,6 +230,7 @@ endmodule
 ```
 
 ### buffer_ram_dp.v
+Simulación VGA.
 
 ```verilog 
 module VGA_Driver640x480 #(
@@ -312,6 +322,7 @@ endmodule
 
 ### test_VGA.v
 Muestreo del programa en el display VGA.
+
 ```verilog 
 `timescale 1ns / 1ps
 
@@ -466,8 +477,7 @@ end
 
 
 /*****************************************************************************
-Ocho interruptores para realizar el control (cada uno) del
-respectivo subcuadro de la pantalla
+Ocho interruptores para realizar el control (cada uno) de respectivo subcuadro de la pantalla
 **************************************************************************** */
 
 FSM_game  juego (
@@ -571,8 +581,7 @@ module test_VGA_TB;
 	always #1 clk_w  = ~clk_w;
 	
 	
-	/* ecsritura de log para cargarse en https://ericeastwood.com/lab/vga-simulator/
-	*/
+	/* ecsritura de log para cargarse en https://ericeastwood.com/lab/vga-simulator/ */
 	initial forever begin
 	@(posedge clk_w)
 		$fwrite(f,"%0t ps: %b %b %b %b %b\n",$time,VGA_Hsync_n, VGA_Vsync_n, {2'b00, VGA_R}, {2'b00, VGA_G}, {1'b0, VGA_B});
@@ -595,4 +604,5 @@ Se grabó un vídeo donde se muestra al proyecto funcionando adecuadamente y sie
 - Es necesario un divisor de frecuencia para sincronizar la frecuencia con la que trabaja la tarjeta y con la que el VGA va a mostrar la información. Esto en la simulación no es necesario, pero es fundamental a la hora de implementar en el hardware para asegurar su buen funcionamiento.
 - Con una buena idea de diseño, es relativamente simple desarrollar un juego funcional aprovechando los recursos disponibles y superando las limitaciones que significa trabajar con una tarjeta y un monitor VGA. Sin duda alguna el proyecto hubiese sido mejor y más detallado con algunas mejoras si se hubiese dispuesto de un tiempo considerable.
 - Es posible implementar en la tarjeta y mostrar figuras conformadas por funciones matemáticas en el monitor VGA, haciendo que se tenga por lo menos una forma de diseñar un escenario en futuros juegos. Sin embargo, sólo fue un pequeño experimento para profundizar en cómo funciona este tipo de tecnología.
+- No fue necesario el uso de la memoria RAM debido a la simplicidad del proyecto, ya que los píxeles sólo tienen dos condiciones, es posible programarlos tan sólo usando los dipswitch y registros para los colores. Es por este motivo que no se gastaron muchos recursos en la tarjeta.
 

@@ -233,68 +233,47 @@ endmodule
 Simulación VGA.
 
 ```verilog 
-module VGA_Driver640x480 #(
-	parameter SCREEN_X = 640,
-	parameter SCREEN_Y = 480
-)
-(
-	input rst,  // Entrada reset
-	input clk, 	// Entrada reloj 25MHz para 60 hz de 640x480
-	input  [11:0] pixelIn, 	// entrada del valor de color  pixel 
-	output  [11:0] pixelOut, // salida pixel VGA (RGB)
-	output  Hsync_n,		// señal de sincronización en horizontal negada
-	output  Vsync_n,		// señal de sincronización en vertical negada 
-	output  [9:0] posX, 	// posición en horizontal del pixel siguiente
-	output  [8:0] posY 		//posición en vertical  del pixel siguiente
-);
+`timescale 1ns / 1ps
+module buffer_ram_dp#( 
+	parameter AW = 15, // Cantidad de bits  de la direccin 
+	parameter DW = 12, // cantidad de Bits de los datos 
+	parameter   imageFILE= "image.men")
+	(  
+	input  clk_w, 
+	input  [AW-1: 0] addr_in, 
+	input  [DW-1: 0] data_in,
+	input  regwrite, 
+	
+	input  clk_r, 
+	input [AW-1: 0] addr_out,
+	output reg [DW-1: 0] data_out,
+	input reset
+	);
 
-// localparam SCREEN_X = 640; // Tamaño de la VGA horizontal 
-localparam FRONT_PORCH_X =16;  // Pixeles de sincronización
-localparam SYNC_PULSE_X = 96;
-localparam BACK_PORCH_X = 48;
-localparam TOTAL_SCREEN_X = SCREEN_X+FRONT_PORCH_X+SYNC_PULSE_X+BACK_PORCH_X; 	// total píxel pantalla en horizontal 
+// Calcular el nmero de posiciones totales de memoria 
+localparam NPOS = 2 ** AW; // Memoria 32768
 
-
-// localparam SCREEN_Y = 480;  // Tamaño de la VGA vertical
-localparam FRONT_PORCH_Y =10;  // Pixeles de sincronización
-localparam SYNC_PULSE_Y = 2;
-localparam BACK_PORCH_Y = 33;
-localparam TOTAL_SCREEN_Y = SCREEN_Y+FRONT_PORCH_Y+SYNC_PULSE_Y+BACK_PORCH_Y; 	// total píxel pantalla en vertical 
+ reg [DW-1: 0] ram [0: NPOS-1];
 
 
-reg  [9:0] countX;
-reg  [8:0] countY;
-
-assign posX    = countX;
-assign posY    = countY;
-
-assign pixelOut = (countX<SCREEN_X) ? (pixelIn ) : (12'b000000000000) ; // dejar en blanco la zona del porch
-
-assign Hsync_n = ~((countX>=SCREEN_X+FRONT_PORCH_X) && (countX<SCREEN_X+SYNC_PULSE_X+FRONT_PORCH_X)); // sincronización horizontal
-assign Vsync_n = ~((countY>=SCREEN_Y+FRONT_PORCH_Y) && (countY<SCREEN_Y+FRONT_PORCH_Y+SYNC_PULSE_Y)); // sincronización vertical
-
-
-always @(posedge clk) begin
-	if (~rst) begin
-		countX <= TOTAL_SCREEN_X-10; //*para la simulación sea mas rápida
-		countY <= TOTAL_SCREEN_Y-4; //para la simulación sea mas rápida
-	end
-	else begin 
-		if (countX >= (TOTAL_SCREEN_X)) begin
-			countX <= 0;
-			if (countY >= (TOTAL_SCREEN_Y)) begin
-				countY <= 0;
-			end 
-			else begin
-				countY <= countY + 1;
-			end
-		end 
-		else begin
-			countX <= countX + 1;
-			countY <= countY;
-		end
-	end
+//	 escritura  de la memoria port 1 
+always @(posedge clk_w) begin 
+       if (regwrite == 1) 
+             ram[addr_in] <= data_in;
 end
+
+//	 Lectura  de la memoria port 2 
+always @(posedge clk_r) begin 
+		data_out <= ram[addr_out]; 
+end
+
+
+initial begin
+	$readmemh(imageFILE, ram);
+//	ram[0] = 0;
+//	ram[1] = 12'b111111111111;
+end
+
 
 endmodule
 ```

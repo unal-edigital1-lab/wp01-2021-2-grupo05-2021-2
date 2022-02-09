@@ -63,7 +63,7 @@ Al principio del planteamiento del juego, realmente no se pensó desde siempre e
 
 De esta forma, sería posible usar toda la pantalla de colores sin llenar la memoria de la tarjeta, en lugar de sólo emular el juego en un pequeño espacio del monitor debido a la reducción en la resolución. Es así como mediante la configuración correcta para acoplar los módulos correspondientes al VGA se pudo realizar la lógica del programa, la cual podía emular todos los colores disponibles. Usando el archivo de salida imagen.men y colocando un reloj para cambiar constantemente la señal de los dipswitch a ver si la lógica funcionaba en el simulador web de imagen VGA, se pudo observar que la imagen arrojada por la página confirmaba el funcionamiento.
 
-![Screenshot](Imagenes/HJ1.png)
+![Screenshot](Imagenes/HJ1.jpg)
 
 ## Código usado
 

@@ -1,16 +1,22 @@
 
 # Proyecto final Electronica digital I - "El juego de la memoria"
 
-## Grupo 5
+## Grupo 5.
 
-- Nicolás Velásquez Ospina
-- Jhair Steven Gallego Mendez
-- Juan David Sarmiento Lastra
+- Nicolás Velásquez Ospina.
+- Jhair Steven Gallego Mendez.
+- Juan David Sarmiento Lastra.
 
 ## Introducción
 
 Durante el curso se han visto diversos temas que implican el aprendizaje y entendimiento del lenguaje en verilog, la manipulación de quartus, realización de chequeos con el testbech y la implementación de la lógica en la FPGA, asignando entonces pines para poder llevar el funcionamiento del circuito al hardware, y ultimadamente usando dispositivos para el muestreo como lo es un monitor VGA. Es así como en este proyecto, se aplican nuevamente esos conocimientos adquiridos para fines lúdicos y educativos, llegando entonces al desarrollo de un juego algo simple pero que muestra en entendimiento de los tópicos vistos dentro del curso. Es denominado el juego de la memoria y se verá cómo funciona desde el desarrollo del código hasta la implementación en la tarjeta y la pantalla VGA, de modo que el usuario pueda interactuar por medio de la tarjeta, logrando “jugar”
 
+
+## Implementos
+- Pantalla con entrada VGA y cuya resolución sea 640x480.
+- FPGA que cuenta con puerto VGA. (Cyclone IV)
+- Cable VGA.
+- Código.
 
 ## Desarrollo
 

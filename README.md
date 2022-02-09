@@ -59,6 +59,13 @@ Dado a que el tiempo era limitado, se tuvieron que realizar ciertas simplificaci
 
 ## Diseño e idea inicial del proyecto
 
+Al principio del planteamiento del juego, realmente no se pensó desde siempre en hacer el juego de la memoria, sino que se tenía la idea de algo un poco más sencillo. La idea era tomar y dividir la pantalla mostrada en el VGA en ocho partes iguales, de manera que se pudieran visualizar perfectamente a los ocho colores en el display. El cambio radicaba en que el usuario podría cambiar estos colores al negado binario que representaba esto en el código al oprimir el dipswitch asociado a cada “píxel”. La resolución de la pantalla era de 640x480, por lo que se dividió horizontalmente en cuatro partes y verticalmente en dos, quedando entonces con ocho rectángulos iguales de 160x240 en resolución 2x4, cada uno asociado a un registro que guardaba el color.
+
+De esta forma, sería posible usar toda la pantalla de colores sin llenar la memoria de la tarjeta, en lugar de sólo emular el juego en un pequeño espacio del monitor debido a la reducción en la resolución. Es así como mediante la configuración correcta para acoplar los módulos correspondientes al VGA se pudo realizar la lógica del programa, la cual podía emular todos los colores disponibles. Usando el archivo de salida imagen.men y colocando un reloj para cambiar constantemente la señal de los dipswitch a ver si la lógica funcionaba en el simulador web de imagen VGA, se pudo observar que la imagen arrojada por la página confirmaba el funcionamiento.
+
+![Screenshot](Imagenes/HJ1.png)
+
+## Código usado
 
 
 ```verilog 
@@ -129,7 +136,7 @@ endmodule
 ```
 
 
-## Conclusiónes
+## Conclusiones
 
 - La reducción y simplificación a la hora de mostrar en el monitor VGA es imprescindible de tomar en cuenta dado a la memoria limitada de la tarjeta, la cual se puede saturar y no sería posible almacenar la imagen completa del monitor suponiendo que se usa RGB y toda la gama de colores posibles. Es por esto que se limitó únicamente a ocho colores y a “píxeles” rectangulares de 160x240, condición suficiente para hacer funcionar al juego propuesto. 
 - Es necesario un divisor de frecuencia para sincronizar la frecuencia con la que trabaja la tarjeta y con la que el VGA va a mostrar la información. Esto en la simulación no es necesario, pero es fundamental a la hora de implementar en el hardware para asegurar su buen funcionamiento.

@@ -82,8 +82,10 @@ Ya teniendo básicamente todo listo para presentar, surgió la idea de ser más 
 ![Screenshot](Imagenes/HJ6.png)
 	* Juego final implementado en el monitor VGA y FPGA.
 
+Una vez implementado el juego se buscó tratar de mejorar agregando algunas figuras simples como círculos o cuadrados a las tarjetas ya volteadas. Es así como se intentó y logró con éxito mostrar una figura diferente a un rectángulo, en este caso, un círculo con el código, el cual estaría listo para ser mostrado en el monitor en el caso de ser necesario. Sin embargo, se planteó que esto sería mucho más difícil de lo pensado y se tendrían que hacer significativos cambios al código para poder lograr mostrar las figuras, dado a que ya las cartas no serían simples píxeles, se tenía que usar más memoria y rediseñar el código que ya estaba listo. Sin embargo, se quedó con el aprendizaje de cómo emular figuras a partir de sus expresiones lógicas.
 
-
+![Screenshot](Imagenes/HJ2.jpg)
+	* Experimento de muestreo de un círculo en VGA usando el sitio de simulación propuesto.
 
 ## Código usado
 

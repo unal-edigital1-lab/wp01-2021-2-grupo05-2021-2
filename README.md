@@ -1,7 +1,7 @@
 
 # Proyecto final Electronica digital I - "El juego de la memoria"
 
-## Grupo 5.
+## Grupo 5 - 2021 II.
 
 - Nicolás Velásquez Ospina.
 - Jhair Steven Gallego Mendez.
@@ -606,3 +606,8 @@ Se grabó un vídeo donde se muestra al proyecto funcionando adecuadamente y sie
 - Es posible implementar en la tarjeta y mostrar figuras conformadas por funciones matemáticas en el monitor VGA, haciendo que se tenga por lo menos una forma de diseñar un escenario en futuros juegos. Sin embargo, sólo fue un pequeño experimento para profundizar en cómo funciona este tipo de tecnología.
 - No fue necesario el uso de la memoria RAM debido a la simplicidad del proyecto, ya que los píxeles sólo tienen dos condiciones, es posible programarlos tan sólo usando los dipswitch y registros para los colores. Es por este motivo que no se gastaron muchos recursos en la tarjeta.
 
+
+## Referencias
+- P. Ashenden, Digital Design an embedded systems approach using Verilog, Morgan Kauffman, 2008
+- I. Grout, Digital Systems Design with FPGAs and CPLDS, Newnes, 2008.
+- Floyd T. - Digital Fundamentals Ed. 10

@@ -156,7 +156,7 @@ endmodule
 
 Se grabó un vídeo donde se muestra al proyecto funcionando adecuadamente y siendo operado por un usuario con la disposición de jugar.
 
-[![Vídeo](/img/Miniatura_Test_BReg.jpg)](https://youtu.be/I9_Wk0QvCko "Vídeo")
+[![Vídeo](Imagenes/HJ6.png)](https://youtu.be/I9_Wk0QvCko "Vídeo")
 
 ## Conclusiones
 

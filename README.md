@@ -73,8 +73,8 @@ De esta forma, sería posible usar toda la pantalla de colores sin llenar la mem
 
 Al comprobar que todo estaba en orden con la lógica diseñaba y el funcionamiento era un hecho, logrando no obtener errores o alertas significativas, se emprendió la labor de acoplar el monitor. Es así como por medio de un monitor VGA de uno de los integrantes del grupo, el proyecto pudo ser implementado en la tarjeta y mostrado en su estado inicial en la pantalla, en la pantalla, justamente en la resolución que se planeó. Los colores se configuraron un poco más vívidos que los que aparecían en la simulación de la pantalla en la página, de modo que eran más fáciles de distinguir. El problema es que habían unos inexplicables errores a la hora del muestreo, donde aparecían líneas blancas en la pantalla inicial, pero que sin embargo, era algo despreciable que no afectaba al funcionamiento del juego e incluso era a veces imperceptible.
 
-![Screenshot](Imagenes/HJ2.jpg "Idea inicial de proyecto implementada y mostrada en el monitor VGA exitosamente.")
 
+![Idea inicial de proyecto implementada y mostrada en el monitor VGA exitosamente.](Imagenes/HJ2.jpg  "Idea inicial de proyecto implementada y mostrada en el monitor VGA exitosamente.")
 
 
 
